@@ -3,17 +3,33 @@ var router = express.Router();
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('mydb.db');
 var bodyParser = require('body-parser');
-
 // Create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
+
+db.run("CREATE TABLE IF NOT EXISTS person (first_name TEXT, last_name TEXT)");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.post('/test', function(req, res, next) {
-  console.log(req.body);
+router.post('/', function(req, res, next) {
+
+  response = {
+    first_name:req.query.first_name,
+    last_name:req.query.last_name
+  };
+
+  var stmt = db.run("INSERT INTO person VALUES (?, ?)", [response.first_name, response.last_name]);
+  
+  console.log(response);
+  res.end(JSON.stringify(response));
+});
+
+router.get('/', function(req, res, next) {
+
+  /*var stmt = */ db.prepare("SELECT * FROM person");
+  console.log(stmt);
 });
 
 /*
