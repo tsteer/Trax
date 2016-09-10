@@ -25,12 +25,11 @@ router.post('/', function(req, res, next) {
   console.log(response);
   res.end(JSON.stringify(response));
 });
-
+/*
 router.get('/', function(req, res, next) {
-
-  /*var stmt = */ db.prepare("SELECT * FROM person");
+  /*var stmt =  db.prepare("SELECT * FROM person");
   console.log(stmt);
-});
+}); 
 
 /*
 db.serialize(function() {

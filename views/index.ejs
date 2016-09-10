@@ -9,8 +9,8 @@
   <% include templates/header.ejs %>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-
-    <form action="http://127.0.0.1:3000/process_get" method="GET">
+<!--
+    <form action="/" method="GET">
 First Name: <input type="text" name="first_name">  <br>
 
 Last Name: <input type="text" name="last_name">
@@ -18,13 +18,21 @@ Last Name: <input type="text" name="last_name">
 
 <input type="submit" value="Submit">
 
-</form>
+</form> -->
+
+<form action="/" method="POST">
+  <input type="text" placeholder="firstname" name="first_name">
+  <input type="text" placeholder="lastname" name="last_name">
+  <button type="submit">Submit</button>
+</form> 
+
 <br />
 <br />
+<!--
 <form action="/" method="POST">
   <input type="text" placeholder="name" name="name">
   <input type="text" placeholder="quote" name="quote">
   <button type="submit">Submit</button>
-</form>
+</form>  -->
   </body>
 </html>
