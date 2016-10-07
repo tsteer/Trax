@@ -3,7 +3,8 @@
 <body>
 	<h1>We found a person</h1>
 	<p>first name: <%= first_name %>
-    <form action="/edituser/:id" method="PUT">
+   
+<form action="/edituser/<%= id %>" method="POST">
 		  <input type="text" placeholder="First Name" name="first_name">   
 		  <button type="submit">Submit</button>
 		  </form>

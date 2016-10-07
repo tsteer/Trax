@@ -9,15 +9,21 @@ router.get("/edituser/:id", function(req, res, next) {
       return;
     }
     if (rows.length > 0) {
-    	res.render("example", {first_name: rows[0].first_name, last_name: rows[0].last_name}); 
+    	res.render("example", {first_name: rows[0].first_name, last_name: rows[0].last_name, id:rows[0].id}); 
     } else {
       res.send("no rows");
     }
   });
-  next();
 });
 
-
+router.post("/edituser/:id", function(req, res, next) {
+  response = {
+    first_name:req.body.first_name,
+  };
+  db.run("UPDATE person SET first_name = ? WHERE id = ?", [response.first_name, req.params.id], function(err, result){   
+    res.send("done");
+  });
+});
 /*
 router.post("/edituser/:id", function(req, res, next) {
   var id = req.body.id;
