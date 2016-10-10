@@ -2,7 +2,7 @@ var express = require('express');
 
 // libraries
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('mydbtest1.db');
+var db = new sqlite3.Database('mydbtest6.db');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
 var path = require('path');
@@ -27,8 +27,10 @@ require('./routes/people')(router, db);
 require('./routes/deleteuser')(router, db);
 require('./routes/newuser')(router, db);
 require('./routes/edituser')(router, db);
+require('./routes/newclub')(router, db);
 
 db.run("CREATE TABLE IF NOT EXISTS person (id INTEGER PRIMARY KEY, first_name TEXT, last_name TEXT, dob DATE, address TEXT, email EMAIL, telephone TEL, year NUMBER)");
+db.run("CREATE TABLE IF NOT EXISTS club (club_id INTEGER PRIMARY KEY, club_name TEXT, sport TEXT, club_email EMAIL)");
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express'});

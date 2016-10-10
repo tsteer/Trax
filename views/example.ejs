@@ -1,17 +1,32 @@
 <html>
+	<head>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+	</head>
+	<body>
+	  <% include templates/header.ejs %>
+		<h1>We found a person</h1> 
+		<form action="/edituser/<%= id %>" method="POST">
+			 <p>first name: 
+			 <input type="text" name="first_name" value="<%- first_name %>"></p>
 
-<body>
-	<h1>We found a person</h1>
-	<p>first name: <%= first_name %>
-   
-<form action="/edituser/<%= id %>" method="POST">
-		  <input type="text" placeholder="First Name" name="first_name">   
-		  <button type="submit">Submit</button>
-		  </form>
-	</p>
-	<p>last name: <%= last_name %></p>
+			 <p>last name:
+			 <input type="text" name="last_name" value="<%- last_name %>"></p>
 
+			 <p>Date of Birth:
+			 <input type="date" name="dob" value="<%- dob %>"></p>
 
-</body>
+			 <p>address:
+			 <input type="text" name="address" value="<%- address %>"></p>
 
+			 <p>Email:
+			 <input type="email" name="email" value="<%- email %>"></p>
+
+			 <p>Telephone:
+			 <input type="number" name="telephone" value="<%- telephone %>"></p>
+
+			 <p>Year:
+			 <input type="number" name="year" value="<%- year %>"></p>
+			 <button type="submit" value="Submit">Submit</button>
+		</form>
+	</body>
 </html>
