@@ -2,7 +2,7 @@ var express = require('express');
 
 // libraries
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('mydbtest6.db');
+var db = new sqlite3.Database('mydbtest8.db');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
 var path = require('path');
@@ -28,9 +28,18 @@ require('./routes/deleteuser')(router, db);
 require('./routes/newuser')(router, db);
 require('./routes/edituser')(router, db);
 require('./routes/newclub')(router, db);
+require('./routes/clubs')(router, db);
+require('./routes/editclub')(router, db);
+require('./routes/deleteclub')(router, db);
+require('./routes/newsu')(router, db);
+require('./routes/joinclub')(router, db);
+require('./routes/addcommittee')(router, db);
+require('./routes/viewclub')(router, db);
 
 db.run("CREATE TABLE IF NOT EXISTS person (id INTEGER PRIMARY KEY, first_name TEXT, last_name TEXT, dob DATE, address TEXT, email EMAIL, telephone TEL, year NUMBER)");
 db.run("CREATE TABLE IF NOT EXISTS club (club_id INTEGER PRIMARY KEY, club_name TEXT, sport TEXT, club_email EMAIL)");
+db.run("CREATE TABLE IF NOT EXISTS students_union (su_id INTEGER PRIMARY KEY, su_name TEXT)");
+db.run("CREATE TABLE IF NOT EXISTS join_club (membership_id INTEGER PRIMARY KEY, holder_id INTEGER REFERENCES person(id), club_holder_id INTEGER REFERENCES club(club_id), on_committee BOOLEAN, committee_role TEXT)");
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express'});

@@ -4,7 +4,7 @@ module.exports = function(router, db){
     res.render('newuser', { title: 'Express' });
   });
 
-  router.post('/', function(req, res, next) {
+  router.post('/newuser', function(req, res, next) {
     response = {
       first_name:req.body.first_name,
       last_name:req.body.last_name,

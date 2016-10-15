@@ -6,8 +6,10 @@
     </head>
     <body>
       <% include templates/header.ejs %>
-      <h1><%= title %></h1>
-      <p> WELL DONE! </p>
-      <p>Welcome to <%= title %></p>
+      <form action="/newsu" method="POST">
+        <input type="text" placeholder="Students' Union Name" name="su_name">
+        <br />
+        <button type="submit">Submit</button>
+      </form> 
     </body>
   </html>

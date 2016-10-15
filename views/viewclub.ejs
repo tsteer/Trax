@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+      <% include templates/header.ejs %>
+      <% for(var i=0; i < members_list.length; i++) {%>
+        <li style="list-style-type:none"> 
+          <p><%= members_list[i].id %>
+            <%= members_list[i].first_name %> 
+            <%= members_list[i].last_name %> 
+            <%= members_list[i].dob %> 
+            <%= members_list[i].address %> 
+            <%= members_list[i].email %> 
+            <%= members_list[i].telephone %> 
+            <%= members_list[i].year %> 
+            <%= members_list[i].committee_role %> 
+          </p>
+        </li>
+      <% } %>
+    </body>
+  </html>

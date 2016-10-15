@@ -1,13 +1,13 @@
 <!DOCTYPE html>
   <html>
     <head>
-      <title><%= title %></title>
       <link rel='stylesheet' href='/stylesheets/style.css' />
     </head>
     <body>
       <% include templates/header.ejs %>
-      <h1><%= title %></h1>
-      <p> WELL DONE! </p>
-      <p>Welcome to <%= title %></p>
+
+      <p>club name: <%- club_name %> </p>
+      <p>sport: <%- sport %></p>
+      <p>Club email:<%- club_email %></p>
     </body>
   </html>

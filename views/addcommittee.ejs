@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+	</head>
+	<body>
+	  <% include templates/header.ejs %>
+		<form action="/addcommittee/<%= id %>" method="POST">
+			 <p>Member ID: 
+			 <input type="number" name="membership_id"></p>
+
+			 <p>Committee Role:
+			 <input type="text" name="committee_role"></p>
+
+			 <button type="submit" value="Submit">Submit</button>
+		</form>
+	</body>
+</html>
