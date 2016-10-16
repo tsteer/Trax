@@ -7,11 +7,19 @@ module.exports = function(router, db) {
         res.send("error");
         return;
       }
-      if (rows.length > 0) {
-      	res.render("clubs", {club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email});
-      } else {
-        res.send("no rows");
-      }
+      if (req.query.json) {
+        if (rows.length > 0) {
+          res.send(JSON.stringify({success: true, club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email}));
+        }  else{
+          res.send(JSON.stringify({success: false, error: "no rows"}));
+        }
+      }else{  
+        if (rows.length > 0) {
+        	res.render("clubs", {club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email});
+        } else {
+          res.send("no rows");
+        }
+      }  
     });
   });
 };

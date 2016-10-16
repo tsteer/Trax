@@ -9,7 +9,6 @@ module.exports = function(router, db){
       su_name:req.body.su_name
     };
     var stmt = db.run("INSERT INTO students_union VALUES (NULL, ?)", [response.su_name]);
-    console.log(response);
-    res.end(JSON.stringify(response));
+    res.end(JSON.stringify({success: true, su_name: response.su_name}));
   });
 };

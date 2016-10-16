@@ -7,11 +7,19 @@ module.exports = function(router, db) {
         res.send("error");
         return;
       }
-      if (rows.length > 0) {
-      	res.render("editclub", {club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email, id: rows[0].club_id}); 
-      } else {
-        res.send("no rows");
-      }
+      if (req.query.json) {
+        if (rows.length > 0) {
+          res.send(JSON.stringify({success: true, club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email, id: rows[0].club_id}));
+        } else{
+          res.send(JSON.stringify({success: false, error: "no rows"}));
+        }  
+      } else {    
+        if (rows.length > 0) { 
+        	res.render("editclub", {club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email, id: rows[0].club_id}); 
+        } else {
+          res.send("no rows");
+        }
+      }  
     });
   });
 
@@ -22,8 +30,17 @@ module.exports = function(router, db) {
       club_email:req.body.club_email
     };
     db.run("UPDATE club SET club_name = ?, sport = ?, club_email = ?", [response.club_name, response.sport, response.club_email], function(err, result){   
-      if (err) { return next(err); }
-      res.send("done");
+      if (err) { 
+        console.log("error:" + err);
+        res.send("error");
+        return next(err); 
+      }
+      res.send(JSON.stringify({success: true, club_name: response.club_name, sport: response.sport, club_email: response.club_email}));
     });
   });
 };
+
+
+
+
+

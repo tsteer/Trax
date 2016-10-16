@@ -21,9 +21,13 @@ module.exports = function(router, db) {
       committee_role:req.body.committee_role
     };
     db.run("UPDATE join_club SET on_committee = ?, committee_role = ? WHERE membership_id = ?", ['TRUE', response.committee_role, response.membership_id], function(err, result){   
-      console.log(response);
-      if (err) { return next(err); }
-      res.send("done");
+      if (err) { 
+        console.log("error:" + err);
+        res.send("error");
+        return next(err); 
+      }
+      res.render("committeeadded", {membership_id: response.membership_id, committee_role: response.committee_role});
+    // res.send(JSON.stringify({success: true, membership_id: response.membership_id, committee_role: response.committee_role}));
     });
   });
 };

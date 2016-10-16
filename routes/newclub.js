@@ -11,7 +11,6 @@ module.exports = function(router, db){
       club_email:req.body.club_email
     };
     var stmt = db.run("INSERT INTO club VALUES (NULL, ?, ?, ?)", [response.club_name, response.sport, response.club_email]);
-    console.log(response);
-    res.end(JSON.stringify(response));
+    res.end(JSON.stringify({success: true, club_name: response.club_name, sport: response.sport, club_email: response.club_email}));
   });
 };
