@@ -35,7 +35,6 @@ require('./routes/clubs')(router, db);
 require('./routes/editclub')(router, db);
 require('./routes/deleteclub')(router, db);
 require('./routes/newsu')(router, db);
-require('./routes/joinclub')(router, db);
 require('./routes/addcommittee')(router, db);
 require('./routes/viewclub')(router, db);
 require('./routes/login')(router, db);

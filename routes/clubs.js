@@ -59,7 +59,7 @@ module.exports = function(router, db) {
         }
       }else{  
         if (rows.length > 0) {
-          res.render("viewclubs", {club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email, club_id: rows[0].club_id});
+          res.render("club", {club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email, club_id: rows[0].club_id});
         } else {
           res.send("no rows");
         }
