@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+      <% include templates/header.ejs %>
+
+      <p>club name: <%- club_name %> </p>
+      <p>sport: <%- sport %></p>
+      <p>Club email:<%- club_email %></p>
+      <form action="/clubs/<%= club_id %>" method="POST">
+        <button type="submit" value="joinclub" name="joinclub">Join Club</button>
+        </form>
+    </body>
+  </html>

@@ -7,7 +7,7 @@
       <% include templates/header.ejs %>
       <p>first name: <%- first_name %> </p>
 
-      <form action="/joinclub/<%= id %>"" method="POST">
+      <form action="/joinclub/<%= id %>" method="POST">
         <% for(var i=0; i < clubs.length; i++) {%>
           <li style="list-style-type:none"> 
             <button type="submit" value="<%= clubs[i] %>" name="clubs"><%= clubs[i] %></button>

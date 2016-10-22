@@ -14,6 +14,9 @@ var cookieParser = require('cookie-parser');
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }))
 
+var session = require('express-session');
+app.use(session({secret:'imeTLH4ADXhj4cY6yld47z05', saveUninitialized: true, resave: true}));
+
 // the main router we will be using
 var router = express.Router();
 app.use('/', router);
@@ -35,6 +38,7 @@ require('./routes/newsu')(router, db);
 require('./routes/joinclub')(router, db);
 require('./routes/addcommittee')(router, db);
 require('./routes/viewclub')(router, db);
+require('./routes/login')(router, db);
 
 db.run("CREATE TABLE IF NOT EXISTS person (id INTEGER PRIMARY KEY, first_name TEXT, last_name TEXT, dob DATE, address TEXT, email EMAIL, telephone TEL, year NUMBER)");
 db.run("CREATE TABLE IF NOT EXISTS club (club_id INTEGER PRIMARY KEY, club_name TEXT, sport TEXT, club_email EMAIL)");
