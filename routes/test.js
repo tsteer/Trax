@@ -1,9 +1,25 @@
-var express = require('express');
-var router = express.Router();
+module.exports = function(router, db) {
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('test', { title: 'Express' });
-});
-
-module.exports = router;
+  router.get("/test", function(req, res) {
+      db.all("select * from person where id = 1", function(err, rows) {
+        if (err) {
+          console.log("error:" + err);
+          res.send("error");
+          return;
+        }
+        if (req.query.json) {
+          if (rows.length > 0) {
+            res.send(JSON.stringify({success: true, first_name: rows[0].first_name, last_name: rows[0].last_name, dob: rows[0].dob, address: rows[0].address, email: rows[0].email, telephone: rows[0].telephone, year: rows[0].year}));
+          } else {
+            res.send(JSON.stringify({success: false, error: "no rows"}));
+          }
+        } else {
+          if (rows.length > 0) {
+            res.render("people", {first_name: rows[0].first_name, last_name: rows[0].last_name, dob: rows[0].dob, address: rows[0].address, email: rows[0].email, telephone: rows[0].telephone, year: rows[0].year});
+          } else {
+            res.send("no rows");
+          }
+        }
+      }); 
+  });
+};
