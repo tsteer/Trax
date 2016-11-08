@@ -1,6 +1,8 @@
 module.exports = function(router, db) {
 
   router.get("/people/:id", function(req, res) {
+        console.log("logged in 3" + req.session.userid);
+        console.log("logged in 4" + req.params.id);  
     if(req.session.userid == req.params.id){
       db.all("select * from person where id = ?", [req.params.id], function(err, rows) {
         if (err) {

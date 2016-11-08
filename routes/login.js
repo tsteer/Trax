@@ -5,9 +5,12 @@ module.exports = function(router, db){
   });
 
   router.post('/login', function(req, res, next) {
+    console.log("post login - got " + req.body);
+
     response = {
       id:req.body.id
     };
+    console.log("this one " + response.id);
      db.all("SELECT * FROM person WHERE id =?", [response.id], function(err, rows) {
       if (err) {
         console.log("error:" + err);
@@ -16,11 +19,14 @@ module.exports = function(router, db){
       }
       if (rows.length > 0) { 
         req.session.userid = response.id;
-        //req.session.save();
-        console.log(response.id);
-        console.log("watch this 1 " + req.session.userid); 
-        console.log("watch this" + req.session); 
+        session.save(function(err){
+          console.log("gone wrong");
+        });
+        console.log("logged in 1");
         res.send("logged in");
+           console.log("logged in 2");
+              console.log("logged in 3" + req.session.userid);
+        console.log("logged in 4" + response.id);      
       }else{
         res.send("no rows");
       }
