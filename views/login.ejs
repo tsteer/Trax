@@ -1,15 +1,20 @@
 <!DOCTYPE html>
   <html>
     <head>
-      <title><%= title %></title>
-      <link rel='stylesheet' href='/stylesheets/style.css' />
+      <link rel="stylesheet" href="http://bulma.io/css/bulma-docs.css">
+      <link rel="stylesheet" type="text/css" href="bulma.css" />
+      <link rel='stylesheet' type="text/css" href='/stylesheets/style.css' />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+      <script type="text/javascript" src="jquery-3.1.0.js"></script>
+      <link href="https://fonts.googleapis.com/css?family=Lobster|Lobster+Two" rel="stylesheet">
+      <h1>Trax</h1>
     </head>
     <body>
-      <% include templates/header.ejs %>
-      <form action="/login" method="POST">
-        <input type="text" placeholder="ID" name="id">
-        <br />
-        <button type="submit">Submit</button>
-      </form> 
-    </body>
-  </html>
+  <p class="control">
+    <form action="/login" method="POST">
+      <input class="input" type="text" placeholder="ID" name="id">
+      <br />
+      <br />      
+      <button class="button is-light" type="submit">Submit</button>
+    </form> 
+  </p>
