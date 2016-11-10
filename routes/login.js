@@ -19,7 +19,7 @@ module.exports = function(router, db){
       }
       if (rows.length > 0) { 
         req.session.userid = response.id;
-        req.session.save(function(err){
+        req.session.save(function(err){ //delete?
           console.log("saved");
         })
         console.log("logged in 1");
