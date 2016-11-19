@@ -1,4 +1,4 @@
-module.exports = function(router, db) {
+module.exports = function(router, db, apiToken, querystring) {
 
   router.get("/viewclub/:id", function(req, res) {
     var members_list = [];

@@ -1,35 +1,60 @@
-module.exports = function(router, db){
+
+module.exports = function(router, db, apiToken, querystring) {
 
   router.get('/login', function(req, res, next) {
     res.render('login', { title: 'Express' });
   });
 
   router.post('/login', function(req, res, next) {
-    console.log("post login - got " + req.body);
-
     response = {
-      id:req.body.id
+      email:req.body.email
     };
-    console.log("this one " + response.id);
-     db.all("SELECT * FROM person WHERE id =?", [response.id], function(err, rows) {
+     db.all("SELECT * FROM person WHERE email = ?", [response.email], function(err, rows) {
       if (err) {
         console.log("error:" + err);
         res.send("error");
         return;
       }
       if (rows.length > 0) { 
-        req.session.userid = response.id;
-        req.session.save(function(err){ //delete?
-          console.log("saved");
-        })
-        console.log("logged in 1");
-        res.send("logged in");
-           console.log("logged in 2");
-              console.log("logged in 3" + req.session.userid);
-        console.log("logged in 4" + response.id);      
+        var id = rows[0].id;
+         console.log("real id="+id);
+       req.session.userid = id;
+        var user = apiToken.addUser(id);
+        //var token = user.token;
+
+
+        console.log("token =" + user.token);
+        var token = user.token;
+        console.log("test 1 token " + token);
+
+     //   var token = req.query.token;
+     var tokentest = querystring.stringify({token: token});
+console.log("my new test" + tokentest);
+res.render("account", {token: tokentest, id: id});
+    //    res.render("account", {id: id, token: token});
+    
+       // console.log("req suqery" + usertoken);
+     
+
+
+      //  var token = logged_in(id);
+       // res.send(JSON.stringify({token: token}));*/
+    //   res.redirect('/news');
+       // res.send("logged in");
       }else{
         res.send("no rows");
       }
     });
   });
+
+router.get('/newuser', function(req, res){
+  res.render('newuser');
+});
+  /*
+          function logged_in(id) {
+          var token = crypto.randomBytes(64).toString('base64');
+          sessions[token] = {id: id};
+          console.log("token: " + token);
+          return token;
+        } ; */
 };

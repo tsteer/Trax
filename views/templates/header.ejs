@@ -1,29 +1,29 @@
 <!DOCTYPE html>
   <html>
-    <head>
+  	<head>
       <link rel="stylesheet" href="http://bulma.io/css/bulma-docs.css">
-      <link rel="stylesheet" type="text/css" href="bulma.css" />
+      <link rel="stylesheet" type="text/css" href="/bulma.css" />
       <link rel='stylesheet' type="text/css" href='/stylesheets/style.css' />
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-      <script type="text/javascript" src="jquery-3.1.0.js"></script>
+      <script type="text/javascript" src="/jquery-3.1.0.js"></script>
+      <link href="https://fonts.googleapis.com/css?family=Lobster|Lobster+Two|Raleway" rel="stylesheet">
+			<section class="hero">
+      	<h1>Trax</h1>
+      	<h2>The app for university sports clubs</h2>
+			</section>
+			<div class="container">
+			  <nav class="tabs is-boxed">
+			    <a href="/news" class="nav-item is-tab"><b>News</b></a>
+			    <a href="/liftsharing" class="nav-item is-tab"><b>Liftsharing</b></a>
+					<a href="/calendar" class="nav-item is-tab"><b>Calendar</b></a>
+					<a href="/statistics" class="nav-item is-tab"><b>Statistics</b></a>
+					<a href="/chat" class="nav-item is-tab"><b>Chat</b></a>
+					<a href="/account?<%= token %>" class="nav-item is-tab"><b>Account</b></a>
+				</nav>
+			</div>	
     </head>
-    <body>
-		    <div class="container">
-			    <nav class="tabs is-boxed">
-			      <a href="/news" class="nav-item is-tab">News</a>
-			      <a href="/liftsharing" class="nav-item is-tab">Liftsharing</a>
-						<a href="/calendar" class="nav-item is-tab">Calendar</a>
-						<a href="/statistics" class="nav-item is-tab">Statistics</a>
-						<a href="/chat" class="nav-item is-tab">Chat</a>
-						<a href="/account" class="nav-item is-tab">Account</a>
-       		</div>
-  			</div>
-			</nav>
-<a href="/">Home</a>
-<a href="/people">People</a>
-<a href="/newuser">New User</a>
+    <body>	   
 <a href="/deleteuser">Delete User</a>
-<a href="/edituser/">Edit User</a>
 <a href="/newclub">New Club</a>
 <a href="/clubs">Clubs</a>
 <a href="/editclub/">Edit Club</a>
@@ -31,5 +31,3 @@
 <a href="/newsu">New SU</a>
 <a href="/addcommittee/">Add Committee</a>
 <a href="/viewclub/">View Club</a>
-<a href="/login">Log in</a>
-<a href="/test">Test</a>

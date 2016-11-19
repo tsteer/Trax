@@ -1,34 +1,96 @@
-body {
-  padding: 5%;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #b3ffec;
-	position: absolute;
-  top:0;
-  bottom:0;
-  left:0;
-  right:0;
+.hero{
+	background-color: #b3ffec;
 }
 h1{
+	margin-left:3%;
 	font-family: 'Lobster', cursive;
-	font-size: 950%;
-	color: #262626
-    width:100%;
-    text-align:center;
+	font-size: 600%;
+	color: #3D4C47;
+  width:100%;
+  text-align:left;
 	font-weight: bold;
+	margin-bottom: -2%;
 }
 h2{
-	font-family: 'Lobster Two', cursive;
-	font-size: 250%;
+	margin-left:3%;
+	font-family: 'Raleway', sans-serif;
+	font-size: 110%;
+	color: #3D4C47;
 	width:100%;
-  text-align:center;
+  text-align:left;
+  margin-bottom: 1%;
+  font-weight: bold;
+}
+body {
+	font-family: 'Lobster', cursive;
+  background-color: #D7DDDB;
+	position: absolute;
+ 	height: 100%-hero;
+  min-width: 100%;
+}
+.container{
+	font-family: 'Raleway', sans-serif;
+	font-size: 110%;
+  height:100%;
+}
+.menu{
+	list-style-type: none;
+  width: 100%;
+  background-color: #D7DDDB;
+  border-top: 1px solid #3D4C47;
+
+}
+.menuoptions:hover{
+	background-color:  #b3ffec;
+}
+.menuoptions{
+	color: #3D4C47;
+	font-family: 'Raleway', sans-serif;
+	font-size: 110%;
+	display: block;
+	padding: 3%;
+	border-bottom: 1px solid #3D4C47;
+}
+.profile{
+	color: #3D4C47;
+	font-family: 'Raleway', sans-serif;
+	font-size: 110%;
+	display: block;
+	border-top: 1px solid #3D4C47;
+}
+.editoptions{
+	color: #3D4C47;
+	font-family: 'Raleway', sans-serif;
+	font-size: 110%;
+	display: block;
+	padding: 3%;
+	border-bottom: 1px solid #3D4C47;
+}
+.editbutton{
+	background-color: #b3ffec;
+	color: #3D4C47;
+	font-family: 'Raleway', sans-serif;
+	border: none;
+	width: 100%;
+	font-size: 110%;
+	font-weight: bold; 
+}
+input.edit{
+	width: 80%;
+  padding: 1%;
+  box-sizing: border-box;
+	border: none;
+	float: right;
+}
+input.edit:hover{
+	background: #b3ffec;
 }
 nav{
   background-color: #b3ffec;
 }
-form{
-	margin: 20%;
-	text-align: center;
-}
 a {
   color: #00B7FF;
+}
+.newuser {
+	width: 100%;
 }

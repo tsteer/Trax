@@ -6,15 +6,19 @@
       <link rel='stylesheet' type="text/css" href='/stylesheets/style.css' />
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
       <script type="text/javascript" src="jquery-3.1.0.js"></script>
-      <link href="https://fonts.googleapis.com/css?family=Lobster|Lobster+Two" rel="stylesheet">
       <h1>Trax</h1>
     </head>
     <body>
   <p class="control">
     <form action="/login" method="POST">
-      <input class="input" type="text" placeholder="ID" name="id">
+      <input class="input" type="text" placeholder="Email" name="email">
       <br />
       <br />      
-      <button class="button is-light" type="submit">Submit</button>
+      <button class="button is-light" id="login" type="submit">Log In</button>
     </form> 
+    </p>
+    <p id="signup">
+    <form action="/newuser" method="GET"> 
+    <button class="button is-light" id="signup" type="submit">Sign Up</button>
+    </form>
   </p>

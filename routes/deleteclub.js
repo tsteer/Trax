@@ -1,4 +1,4 @@
-module.exports = function(router, db) {
+module.exports = function(router, db, apiToken, querystring) {
 
 	router.get('/deleteclub/:id', function(req, res, next){
 		if(req.session.userid > 0){

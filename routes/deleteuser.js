@@ -1,7 +1,10 @@
-module.exports = function(router, db) {
+module.exports = function(router, db, apiToken, querystring) {
 
 	router.get('/deleteuser/:id', function(req, res, next){
-		if(req.session.userid == req.params.id){
+		console.log("one" + req.session.userid);
+		console.log("teo" + req.params.id);
+		if(req.session.userid){ //if(req.session.userid == req.params.id){
+					console.log("2");
 			db.run("DELETE from person WHERE id = ?", [req.params.id], function(err, rows){
 				if (err) { 
 					return next(err); 

@@ -1,32 +1,15 @@
-<html>
-	<head>
-		<link rel='stylesheet' href='/stylesheets/style.css' />
-	</head>
-	<body>
-	  <% include templates/header.ejs %>
-		<h1>We found a person</h1> 
+<% include templates/header.ejs %>
+	<div class="menu">
 		<form action="/edituser/<%= id %>" method="POST">
-			 <p>first name: 
-			 <input type="text" name="first_name" value="<%- first_name %>"></p>
-
-			 <p>last name:
-			 <input type="text" name="last_name" value="<%- last_name %>"></p>
-
-			 <p>Date of Birth:
-			 <input type="date" name="dob" value="<%- dob %>"></p>
-
-			 <p>address:
-			 <input type="text" name="address" value="<%- address %>"></p>
-
-			 <p>Email:
-			 <input type="email" name="email" value="<%- email %>"></p>
-
-			 <p>Telephone:
-			 <input type="number" name="telephone" value="<%- telephone %>"></p>
-
-			 <p>Year:
-			 <input type="number" name="year" value="<%- year %>"></p>
-			 <button type="submit" value="Submit">Submit</button>
+			<p class="editoptions">First Name: <input class="edit" type="text" name="first_name" value="<%- first_name %>"></p>
+			<p class="editoptions">Last Name: <input class="edit" type="text" name="last_name" value="<%- last_name %>"></p>
+			<p class="editoptions">Date of Birth: <input class="edit" type="date" name="dob" value="<%- dob %>"></p>
+			<p class="editoptions">Address: <input class="edit" type="text" name="address" value="<%- address %>"></p>
+			<p class="editoptions">Email: <input class="edit" type="email" name="email" value="<%- email %>"></p>
+			<p class="editoptions">Telephone: <input class="edit" type="number" name="telephone" value="<%- telephone %>"></p>
+			<p class="editoptions">Year: <input class="edit" type="number" name="year" value="<%- year %>"></p>
+			<button class="editbutton" type="submit" value="Submit">Submit</button>
 		</form>
-	</body>
+</div>
+</body>
 </html>

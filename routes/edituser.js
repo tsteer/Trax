@@ -1,4 +1,4 @@
-module.exports = function(router, db) {
+module.exports = function(router, db, apiToken, querystring) {
 
   router.get("/edituser/:id", function(req, res, next) {
     console.log("logged in 5" + req.session.userid);

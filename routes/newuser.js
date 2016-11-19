@@ -1,4 +1,4 @@
-module.exports = function(router, db){
+module.exports = function(router, db, apiToken, querystring) {
 
   router.get('/newuser', function(req, res, next) {
     res.render('newuser', { title: 'Express' });

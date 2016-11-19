@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-  <html>
-    <head>
-      <title><%= title %></title>
-      <link rel='stylesheet' href='/stylesheets/style.css' />
-    </head>
-    <body>
       <% include templates/header.ejs %>
-      <h1><%= title %></h1>
-      <p> WELL DONE! </p>
-      <p>Welcome to <%= title %></p>
+<p>Your account has been deleted</p>
+<form action="/login" method="GET">
+<button class="button is-light" type="submit">Login</button>
+</form>
     </body>
   </html>

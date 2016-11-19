@@ -9,6 +9,11 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var sessions = {};
+var apiToken = require('api-token');
+const querystring = require('querystring');
+//var CryptoJS = require("crypto-js");
+//console.log(CryptoJS.HmacSHA1("Message", "Key"));
 
 // set up the main app object
 var app = express();
@@ -26,19 +31,49 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // place the routes here.
-require('./routes/people')(router, db);
-require('./routes/deleteuser')(router, db);
-require('./routes/newuser')(router, db);
-require('./routes/edituser')(router, db);
-require('./routes/newclub')(router, db);
-require('./routes/clubs')(router, db);
-require('./routes/editclub')(router, db);
-require('./routes/deleteclub')(router, db);
-require('./routes/newsu')(router, db);
-require('./routes/addcommittee')(router, db);
-require('./routes/viewclub')(router, db);
-require('./routes/login')(router, db);
-require('./routes/test')(router, db);
+require('./routes/people')(router, db, apiToken, querystring);
+require('./routes/deleteuser')(router, apiToken, querystring);
+require('./routes/newuser')(router, db, apiToken, querystring);
+require('./routes/edituser')(router, db, apiToken, querystring);
+require('./routes/newclub')(router, db, apiToken, querystring);
+require('./routes/clubs')(router, db, apiToken, querystring);
+require('./routes/editclub')(router, db, apiToken, querystring);
+require('./routes/deleteclub')(router, db, apiToken, querystring);
+require('./routes/newsu')(router, db, apiToken, querystring);
+require('./routes/addcommittee')(router, db, apiToken, querystring);
+require('./routes/viewclub')(router, db, apiToken, querystring);
+require('./routes/login')(router, db, apiToken, querystring);
+require('./routes/test')(router, db, apiToken, querystring);
+require('./routes/news')(router, db, apiToken, querystring);
+require('./routes/account')(router, db, apiToken, querystring);
+require('./routes/deleteusercheck')(router, db, apiToken, querystring);
+
+// remove this later
+router.get('/testlogin/:id', function(req, res, next) {
+    var id = req.params.id;
+    console.log("id="+id);
+    var user = apiToken.addUser(id);
+    res.end("You are now logged in as " + id + " and your token is " +
+      user.token);
+
+  });
+
+router.get('/testtoken', function(req, res, next) {
+    var token = req.query.token;
+    
+    console.log("token=" + token);
+    var valid = apiToken.isTokenValid(token);
+
+    if (valid) {
+      var user = apiToken.findUserByToken(token);
+      res.end("Your token is valid and you are " + JSON.stringify(user));
+    } else {
+      res.end("This is not a valid token.");
+    }
+
+  });
+// end remove this
+
 
 db.run("CREATE TABLE IF NOT EXISTS person (id INTEGER PRIMARY KEY, first_name TEXT, last_name TEXT, dob DATE, address TEXT, email EMAIL, telephone TEL, year NUMBER)");
 db.run("CREATE TABLE IF NOT EXISTS club (club_id INTEGER PRIMARY KEY, club_name TEXT, sport TEXT, club_email EMAIL)");

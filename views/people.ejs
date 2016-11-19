@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-  <html>
-    <head>
-      <link rel='stylesheet' href='/stylesheets/style.css' />
-    </head>
-    <body>
-      <% include templates/header.ejs %>
-
-      <p>first name: <%- first_name %> </p>
-      <p>last name: <%- last_name %></p>
-      <p>Date of Birth:<%- dob %></p>
-      <p>address:<%- address %></p>
-      <p>Email:<%- email %></p>
-      <p>Telephone:<%- telephone %></p>
-      <p>Year:<%- year %></p>
-    </body>
-  </html>
+<% include templates/header.ejs %>
+  <ul class="profile">
+    <li class="menuoptions"><b>First Name: </b><%- first_name %> </li>
+    <li class="menuoptions"><b>Last Name: </b><%- last_name %></li>
+    <li class="menuoptions"><b>Date of Birth: </b><%- dob %></li>
+    <li class="menuoptions"><b>Address: </b><%- address %></li>
+    <li class="menuoptions"><b>Email: </b><%- email %></li>
+    <li class="menuoptions"><b>Telephone: </b><%- telephone %></li>
+    <li class="menuoptions"><b>Year: </b><%- year %></li>
+  </ul>
+</body>
+</html>

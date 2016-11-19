@@ -1,4 +1,4 @@
-module.exports = function(router, db) {
+module.exports = function(router, db, apiToken, querystring) {
 
   router.get("/clubs", function(req, res) {
     db.all("select * from club", [req.params.id], function(err, rows) {
