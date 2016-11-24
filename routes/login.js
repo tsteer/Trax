@@ -6,9 +6,12 @@ module.exports = function(router, db, apiToken, querystring) {
   });
 
   router.post('/login', function(req, res, next) {
+
     response = {
       email:req.body.email
     };
+  console.log("LOGIN email=" + response.email);
+
      db.all("SELECT * FROM person WHERE email = ?", [response.email], function(err, rows) {
       if (err) {
         console.log("error:" + err);
@@ -28,9 +31,16 @@ module.exports = function(router, db, apiToken, querystring) {
         console.log("test 1 token " + token);
 
      //   var token = req.query.token;
-     var tokentest = querystring.stringify({token: token});
-console.log("my new test" + tokentest);
-res.render("account", {token: tokentest, id: id});
+  //   var tokentest = querystring.stringify({token: token});
+//console.log("my new test" + tokentest);
+//res.render('login-redirect', {token: tokentest});
+      console.log("json token " + token);
+    // login successful. Send the reply.
+    if (req.query.json) {
+      res.send(JSON.stringify({token: token, id: id}));
+    } else {
+      res.render("account", {id: id});
+    }
     //    res.render("account", {id: id, token: token});
     
        // console.log("req suqery" + usertoken);
