@@ -1,0 +1,27 @@
+<% include templates/header.ejs %>
+
+<ul>
+<% for(var i = 0; i < 10; i++) {%>
+<li>test2 <%= club[i].club %></li>
+<li>test2 <%= club.length %></li>
+</ul>
+
+<ul class="menu">
+  <% for(var i=0; i < club.length; i++) {%>
+  <li> test <%= club[i].club %> </li>
+
+<p> test <%= club.length %></p>
+<!--<li><a class="menuoptions" href="/people/<%= id %>">Profile</a> </li>
+
+<p> test <%= club[0].club %></p>
+<p>test <%= club[1].club %></p>
+</ul>
+-->  </ul>
+      
+      <% } %>
+
+
+
+
+</body>
+</html> 

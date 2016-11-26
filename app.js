@@ -47,7 +47,8 @@ require('./routes/test')(router, db, apiToken, querystring);
 require('./routes/news')(router, db, apiToken, querystring);
 require('./routes/account')(router, db, apiToken, querystring);
 require('./routes/deleteusercheck')(router, db, apiToken, querystring);
-
+require('./routes/liftsharing')(router, db, apiToken, querystring);
+require('./routes/joinclub')(router, db, apiToken, querystring);
 // remove this later
 router.get('/testlogin/:id', function(req, res, next) {
     var id = req.params.id;
@@ -79,6 +80,12 @@ db.run("CREATE TABLE IF NOT EXISTS person (id INTEGER PRIMARY KEY, first_name TE
 db.run("CREATE TABLE IF NOT EXISTS club (club_id INTEGER PRIMARY KEY, club_name TEXT, sport TEXT, club_email EMAIL)");
 db.run("CREATE TABLE IF NOT EXISTS students_union (su_id INTEGER PRIMARY KEY, su_name TEXT)");
 db.run("CREATE TABLE IF NOT EXISTS join_club (membership_id INTEGER PRIMARY KEY, holder_id INTEGER REFERENCES person(id), club_holder_id INTEGER REFERENCES club(club_id), on_committee BOOLEAN, committee_role TEXT)");
+db.run("CREATE TABLE IF NOT EXISTS driver (membership_id INTEGER PRIMARY KEY REFERENCES join_club (membership_id), club_id INTEGER REFERENCES club(club_id), id INTEGER REFERENCES person(id))");
+db.run("CREATE TABLE IF NOT EXISTS route (route_id INTEGER PRIMARY KEY, return_trip BOOLEAN, pick_up_id INTEGER REFERENCES pick_up(id), drop_off_id INTEGER REFERENCES drop_off(id))");
+db.run("CREATE TABLE IF NOT EXISTS seats (seat_id INTEGER PRIMARY KEY, unreserved INTEGER, reserved INTEGER, reserved_id INTEGER REFERENCES reserved_seats(id))");
+db.run("CREATE TABLE IF NOT EXISTS pick_up (id INTEGER PRIMARY KEY, pick_up_time TIME, pick_up_date DATE, pick_up_location TEXT)");
+db.run("CREATE TABLE IF NOT EXISTS drop_off (id INTEGER PRIMARY KEY, drop_off_time TIME, drop_off_date DATE, drop_off_location TEXT)");
+db.run("CREATE TABLE IF NOT EXISTS reserved_seats (id INTEGER PRIMARY KEY, membership_id INTEGER REFERENCES join_club (membership_id))");
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express'});
