@@ -1,4 +1,4 @@
-// put lift list in new js file. then pass variables into object and onto ejs page. then format in ejs
+// pass variables into object and onto ejs page. then format in ejs
 
 var express = require('express');
 
@@ -52,7 +52,9 @@ require('./routes/deleteusercheck')(router, db, apiToken, querystring);
 require('./routes/liftsharing')(router, db, apiToken, querystring);
 require('./routes/joinclub')(router, db, apiToken, querystring);
 require('./routes/addlift')(router, db, apiToken, querystring);
+require('./routes/lifts')(router, db, apiToken, querystring);
 require('./routes/liftadded')(router, db, apiToken, querystring);
+require('./routes/mylifts')(router, db, apiToken, querystring);
 
 db.run("CREATE TABLE IF NOT EXISTS person (id INTEGER PRIMARY KEY, first_name TEXT, last_name TEXT, dob DATE, address TEXT, email EMAIL, telephone TEL, year NUMBER)");
 db.run("CREATE TABLE IF NOT EXISTS club (club_id INTEGER PRIMARY KEY, club_name TEXT, sport TEXT, club_email EMAIL)");

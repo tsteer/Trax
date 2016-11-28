@@ -18,7 +18,7 @@ module.exports = function(router, db, apiToken, querystring) {
       drop_off_time:req.body.drop_off_time,
       drop_off_date:req.body.drop_off_date,
       seats:req.body.seats,
-      return:req.body.return
+      return_trip:req.body.return
     };
     console.log("1");
     console.log(req.params.id);
