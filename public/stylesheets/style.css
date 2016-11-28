@@ -107,5 +107,23 @@ a {
 .newuser {
 	width: 100%;
 }
-.widebutton { width: 100%; }
+.widebutton { 
+	width: 100%; 
+}
+.form{
+	padding: 10%;
+
+}
+.halfbutton{
+width: 100%;
+	display: inline-block;
+}
+.inline{
+	display: inline-block;
+
+	padding-bottom: 2%; 
+}
+
+
+
 

@@ -1,0 +1,50 @@
+<% include templates/header.ejs %>
+	<form action="/liftsharing/<%= id %>/<%= club %>/addlift" class=form method="POST">
+		<p class="control has-icon">
+	  	<input class="input" type="text" placeholder="Pickup Location" name="pick_up_location">
+	  	<i class="fa fa-map-marker"></i>
+		</p>
+		<div class="inline">
+			<p class="control has-icon halfbutton">
+		  	<input class="input" type="time" placeholder="Pickup Time" name="pick_up_time">
+		  	<i class="fa fa-clock-o"></i>
+			</p>
+		</div>
+		<div class="inline">
+			<p class="control has-icon halfbutton">
+	  		<input class="input" type="date" placeholder="Pickup Date" name="pick_up_date">
+	  		<i class="fa fa-calendar-o"></i>
+			</p>
+		</div>
+		<p class="control has-icon">
+	  	<input class="input" type="text" placeholder="Drop Off Location" name="drop_off_location">
+	  	<i class="fa fa-map-marker"></i>
+		</p>
+		<div class="inline">
+			<p class="control has-icon halfbutton">
+	  		<input class="input" type="time" placeholder="Drop Off Time" name="drop_off_time">
+	  		<i class="fa fa-clock-o"></i>
+			</p>
+		</div>
+		<div class="inline">
+			<p class="control has-icon halfbutton">
+		  	<input class="input" type="date" placeholder="Drop Off Date" name="drop_off_date">
+		  	<i class="fa fa-calendar-o"></i>
+			</p>
+		</div>
+		<div class="inline">
+			<p class="control has-icon halfbutton">
+		  	<input class="input" type="integer" placeholder="Spaces" name="spaces">
+		  	<i class="fa fa-car"></i>
+			</p>
+
+			<label class="radio">
+	    	<input type="radio" name="return_trip">Return Journey?
+	  	</label>
+	  	    <p class="control has-addons">  
+          <button style = "width: 100%;" class="button is-light is-fullwidth" type="submit">Submit</button>
+        </p>  
+	</div>
+	</form>
+</body>
+</html> 

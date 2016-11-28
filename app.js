@@ -1,8 +1,10 @@
+// put lift list in new js file. then pass variables into object and onto ejs page. then format in ejs
+
 var express = require('express');
 
 // libraries
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('mydbtest8.db');
+var db = new sqlite3.Database('mydbtest10.db');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
 var path = require('path');
@@ -49,43 +51,16 @@ require('./routes/account')(router, db, apiToken, querystring);
 require('./routes/deleteusercheck')(router, db, apiToken, querystring);
 require('./routes/liftsharing')(router, db, apiToken, querystring);
 require('./routes/joinclub')(router, db, apiToken, querystring);
-// remove this later
-router.get('/testlogin/:id', function(req, res, next) {
-    var id = req.params.id;
-    console.log("id="+id);
-    var user = apiToken.addUser(id);
-    res.end("You are now logged in as " + id + " and your token is " +
-      user.token);
-
-  });
-
-router.get('/testtoken', function(req, res, next) {
-    var token = req.query.token;
-    
-    console.log("token=" + token);
-    var valid = apiToken.isTokenValid(token);
-
-    if (valid) {
-      var user = apiToken.findUserByToken(token);
-      res.end("Your token is valid and you are " + JSON.stringify(user));
-    } else {
-      res.end("This is not a valid token.");
-    }
-
-  });
-// end remove this
-
+require('./routes/addlift')(router, db, apiToken, querystring);
+require('./routes/liftadded')(router, db, apiToken, querystring);
 
 db.run("CREATE TABLE IF NOT EXISTS person (id INTEGER PRIMARY KEY, first_name TEXT, last_name TEXT, dob DATE, address TEXT, email EMAIL, telephone TEL, year NUMBER)");
 db.run("CREATE TABLE IF NOT EXISTS club (club_id INTEGER PRIMARY KEY, club_name TEXT, sport TEXT, club_email EMAIL)");
 db.run("CREATE TABLE IF NOT EXISTS students_union (su_id INTEGER PRIMARY KEY, su_name TEXT)");
 db.run("CREATE TABLE IF NOT EXISTS join_club (membership_id INTEGER PRIMARY KEY, holder_id INTEGER REFERENCES person(id), club_holder_id INTEGER REFERENCES club(club_id), on_committee BOOLEAN, committee_role TEXT)");
-db.run("CREATE TABLE IF NOT EXISTS driver (membership_id INTEGER PRIMARY KEY REFERENCES join_club (membership_id), club_id INTEGER REFERENCES club(club_id), id INTEGER REFERENCES person(id))");
-db.run("CREATE TABLE IF NOT EXISTS route (route_id INTEGER PRIMARY KEY, return_trip BOOLEAN, pick_up_id INTEGER REFERENCES pick_up(id), drop_off_id INTEGER REFERENCES drop_off(id))");
-db.run("CREATE TABLE IF NOT EXISTS seats (seat_id INTEGER PRIMARY KEY, unreserved INTEGER, reserved INTEGER, reserved_id INTEGER REFERENCES reserved_seats(id))");
-db.run("CREATE TABLE IF NOT EXISTS pick_up (id INTEGER PRIMARY KEY, pick_up_time TIME, pick_up_date DATE, pick_up_location TEXT)");
-db.run("CREATE TABLE IF NOT EXISTS drop_off (id INTEGER PRIMARY KEY, drop_off_time TIME, drop_off_date DATE, drop_off_location TEXT)");
-db.run("CREATE TABLE IF NOT EXISTS reserved_seats (id INTEGER PRIMARY KEY, membership_id INTEGER REFERENCES join_club (membership_id))");
+db.run("CREATE TABLE IF NOT EXISTS route (id INTEGER PRIMARY KEY, driver_id INTEGER REFERENCES join_club(membership_id), return_trip BOOLEAN, seats INTEGER, pick_up_location TEXT, pick_up_time TIME, pick_up_date DATE, drop_off_location TEXT, drop_off_time TIME, drop_off_date DATE)");
+db.run("CREATE TABLE IF NOT EXISTS seats (id INTEGER PRIMARY KEY, membership_id INTEGER REFERENCES join_club (membership_id))");
+db.run("CREATE TABLE IF NOT EXISTS route_seats (route_id INTEGER REFERENCES route(id), seat_id INTEGER REFERENCES seats(id), PRIMARY KEY(route_id, seat_id))");
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express'});
