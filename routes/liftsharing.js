@@ -21,10 +21,10 @@ module.exports = function(router, db, apiToken, querystring) {
           	for (var i = 0; i < rows.length; i++){
           		club[i] = {club_name: rows[i].club_name, club_id: rows[i].club_id}
 		        } // semicolon here?
-		        console.log(JSON.stringify(club));
-		        console.log("check length" + club.length);
+		       // console.log(JSON.stringify(club));
+		        console.log("check length here" + club.length);
            //   var tokentest = querystring.stringify({token: token});
-            res.render('liftsharing', { id: req.params.id, club: club});
+            res.render('liftsharing', {id: req.params.id, club: club});
           } else{
 						res.render('login');
           }

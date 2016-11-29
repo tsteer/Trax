@@ -1,0 +1,23 @@
+<% include templates/header.ejs %>
+	<div class="menu">
+		<form action="/liftsharing/<%= id %>/<%= club_id %>/mylifts/<%= route_id %>/editlift" method="POST">
+			<p class="editoptions">Pickup Location: <input class="edit" type="text" name="pick_up_location" value="<%- pick_up_location %>"></p>
+			<p class="editoptions">Pickup Time: <input class="edit" type="time" name="pick_up_time" value="<%- pick_up_time %>"></p>
+			<p class="editoptions">Pickup Date: <input class="edit" type="date" name="pick_up_date" value="<%- pick_up_date %>"></p>
+			<p class="editoptions">Drop Off Location: <input class="edit" type="text" name="drop_off_location" value="<%- drop_off_location %>"></p>
+			<p class="editoptions">Drop Off Time: <input class="edit" type="time" name="drop_off_time" value="<%- drop_off_time %>"></p>
+			<p class="editoptions">Drop Off Date: <input class="edit" type="date" name="drop_off_date" value="<%- drop_off_date %>"></p>
+			<p class="editoptions">Return Journey: <input class="edit" type="boolean" name="return_trip" value="<%- return_trip %>"></p>
+			<p class="editoptions">Seats: <input class="edit" type="number" name="seats" value="<%- seats %>"></p>
+			<button class="editbutton" type="submit" value="edit">Edit</button>
+		</form>
+
+
+		<a href="/liftsharing/<%= id %>/<%= club_id %>/mylifts/<%= route_id %>/deletelift">Delete lift</a>
+    <form action="/liftsharing/<%= id %>/<%= club_id %>/mylifts/<%= route_id %>/deletelift" method="GET"> 
+    <button class="button is-light" id="deletelift" type="submit">Delete Lift</button>
+    </form>
+
+</div>
+</body>
+</html>

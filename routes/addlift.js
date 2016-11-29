@@ -18,10 +18,10 @@ module.exports = function(router, db, apiToken, querystring) {
       drop_off_time:req.body.drop_off_time,
       drop_off_date:req.body.drop_off_date,
       seats:req.body.seats,
-      return_trip:req.body.return
+      return_trip:req.body.return_trip
     };
     console.log("1");
-    console.log(req.params.id);
+    console.log(response);
     db.all("SELECT membership_id FROM join_club WHERE holder_id = ?", [req.params.id], function(err, rows) {
       if (err) {
         console.log("error:" + err);

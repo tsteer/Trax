@@ -40,7 +40,7 @@ module.exports = function(router, db, apiToken, querystring) {
     };  */
   });
 
-  router.post("/edituser?:token", function(req, res, next) {
+  router.post("/edituser/:id", function(req, res, next) { // /edituser?:token ???
     response = {
       first_name:req.body.first_name,
       last_name:req.body.last_name,

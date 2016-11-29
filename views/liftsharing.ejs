@@ -1,6 +1,7 @@
 <% include templates/header.ejs %>
   <ul class="menu" >
-  
+
+  <li><a class="menuoptions" href="/liftsharing/<%= id %>/mylifts">My Lifts</a> </li>
   	<% for(var i=0; i < club.length; i++) {%>
 		<li style="list-style-type:none"><a class="menuoptions" href="/liftsharing/<%= id %>/<%= club[i].club_id %>"><%= club[i].club_name %> </a></li>
  		</ul>

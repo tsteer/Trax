@@ -10,14 +10,16 @@ module.exports = function(router, db, apiToken, querystring) {
         }
         if (rows.length > 0) { 
           var mylifts = [];
+          var route_id = [];
           for (var k = 0; k < rows.length; k++){
-            mylifts[k] = {pick_up_location: rows[k].pick_up_location}
+            mylifts[k] = {return_trip: rows[k].return_trip, seats:rows[k].seats, pick_up_location:rows[k].pick_up_location, pick_up_time:rows[k].pick_up_time, pick_up_date:rows[k].pick_up_date, drop_off_location:rows[k].drop_off_location, drop_off_time:rows[k].drop_off_time, drop_off_date:rows[k].drop_off_date}
+            route_id[k] = {route_id: rows[k].id}
           }
-          console.log(JSON.stringify(mylifts));
-      		res.render('mylifts', { id: req.params.id, mylifts: mylifts});
+          console.log("test here");
+      		res.render('mylifts', { id: req.params.id, club_id: req.params.club_id, route_id: route_id, mylifts: mylifts});
     		} else{
 					res.render('login');
-    		};     
+    		}    
   		});
   	};	
   });		

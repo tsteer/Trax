@@ -1,0 +1,10 @@
+<% include templates/header.ejs %>
+<p>Are you sure you want to delete your lift?</p>
+<form action="/liftsharing/<%= id %>/<%= club_id %>/mylifts/<%= route_id %>/liftdeleted" method="GET">
+<button class="button is-light" type="submit">Delete</button>
+</form>
+<form action="/liftsharing/<%= id %>/<%= club_id %>/mylifts" method="GET">
+<button class="button is-light" type="submit">Cancel</button>
+</form>
+</body>
+</html>

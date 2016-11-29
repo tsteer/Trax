@@ -1,7 +1,10 @@
 <% include templates/header.ejs %>
 	<ul class="menu">
 	<% for(var i=0; i < mylifts.length; i++) {%>
-	<li style="list-style-type:none" class="menuoptions"><b>Pick Up Location: </b><%- mylifts[i].pick_up_location %>
+	<li style="list-style-type:none"><a class="menuoptions" href="/liftsharing/<%= id %>/<%= club_id %>/mylifts/<%= route_id[i].route_id %>/editlift"> <b>Driver: </b><%- mylifts[i].driver %><b>Return: </b><%- mylifts[i].return_trip %><b>Seats: </b><%- mylifts[i].seats %><b>Pickup Location: </b><%- mylifts[i].pick_up_location %>
+	<b>Pickup time: </b><%- mylifts[i].pick_up_time %><b>Pickup date: </b><%- mylifts[i].pick_up_date %><b>Drop Off Location: </b><%- mylifts[i].drop_off_location %><b>Drop Off time: </b><%- mylifts[i].drop_off_time %><b>Drop Off date: </b><%- mylifts[i].drop_off_date %> </a>
+
+
 	</ul>
     <% } %>
 </body>

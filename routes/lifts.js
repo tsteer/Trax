@@ -12,7 +12,7 @@ module.exports = function(router, db, apiToken, querystring) {
           for (var j = 0; j < rows.length; j++){
             car[j] = {driver: rows[j].driver, return_trip: rows[j].return_trip, seats:rows[j].seats, pick_up_location:rows[j].pick_up_location, pick_up_time:rows[j].pick_up_time, pick_up_date:rows[j].pick_up_date, drop_off_location:rows[j].drop_off_location, drop_off_time:rows[j].drop_off_time, drop_off_date:rows[j].drop_off_date}
           }
-          console.log(JSON.stringify(car));
+       //   console.log(JSON.stringify(car));
           res.render('lifts', { id: req.params.id, club_id: req.params.club_id, car: car});
         } //add else for no lifts
         else{
