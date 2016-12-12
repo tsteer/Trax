@@ -13,13 +13,13 @@
 	display: block;
 }
 .hero{
-	background-color: #b3ffec;
+	background-color: #1e2d2f;
 }
 h1{
 	margin-left:3%;
 	font-family: 'Lobster', cursive;
 	font-size: 600%;
-	color: #3D4C47;
+	color: #CF5C36;
   width:100%;
   text-align:left;
 	font-weight: bold;
@@ -29,7 +29,7 @@ h2{
 	margin-left:3%;
 	font-family: 'Raleway', sans-serif;
 	font-size: 110%;
-	color: #3D4C47;
+	color: #CF5C36;
 	width:100%;
   text-align:left;
   margin-bottom: 1%;
@@ -37,7 +37,7 @@ h2{
 }
 body {
 	font-family: 'Lobster', cursive;
-  background-color: #D7DDDB;
+  background-color: #F2E3BC;
 	position: absolute;
  	min-height: 100%;
   min-width: 100%;
@@ -46,16 +46,15 @@ body {
 	font-family: 'Raleway', sans-serif;
 	font-size: 110%;
   height:100%;
-  	border-bottom-style: solid;
-	border-color: #3D4C47;
+  
 }
 .menu{
 	list-style-type: none;
   width: 100%;
-  background-color: #D7DDDB;
+  background-color: #F2E3BC;
 }
 .menuoptions:hover{
-	background-color:  #b3ffec;
+	background-color: #CF5C36;
 }
 .menuoptions{
 	color: #3D4C47;
@@ -80,7 +79,7 @@ body {
 	border-bottom: 1px solid #3D4C47;
 }
 .editbutton{
-	background-color: #b3ffec;
+	background-color: #CF5C36;
 	color: #3D4C47;
 	font-family: 'Raleway', sans-serif;
 	border: none;
@@ -96,10 +95,14 @@ input.edit{
 	float: right;
 }
 input.edit:hover{
-	background: #b3ffec;
+	background: #CF5C36;
 }
 nav{
-  background-color: #b3ffec;
+	width: 100%;
+  background-color: #D2D4C8;
+}
+nav:hover{
+	background: #D2D4C8;
 }
 a {
   color: #00B7FF;
@@ -109,6 +112,12 @@ a {
 }
 .widebutton { 
 	width: 100%; 
+}
+
+.largemenu {
+	padding-top: 1%;
+	padding-bottom: 1%;
+	padding-left: 5%;
 }
 .form{
 	padding: 10%;
@@ -120,10 +129,83 @@ width: 100%;
 }
 .inline{
 	display: inline-block;
-
+width: 100%;
 	padding-bottom: 2%; 
+		font-family: 'Raleway', sans-serif;
+	font-size: 110%;
 }
+.liftlist{
+	font-family: 'Raleway', sans-serif;
+	font-size: 110%;
+	color: #3D4C47;
+	border-bottom: solid;
+	border-width: 1px;
 
+}
+.loginform{
+	outline-style: none;
+}
+.reservebutton{
+	height: 100%;
+}
+td.left{
+	text-align: left;
+	
+}
+td.leftvalue{
+	text-align: left;
+}
+td.center{
+	text-align: left;
+}
+td.centervalue{
+	text-align: left;
 
+}
+td.right{
+	text-align: left;
+}
+td.rightvalue{
+	text-align: left;
+	padding-right: 5%;
+}
+td.tablebutton{
 
+	padding-top: 1%;
+	padding-left: 5%;
+}
+.checkpage{
+
+	text-align: center;
+		font-family: 'Raleway', sans-serif;
+	font-size: 110%;
+	color: #1e2d2f;
+
+}
+.checkbutton{
+width: 80%;
+ left: 10%; 
+}
+.checkbutton:hover{
+	background: #CF5C36;
+	border-style: none;
+}
+.button:hover{
+		background: #CF5C36;
+	border-style: none;
+}
+.reservebutton:hover{
+
+		background: #CF5C36;
+	border-style: none;
+	width: 100%;
+}
+.rightshift{
+	left: 21.5%;
+	width: 76%;
+}
+.buttongrid{
+	padding-left: 2%;
+	padding-top: 2%;
+}
 

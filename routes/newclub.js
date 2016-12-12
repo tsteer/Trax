@@ -1,10 +1,10 @@
 module.exports = function(router, db, apiToken, querystring) {
 
-  router.get('/newclub', function(req, res, next) {
-    res.render('newclub', { title: 'Express' });
+  router.get('/newclub/:id', function(req, res, next) {
+    res.render('newclub', {id: req.params.id});
   });
 
-  router.post('/newclub', function(req, res, next) {
+  router.post('/newclub/:id', function(req, res, next) {
     response = {
       club_name:req.body.club_name,
       sport:req.body.sport,

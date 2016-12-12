@@ -9,13 +9,13 @@ module.exports = function(router, db, apiToken, querystring) {
 	        return;
 	      }
 	      if (req.query.json) {      
-	        if (rows.length > 0) {
+	        if (rows.length > 0) {  
 	          res.send(JSON.stringify({success: true})); 
 	        } else{
 	          res.send(JSON.stringify({success: false, error: "no rows"}));    
 	        }  
 	      } else {
-          if (rows.length > 0) { 
+          if (rows.length > 0) { // change thse so display if rows greater than 0 - but thin kabout if its first lift 
           	var club = [];
        
           	for (var i = 0; i < rows.length; i++){
@@ -30,6 +30,8 @@ module.exports = function(router, db, apiToken, querystring) {
           }
         };     
       });         
-    };
+    }else{
+    	res.render('login');
+    }
   });
 };

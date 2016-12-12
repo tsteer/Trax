@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-  <html>
-    <head>
-      <title><%= title %></title>
-      <link rel='stylesheet' href='/stylesheets/style.css' />
-    </head>
-    <body>
       <% include templates/header.ejs %>
-      <form action="/newclub" method="POST">
+      <form action="/newclub/<%= id %>" method="POST">
         <input type="text" placeholder="Club Name" name="club_name">
         <br />
         <input type="text" placeholder="Sport" name="sport">

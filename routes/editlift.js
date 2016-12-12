@@ -42,7 +42,7 @@ module.exports = function(router, db, apiToken, querystring) {
     };
   });
 
-router.get('/liftsharing/<%= id %>/<%= club_id %>/mylifts/<%= route_id %>/deletelift', function(req, res){
+router.get('/liftsharing/:id/:club_id/mylifts/:route_id/deletelift', function(req, res){
   res.render('deletelift', {id: req.params.id, club_id: req.params.club_id, route_id: req.params.route_id});
 });
 };  

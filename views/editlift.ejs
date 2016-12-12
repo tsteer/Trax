@@ -9,15 +9,16 @@
 			<p class="editoptions">Drop Off Date: <input class="edit" type="date" name="drop_off_date" value="<%- drop_off_date %>"></p>
 			<p class="editoptions">Return Journey: <input class="edit" type="boolean" name="return_trip" value="<%- return_trip %>"></p>
 			<p class="editoptions">Seats: <input class="edit" type="number" name="seats" value="<%- seats %>"></p>
-			<button class="editbutton" type="submit" value="edit">Edit</button>
+			</br>
+			<button class="button rightshift checkbutton" type="submit" value="edit">Edit</button>
 		</form>
 
-
-		<a href="/liftsharing/<%= id %>/<%= club_id %>/mylifts/<%= route_id %>/deletelift">Delete lift</a>
+</br>
+		<!-- <a href="/liftsharing/<%= id %>/<%= club_id %>/mylifts/<%= route_id %>/deletelift">Delete lift</a> -->
     <form action="/liftsharing/<%= id %>/<%= club_id %>/mylifts/<%= route_id %>/deletelift" method="GET"> 
-    <button class="button is-light" id="deletelift" type="submit">Delete Lift</button>
+    <button class="button checkbutton rightshift" id="deletelift" type="submit">Delete Lift</button>
     </form>
-
+</br>
 </div>
 </body>
 </html>

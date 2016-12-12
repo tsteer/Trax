@@ -21,7 +21,7 @@ module.exports = function(router, db, apiToken, querystring) {
         res.send(JSON.stringify({success: false, error: "login"}));
       };
     }    
-    if(req.session.userid == req.params.id){ 
+   else if(req.session.userid == req.params.id){ 
       db.all("select * from person where id = ?", [req.params.id], function(err, rows) {
         if (err) {
           console.log("error:" + err);
