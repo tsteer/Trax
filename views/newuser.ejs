@@ -1,11 +1,18 @@
 <!DOCTYPE html>
   <html>
     <head>
-      <title><%= title %></title>
-      <link rel='stylesheet' href='/stylesheets/style.css' />
+      <link rel="stylesheet" href="http://bulma.io/css/bulma-docs.css">
+      <link rel="stylesheet" type="text/css" href="bulma.css" />
+      <link rel='stylesheet' type="text/css" href='/stylesheets/style.css' />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+      <script type="text/javascript" src="jquery-3.1.0.js"></script>
+      <link href="https://fonts.googleapis.com/css?family=Lobster|Lobster+Two|Raleway" rel="stylesheet">
+      <section class="hero">
+        <h1>Trax</h1>
+        <h2>The app for university sports clubs</h2>
+      </section>
     </head>
     <body>
-      <% include templates/header.ejs %>
 
       <div class="newuser">
       <form action="/newuser" method="POST">

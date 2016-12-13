@@ -2,7 +2,7 @@ var express = require('express');
 
 // libraries
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('mydbtest11.db');
+var db = new sqlite3.Database('mydbtest12.db');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
 var path = require('path');
@@ -58,13 +58,15 @@ require('./routes/deletelift')(router, db, apiToken, querystring);
 require('./routes/liftdeleted')(router, db, apiToken, querystring);
 require('./routes/reservelift')(router, db, apiToken, querystring);
 require('./routes/liftreserved')(router, db, apiToken, querystring);
+require('./routes/cancellift')(router, db, apiToken, querystring);
+require('./routes/liftcancelled')(router, db, apiToken, querystring);
 
-db.run("CREATE TABLE IF NOT EXISTS person (id INTEGER PRIMARY KEY, first_name TEXT, last_name TEXT, dob DATE, address TEXT, email EMAIL, telephone TEL, year NUMBER)");
-db.run("CREATE TABLE IF NOT EXISTS club (club_id INTEGER PRIMARY KEY, club_name TEXT, sport TEXT, club_email EMAIL)");
-db.run("CREATE TABLE IF NOT EXISTS students_union (su_id INTEGER PRIMARY KEY, su_name TEXT)");
+db.run("CREATE TABLE IF NOT EXISTS person (id INTEGER PRIMARY KEY, first_name TEXT NOT NULL, last_name TEXT NOT NULL, dob DATE, address TEXT, email EMAIL NOT NULL UNIQUE, telephone TEL, year NUMBER)");
+db.run("CREATE TABLE IF NOT EXISTS club (club_id INTEGER PRIMARY KEY, club_name TEXT NOT NULL, sport TEXT NOT NULL, club_email EMAIL NOT NULL UNIQUE)");
+db.run("CREATE TABLE IF NOT EXISTS students_union (su_id INTEGER PRIMARY KEY, su_name TEXT NOT NULL)");
 db.run("CREATE TABLE IF NOT EXISTS join_club (membership_id INTEGER PRIMARY KEY, holder_id INTEGER REFERENCES person(id), club_holder_id INTEGER REFERENCES club(club_id), on_committee BOOLEAN, committee_role TEXT)");
-db.run("CREATE TABLE IF NOT EXISTS route (id INTEGER PRIMARY KEY, driver_id INTEGER REFERENCES join_club(holder_id), return_trip BOOLEAN, seats INTEGER, pick_up_location TEXT, pick_up_time TIME, pick_up_date DATE, drop_off_location TEXT, drop_off_time TIME, drop_off_date DATE)");
-db.run("CREATE TABLE IF NOT EXISTS seats (id INTEGER PRIMARY KEY, membership_id INTEGER REFERENCES person(id), route_id INTEGER REFERENCES route(id))");
+db.run("CREATE TABLE IF NOT EXISTS route (route_id INTEGER PRIMARY KEY, driver_id INTEGER REFERENCES join_club(holder_id), return_trip BOOLEAN, seats INTEGER, pick_up_location TEXT, pick_up_time TIME, pick_up_date DATE, drop_off_location TEXT, drop_off_time TIME, drop_off_date DATE)");
+db.run("CREATE TABLE IF NOT EXISTS seats (seats_id INTEGER PRIMARY KEY, membership_id INTEGER REFERENCES person(id), route_id INTEGER REFERENCES route(id))");
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express'});

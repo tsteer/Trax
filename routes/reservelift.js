@@ -12,7 +12,7 @@ module.exports = function(router, db, apiToken, querystring) {
 var seats; //move?
   router.get('/liftsharing/:id/:club_id/:route_id/reservelift', function(req, res, next) {
  		if(req.session.userid == req.params.id){ 
-      db.all("select seats from route where id = ?", [req.params.route_id], function(err, rows){
+      db.all("select seats from route where route_id = ?", [req.params.route_id], function(err, rows){
         console.log("test seats here");
         if (err) { 
           return next(err); 
@@ -40,7 +40,7 @@ var seats; //move?
             return next(err); 
           }else{
             var available_seats = seats - 1;
-            db.run("UPDATE route set seats = ? where id = ?", [available_seats, req.params.route_id], function(err, result){
+            db.run("UPDATE route set seats = ? where route_id = ?", [available_seats, req.params.route_id], function(err, result){
               if (err) { 
                 return next(err); 
               }else{

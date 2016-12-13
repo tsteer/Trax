@@ -3,7 +3,7 @@ module.exports = function(router, db, apiToken, querystring) {
   router.get('/liftsharing/:id/:club_id/mylifts/:route_id/liftdeleted', function(req, res, next) {
  		if(req.session.userid == req.params.id){ 
 
-      db.run("DELETE from route WHERE id = ?", [req.params.route_id], function(err, rows){
+      db.run("DELETE from route WHERE route_id = ?", [req.params.route_id], function(err, rows){
         if (err) { 
           return next(err); 
           } else{
