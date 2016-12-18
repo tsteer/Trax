@@ -1,7 +1,10 @@
-      <% include templates/header.ejs %>
-<p>Your account has been deleted</p>
-<form action="/login" method="GET">
-<button class="button is-light" type="submit">Login</button>
+<% include templates/header.ejs %>
+<p>Are you sure you want to delete your account?</p>
+    <form action="/userdeleted/<%= id %>" method="GET"> 
+    <button class="button checkbutton rightshift" id="userdeleted" type="submit">Delete User</button>
+    </form>
+<form action="/account/<%= id %>" method="GET">
+<button class="button is-light" type="submit">Cancel</button>
 </form>
-    </body>
-  </html>
+</body>
+</html>

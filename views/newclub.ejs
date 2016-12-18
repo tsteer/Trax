@@ -1,12 +1,18 @@
       <% include templates/header.ejs %>
+      <div class="logintest">
       <form action="/newclub/<%= id %>" method="POST">
-        <input type="text" placeholder="Club Name" name="club_name">
+        <input class="input" type="text" placeholder="Club Name" name="club_name">
         <br />
-        <input type="text" placeholder="Sport" name="sport">
-        <br />
-        <input type="email" placeholder="Email" name="club_email">
         <br />  
-        <button type="submit">Submit</button>
+        <input class="input" type="text" placeholder="Sport" name="sport">
+        <br />
+        <br /> 
+        <input class="input" type="email" placeholder="Email" name="club_email">
+        <br />  
+        <br /> 
+        <button class="button widebutton" type="submit">Submit</button>
       </form> 
+      </div>
     </body>
   </html>
+

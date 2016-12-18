@@ -26,7 +26,7 @@ module.exports = function(router, db){
           if (req.query.json) {
             res.send(JSON.stringify({success: false, error: "no rows"}));
           } else{
-            res.send("no rows");
+            res.render('noclubs', {id:req.params.id});
           }    
         }
       });
@@ -46,20 +46,30 @@ module.exports = function(router, db){
           res.send("error");
           return;
         }
-        if (rows.length > 0) {
+        else{ //if (rows.length > 0) 
           var club_id = rows[0].club_id;
-          var stmt = db.run("INSERT INTO join_club (membership_id, holder_id, club_holder_id, on_committee) VALUES (NULL, ?, ?, ?)", [req.params.id, club_id, 'FALSE'], function(err, result){   
-            if (err) { 
-              return next(err); 
+          db.all("select * from join_club WHERE club_holder_id = ? and holder_id = ?", [club_id, req.params.id], function(err, rows) {
+            if (err) {
+              console.log("error:" + err);
+              res.send("error");
+              return;
             }
+            if(rows.length > 0){
+              res.render('currentmember', {id: req.params.id});
+            }else{
+              var stmt = db.run("INSERT INTO join_club (membership_id, holder_id, club_holder_id, on_committee) VALUES (NULL, ?, ?, ?)", [req.params.id, club_id, 'FALSE'], function(err, result){   
+                if (err) { 
+                  return next(err); 
+                }else{
+                  res.render('clubjoined', {success: true, id: req.params.id, club_holder_id: club_id, on_committee: false});
+                }
+              });  
+            };
           });
-        } else {
-          res.send(JSON.stringify({success: false, error: "no rows"}));
-        }
-        res.send(JSON.stringify({success: true, holder_id: req.params.id, club_holder_id: club_id, on_committee: false}));
+        };
       });
     }else{
-      res.send("Please log in!");
+      res.render('login');
     };    
   });
 };

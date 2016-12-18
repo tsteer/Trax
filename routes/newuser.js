@@ -18,7 +18,7 @@ module.exports = function(router, db, apiToken, querystring) {
       if (err) { 
         return next(err); 
       }else{
-        res.send(JSON.stringify({success: true, first_name: response.first_name, last_name: response.last_name, dob: response.dob, address: response.address, email: response.email, telephone: response.telephone, year: response.year}));
+        res.render('accountcreated');
       };
     });  
   });

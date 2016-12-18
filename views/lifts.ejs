@@ -5,13 +5,59 @@
 
   <% for(var i=0; i < car.length; i++) {%>
 
-<li style="list-style-type:none"><a class="menuoptions" href="/liftsharing/<%= id %>/<%= club_id %>/<%= car[i].route_id %>/reservelift"><b>Driver: </b><%- car[i].driver %><b>Return: </b><%- car[i].return_trip %><b>Seats: </b><%- car[i].seats %><b>Pickup Location: </b><%- car[i].pick_up_location %>
-  <b>Pickup time: </b><%- car[i].pick_up_time %><b>Pickup date: </b><%- car[i].pick_up_date %><b>Drop Off Location: </b><%- car[i].drop_off_location %><b>Drop Off time: </b><%- car[i].drop_off_time %><b>Drop Off date: </b><%- car[i].drop_off_date %> </a></li>
+
+  <table class="liftlist largemenu">
+
+<li style="list-style-type:none">
+
+<td class="buttongrid">
+<form action="/liftsharing/<%= id %>/<%= club_id %>/<%= car[i].route_id %>/reservelift" method="GET"> 
+<button class="button" id="reservelift" type="submit">Reserve</button>
+</form>
+</td>
 
 
+<td class="left">
+  Driver:</br>
+  Pickup Location:</br>
+  Drop Off Location:
+</td>
+<td class="leftvalue">
+  <b><%- car[i].driver %></b> </br>
+  <b><%- car[i].pick_up_location %></b></br>
+  <b><%- car[i].drop_off_location %></b>
+</td>
+
+<td class="center">
+  Seats:</br>
+  Pickup date:</br>
+  Drop Off date:
+</td>
+<td class="centervalue">
+  <b><%- car[i].seats %> </b> </br>
+  <b><%- car[i].pick_up_date %></b></br>
+  <b><%- car[i].drop_off_date %></b>
+</td>
+<td class="right">
+Return:</br>
+  Pickup time:</br>
+    Drop Off time:
+</td>
+<td class="rightvalue">
+<b><%- car[i].return_trip %></b></br>
+<b><%- car[i].pick_up_time %></b></br>
+<b><%- car[i].drop_off_time %></b>
+</td>
+
+
+</li>
   </ul>
+  </table>
+   
+<% } %>
 
-    <% } %>
+
+
 
 
 </body>

@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-  <html>
-    <head>
-      <link rel='stylesheet' href='/stylesheets/style.css' />
-    </head>
-    <body>
       <% include templates/header.ejs %>
-
+      <ul>
+          <li><a class="menuoptions" href="/joinclub/<%= id %>">Join Club</a> </li>
+<div class="menu">
       <form action="/clubs" method="GET">
         <% for(var i=0; i < clubs.length; i++) {%>
           <li style="list-style-type:none"> 
-          <a href="/clubs/<%= clubs[i].club_id %>"><%= clubs[i].club_name %></a> 
-          
+          <a class="menuoptions" href="/clubs/<%= id %>/<%= clubs[i].club_id %>"><%= clubs[i].club_name %></a> 
+ 
           </li>
-        <% } %>
 
+        <% } %>
+         </div>
 </form>
     </body>
   </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
   <html>
   	<head>
-      <link rel="stylesheet" href="http://bulma.io/css/bulma-docs.css">
+        <link rel="stylesheet" href="http://bulma.io/css/bulma-docs.css">
       <link rel='stylesheet' type="text/css" href="/stylesheets/style.css"> <!-- /> -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
       <link href="https://fonts.googleapis.com/css?family=Lobster|Lobster+Two|Raleway" rel="stylesheet">
@@ -9,8 +9,8 @@
       	<h1>Trax</h1>
       	<h2>The app for university sports clubs</h2>
 			</section>
-			<div class="container widemenu">
-			  <nav class="tabs is-boxed">
+			<div class="widemenu">
+			  <nav class="tabs is-boxed navigationbar">
 			    <a href="/news" class="nav-item is-tab"><b>News</b></a>
 			    <a href="/liftsharing/<%= id %>" class="nav-item is-tab"><b>Liftsharing</b></a>
 					<a href="/calendar" class="nav-item is-tab"><b>Calendar</b></a>
@@ -20,13 +20,9 @@
 			</div>	
     </head>
     <body>	   
-    
-<a href="/deleteuser">Delete User</a>
-<a href="/newclub/<%= id %>">New Club</a>
-<a href="/clubs">Clubs</a>
+
+
 <a href="/editclub/">Edit Club</a>
 <a href="/deleteclub">Delete Club</a>
-<a href="/newsu">New SU</a>
 <a href="/addcommittee/">Add Committee</a>
 <a href="/viewclub/">View Club</a>
-<a href="/joinclub/<%= id %>">Join Club</a> 

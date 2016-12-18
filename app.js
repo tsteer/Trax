@@ -46,7 +46,7 @@ require('./routes/login')(router, db, apiToken, querystring);
 require('./routes/test')(router, db, apiToken, querystring);
 require('./routes/news')(router, db, apiToken, querystring);
 require('./routes/account')(router, db, apiToken, querystring);
-require('./routes/deleteusercheck')(router, db, apiToken, querystring);
+require('./routes/userdeleted')(router, db, apiToken, querystring);
 require('./routes/liftsharing')(router, db, apiToken, querystring);
 require('./routes/joinclub')(router, db, apiToken, querystring);
 require('./routes/addlift')(router, db, apiToken, querystring);
@@ -60,6 +60,7 @@ require('./routes/reservelift')(router, db, apiToken, querystring);
 require('./routes/liftreserved')(router, db, apiToken, querystring);
 require('./routes/cancellift')(router, db, apiToken, querystring);
 require('./routes/liftcancelled')(router, db, apiToken, querystring);
+require('./routes/clubadded')(router, db, apiToken, querystring);
 
 db.run("CREATE TABLE IF NOT EXISTS person (id INTEGER PRIMARY KEY, first_name TEXT NOT NULL, last_name TEXT NOT NULL, dob DATE, address TEXT, email EMAIL NOT NULL UNIQUE, telephone TEL, year NUMBER)");
 db.run("CREATE TABLE IF NOT EXISTS club (club_id INTEGER PRIMARY KEY, club_name TEXT NOT NULL, sport TEXT NOT NULL, club_email EMAIL NOT NULL UNIQUE)");

@@ -6,7 +6,7 @@ module.exports = function(router, db, apiToken, querystring) {
         if (err) { 
           return next(err); 
         } else{
-          db.all("SELECT seats FROM route WHERE route_id = ?", [req.params.reserved_route_id], function(err, rows){
+          db.all("SELECT * FROM route WHERE route_id = ?", [req.params.reserved_route_id], function(err, rows){
             if(err) {
               console.log("error:" + err);
               res.send("error");
@@ -16,8 +16,8 @@ module.exports = function(router, db, apiToken, querystring) {
               var seats = rows[0].seats;
               console.log("seats 1 " + seats);
               seats = seats + 1;
-              console.log("seats 2 " + seats);
-              db.run("UPDATE route SET seats = ?", [seats], function(err, result){ 
+              console.log("seats 2 " + rows[0].route_id);
+              db.run("UPDATE route SET seats = ? WHERE route_id = ?", [seats, req.params.reserved_route_id], function(err, result){ 
                 if (err) { 
                   return next(err); 
                 }else{
