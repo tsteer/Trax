@@ -17,7 +17,7 @@ module.exports = function(router, db, apiToken, querystring) {
         return;
       }else{
           console.log("testing " + this.lastID);
-          var stmt = db.run("INSERT INTO join_club (membership_id, holder_id, club_holder_id, on_committee) VALUES (NULL, ?, ?, ?)", [req.params.id, this.lastID, 'TRUE'], function(err, result){ 
+          var stmt = db.run("INSERT INTO join_club (membership_id, holder_id, club_holder_id, on_committee, committee_role) VALUES (NULL, ?, ?, ?, ?)", [req.params.id, this.lastID, 'TRUE', 'President'], function(err, result){ 
           if (err) {
             console.log("error:" + err);
             res.send("error");

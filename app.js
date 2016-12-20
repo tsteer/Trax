@@ -2,7 +2,7 @@ var express = require('express');
 
 // libraries
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('mydbtest12.db');
+var db = new sqlite3.Database('mydbtest13.db');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
 var path = require('path');
@@ -12,6 +12,8 @@ var cookieParser = require('cookie-parser');
 var sessions = {};
 var apiToken = require('api-token');
 const querystring = require('querystring');
+var credential = require('credential');
+var security = credential();
 //var CryptoJS = require("crypto-js");
 //console.log(CryptoJS.HmacSHA1("Message", "Key"));
 
@@ -33,7 +35,7 @@ app.set('view engine', 'ejs');
 // place the routes here.
 require('./routes/people')(router, db, apiToken, querystring);
 require('./routes/deleteuser')(router, apiToken, querystring);
-require('./routes/newuser')(router, db, apiToken, querystring);
+require('./routes/newuser')(router, db, apiToken, querystring, security);
 require('./routes/edituser')(router, db, apiToken, querystring);
 require('./routes/newclub')(router, db, apiToken, querystring);
 require('./routes/clubs')(router, db, apiToken, querystring);
@@ -42,7 +44,7 @@ require('./routes/deleteclub')(router, db, apiToken, querystring);
 require('./routes/newsu')(router, db, apiToken, querystring);
 require('./routes/addcommittee')(router, db, apiToken, querystring);
 require('./routes/viewclub')(router, db, apiToken, querystring);
-require('./routes/login')(router, db, apiToken, querystring);
+require('./routes/login')(router, db, apiToken, querystring, security);
 require('./routes/test')(router, db, apiToken, querystring);
 require('./routes/news')(router, db, apiToken, querystring);
 require('./routes/account')(router, db, apiToken, querystring);
@@ -61,8 +63,13 @@ require('./routes/liftreserved')(router, db, apiToken, querystring);
 require('./routes/cancellift')(router, db, apiToken, querystring);
 require('./routes/liftcancelled')(router, db, apiToken, querystring);
 require('./routes/clubadded')(router, db, apiToken, querystring);
+require('./routes/clubedited')(router, db, apiToken, querystring);
+require('./routes/clubdeleted')(router, db, apiToken, querystring);
+require('./routes/committeerole')(router, db, apiToken, querystring);
+require('./routes/removecommittee')(router, db, apiToken, querystring);
+require('./routes/committeeremoved')(router, db, apiToken, querystring);
 
-db.run("CREATE TABLE IF NOT EXISTS person (id INTEGER PRIMARY KEY, first_name TEXT NOT NULL, last_name TEXT NOT NULL, dob DATE, address TEXT, email EMAIL NOT NULL UNIQUE, telephone TEL, year NUMBER)");
+db.run("CREATE TABLE IF NOT EXISTS person (id INTEGER PRIMARY KEY, first_name TEXT NOT NULL, last_name TEXT NOT NULL, dob DATE, address TEXT, email EMAIL NOT NULL UNIQUE, telephone TEL, year NUMBER, password TEXT)");
 db.run("CREATE TABLE IF NOT EXISTS club (club_id INTEGER PRIMARY KEY, club_name TEXT NOT NULL, sport TEXT NOT NULL, club_email EMAIL NOT NULL UNIQUE)");
 db.run("CREATE TABLE IF NOT EXISTS students_union (su_id INTEGER PRIMARY KEY, su_name TEXT NOT NULL)");
 db.run("CREATE TABLE IF NOT EXISTS join_club (membership_id INTEGER PRIMARY KEY, holder_id INTEGER REFERENCES person(id), club_holder_id INTEGER REFERENCES club(club_id), on_committee BOOLEAN, committee_role TEXT)");

@@ -1,5 +1,10 @@
 <% include templates/header.ejs %>
   <ul class="profile">
+   	<li><a class="menuoptions" href="/clubs/<%= id %>/<%= club_id %>/viewclub">View Club</a> </li>
+    <li><a class="menuoptions" href="/editclub/<%= id %>/<%= club_id %>">Edit Club</a> </li>
+    <li><a class="menuoptions" href="/editclub/<%= id %>/<%= club_id %>/deleteclub">Delete Club</a> </li>
+    <li><a class="menuoptions" href="/editclub/<%= id %>/<%= club_id %>/addcommittee">Add Committee Members</a> </li>
+    <li><a class="menuoptions" href="/editclub/<%= id %>/<%= club_id %>/removecommittee">Remove Your Committee Status</a> </li>
     <li class="menuoptions"><b>Club Name: </b><%- club_name %> </li>
     <li class="menuoptions"><b>Sport: </b><%- sport %></li>
     <li class="menuoptions"><b>Club Email: </b><%- club_email %></li>

@@ -62,6 +62,24 @@ body {
   height:100%;
   
 }
+table{
+	table-layout: fixed;
+}
+th{
+	padding-left: 3%;
+	border-bottom: 1px solid #3D4C47;
+	padding-bottom: 2%;
+	padding-top: 2%;
+}
+.member{
+	padding-left: 3%;
+	padding-bottom: 2%;
+	padding-top: 2%;
+		border-bottom: 1px solid #3D4C47;
+}
+.member:hover{
+		background-color: #CF5C36;
+}
 .menu{
 	list-style-type: none;
   width: 100%;
@@ -174,7 +192,9 @@ width: 100%;
 	color: #3D4C47;
 	border-bottom: solid;
 	border-width: 1px;
-
+}
+.memberlist{
+	display: inline-block;
 }
 .loginform{
 	outline-style: none;

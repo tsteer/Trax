@@ -1,16 +1,12 @@
-<html>
-	<head>
-		<link rel='stylesheet' href='/stylesheets/style.css' />
-	</head>
-	<body>
-	  <% include templates/header.ejs %>
-		<form action="/addcommittee/<%= holder_id %>" method="POST">
-			 <p>Member ID: 
-			 <input type="number" name="membership_id"></p>
+<% include templates/header.ejs %>
+<ul></ul>
+		<form action="/editclub/<%= id %>/<%= club_id %>/addcommittee" method="POST">
+		 <% for(var i=0; i < member.length; i++) {%>
+          <li style="list-style-type:none"> 
+			  <a class="menuoptions" href="/editclub/<%= id %>/<%= club_id %>/addcommittee/<%= member[i].membership_id %>/committeerole"><%= member[i].first_name %><%= member[i].last_name %><%= member[i].email %></a> 
+          </li>
 
-			 <p>Committee Role:
-			 <input type="text" name="committee_role"></p>
-
+        <% } %>
 			 <button type="submit" value="Submit">Submit</button>
 		</form>
 	</body>

@@ -1,20 +1,12 @@
-<html>
-	<head>
-		<link rel='stylesheet' href='/stylesheets/style.css' />
-	</head>
-	<body>
-	  <% include templates/header.ejs %>
-		<form action="/editclub/<%= id %>" method="POST">
-			 <p>club name: 
-			 <input type="text" name="club_name" value="<%- club_name %>"></p>
-
-			 <p>sport:
-			 <input type="text" name="sport" value="<%- sport %>"></p>
-
-			 <p>Club Email:
-			 <input type="email" name="club_email" value="<%- club_email %>"></p>
-
-			 <button type="submit" value="Submit">Submit</button>
+<% include templates/header.ejs %>
+	<div class="menu">
+		<form action="/editclub/<%= id %>/<%= club_id %>" method="POST">
+		<p class="editoptions">Club Name: <input class="edit" type="text" name="club_name" value="<%- club_name %>"></p>
+		<p class="editoptions">Sport: <input class="edit" type="text" name="sport" value="<%- sport %>"></p>
+		<p class="editoptions">Club Email: <input class="edit" type="text" name="club_email" value="<%- club_email %>"></p>
+		</br>
+		<button class="button checkbutton rightshift" type="submit" value="Submit">Edit</button>
 		</form>
+		</div>
 	</body>
 </html>

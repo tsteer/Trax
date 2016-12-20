@@ -45,10 +45,10 @@ module.exports = function(router, db, apiToken, querystring) {
             }
             if(committee == 'TRUE'){
               console.log(rows[0].on_committee);
-              res.render("clubcommittee", {club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email, club_id: rows[0].club_id, id: req.params.id});
+              res.render("clubcommittee", {club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email, club_id: req.params.club_id, id: req.params.id});
             }else{
               console.log(rows[0].on_committee);
-              res.render("club", {club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email, club_id: rows[0].club_id, id: req.params.id});
+              res.render("club", {club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email, club_id: req.params.club_id, id: req.params.id});
             }
           });  
         }

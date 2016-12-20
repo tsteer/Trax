@@ -1,8 +1,8 @@
 module.exports = function(router, db, apiToken, querystring) {
 
-  router.get("/editclub/:id", function(req, res, next) {
-    if(req.session.userid > 0){
-      db.all("SELECT * FROM join_club WHERE holder_id = ? AND club_holder_id = ?", [req.session.userid, req.params.id], function(err, rows){
+  router.get("/editclub/:id/:club_id", function(req, res, next) {
+        if(req.session.userid == req.params.id){ 
+      db.all("SELECT * FROM join_club WHERE holder_id = ? AND club_holder_id = ?", [req.params.id, req.params.club_id], function(err, rows){
         if(rows[0].on_committee == 'TRUE'){
           db.all("select * from club where club_id = ?", [req.params.id], function(err, rows) {
             if (err) {
@@ -12,13 +12,13 @@ module.exports = function(router, db, apiToken, querystring) {
             }
             if (req.query.json) {
               if (rows.length > 0) {
-                res.send(JSON.stringify({success: true, club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email, id: rows[0].club_id}));
+                res.send(JSON.stringify({success: true, club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email, club_id: req.params.club_id, id: req.params.id}));
               } else{
                 res.send(JSON.stringify({success: false, error: "no rows"}));
               }  
             } else {    
               if (rows.length > 0) { 
-              	res.render("editclub", {club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email, id: rows[0].club_id}); 
+              	res.render("editclub", {club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email, club_id: req.params.club_id, id: req.params.id}); 
               } else {
                 res.send("no rows");
               }
@@ -33,24 +33,26 @@ module.exports = function(router, db, apiToken, querystring) {
     }     
   });
 
-  router.post("/editclub/:id", function(req, res, next) {
+  router.post("/editclub/:id/:club_id", function(req, res, next) {
     response = {
       club_name:req.body.club_name,
       sport:req.body.sport,
       club_email:req.body.club_email
     };
-    if(req.session.userid > 0){
-      db.all("SELECT * FROM join_club WHERE holder_id = ? AND club_holder_id = ?", [req.session.userid, req.params.id], function(err, rows){
+      if(req.session.userid == req.params.id){ 
+
+      db.all("SELECT * FROM join_club WHERE holder_id = ? AND club_holder_id = ?", [req.params.id, req.params.club_id], function(err, rows){
         if(rows[0].on_committee == 'TRUE'){
-          db.run("UPDATE club SET club_name = ?, sport = ?, club_email = ?", [response.club_name, response.sport, response.club_email], function(err, result){   
+          db.run("UPDATE club SET club_name = ?, sport = ?, club_email = ? where club_id = ?", [response.club_name, response.sport, response.club_email, req.params.club_id], function(err, result){   
             if (err) { 
               console.log("error:" + err);
               res.send("error");
               return next(err); 
             }
-            res.send(JSON.stringify({success: true, club_name: response.club_name, sport: response.sport, club_email: response.club_email}));
+            res.render('clubedited', {id: req.params.id, club_id: req.params.club_id});
           });
         }else{
+          console.log("testing here : " + rows[0].on_committee);
           res.send("You must be a committee member in order to access this page");
         }  
       });  
