@@ -1,6 +1,6 @@
 module.exports = function(router, db, apiToken, querystring) {
 
-  router.get("/clubs/:id/:club_id/viewclub", function(req, res) {
+  router.get("/committee/:id/:club_id/viewclub", function(req, res) {
     var members_list = [];
     var members = {};
     if(req.session.userid == req.params.id){ 

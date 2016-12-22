@@ -30,28 +30,17 @@ module.exports = function(router, db, apiToken, querystring) {
   });
 
   router.get("/clubs/:id/:club_id", function(req, res, next) {
-     db.all("select on_committee from join_club WHERE club_holder_id = ? and holder_id = ?", [req.params.club_id, req.params.id], function(err, rows) {
-        if (err) {
-          console.log("error:" + err);
-          res.send("error");
-          return;
-        } else{
-          var committee = rows[0].on_committee;
            db.all("select * from club WHERE club_id = ?", [req.params.club_id], function(err, rows) {
             if (err) {
               console.log("error:" + err);
               res.send("error");
               return;
-            }
-            if(committee == 'TRUE'){
-              console.log(rows[0].on_committee);
-              res.render("clubcommittee", {club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email, club_id: req.params.club_id, id: req.params.id});
-            }else{
+             }else{
               console.log(rows[0].on_committee);
               res.render("club", {club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email, club_id: req.params.club_id, id: req.params.id});
             }
           });  
-        }
+        
         /*
     db.all("select * from club WHERE club_id = ?", [req.params.club_id], function(err, rows) {
       if (err) {
@@ -88,7 +77,6 @@ module.exports = function(router, db, apiToken, querystring) {
           res.render('noclubs', {id:req.params.id});
         }
       } */
-    });  
   });  
 /*
   router.post("/clubs/:id/:club_id", function(req, res, next){

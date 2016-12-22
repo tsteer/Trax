@@ -1,6 +1,6 @@
 <% include templates/header.ejs %>
 	<div class="menu">
-		<form action="/editclub/<%= id %>/<%= club_id %>" method="POST">
+		<form action="/committee/<%= id %>/<%= club_id %>/editclub" method="POST">
 		<p class="editoptions">Club Name: <input class="edit" type="text" name="club_name" value="<%- club_name %>"></p>
 		<p class="editoptions">Sport: <input class="edit" type="text" name="sport" value="<%- sport %>"></p>
 		<p class="editoptions">Club Email: <input class="edit" type="text" name="club_email" value="<%- club_email %>"></p>

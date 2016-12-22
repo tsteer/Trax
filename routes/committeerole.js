@@ -1,11 +1,11 @@
  module.exports = function(router, db, apiToken, querystring) {
 
-    router.get('/editclub/:id/:club_id/addcommittee/:membership_id/committeerole', function(req, res, next) {
+    router.get('/committee/:id/:club_id/addcommittee/:membership_id/committeerole', function(req, res, next) {
       res.render("committeerole", {membership_id: req.params.membership_id, id: req.params.id, club_id: req.params.club_id});
     });  
 
 
- router.post("/editclub/:id/:club_id/addcommittee/:membership_id/committeerole", function(req, res, next) {
+ router.post("/committee/:id/:club_id/addcommittee/:membership_id/committeerole", function(req, res, next) {
     response = {
       committee_role:req.body.committee_role
     };

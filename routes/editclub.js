@@ -1,6 +1,6 @@
 module.exports = function(router, db, apiToken, querystring) {
 
-  router.get("/editclub/:id/:club_id", function(req, res, next) {
+  router.get("/committee/:id/:club_id/editclub", function(req, res, next) {
         if(req.session.userid == req.params.id){ 
       db.all("SELECT * FROM join_club WHERE holder_id = ? AND club_holder_id = ?", [req.params.id, req.params.club_id], function(err, rows){
         if(rows[0].on_committee == 'TRUE'){
@@ -33,7 +33,7 @@ module.exports = function(router, db, apiToken, querystring) {
     }     
   });
 
-  router.post("/editclub/:id/:club_id", function(req, res, next) {
+  router.post("/committee/:id/:club_id/editclub", function(req, res, next) {
     response = {
       club_name:req.body.club_name,
       sport:req.body.sport,

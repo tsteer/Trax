@@ -3,11 +3,12 @@
 		<form action="/editclub/<%= id %>/<%= club_id %>/addcommittee" method="POST">
 		 <% for(var i=0; i < member.length; i++) {%>
           <li style="list-style-type:none"> 
-			  <a class="menuoptions" href="/editclub/<%= id %>/<%= club_id %>/addcommittee/<%= member[i].membership_id %>/committeerole"><%= member[i].first_name %><%= member[i].last_name %><%= member[i].email %></a> 
+			  <a class="menuoptions" href="/committee/<%= id %>/<%= club_id %>/addcommittee/<%= member[i].membership_id %>/committeerole"><%= member[i].first_name %><%= member[i].last_name %><%= member[i].email %></a> 
           </li>
 
         <% } %>
-			 <button type="submit" value="Submit">Submit</button>
+        </br>
+			 <button class="button checkpage checkbutton" value="Submit">Submit</button>
 		</form>
 	</body>
-</html>
+</html> 
