@@ -1,0 +1,24 @@
+<% include templates/header.ejs %>
+  <table class="liftlist largemenu memberlayout">
+
+     <% for(var i=0; i < event_location.length; i++) {%>
+    <tr class="member">
+        <form action="/committee/<%= id %>/<%= club_id %>/statistics/<%= team_id %>/addevent" method="POST" class="addevent">
+       <td class="member">  <input type="radio" name="event_location" value="<%= event_location[i].location_id %>"></td>
+      <td class="member"><%= event_location[i].location_name %></td>
+    </tr>
+
+       <% } %>
+  </table>
+        </br>
+      <button class="button checkbutton" type="submit" value="Submit">Submit</button>
+      </br>
+      </form>
+                 </br>
+      <form action="/committee/<%= id %>/<%= club_id %>/statistics" method="GET">
+<button class="button checkpage checkbutton" type="submit">Cancel</button>
+</form>
+</body>
+</html>
+
+ 
