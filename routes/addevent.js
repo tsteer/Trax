@@ -36,7 +36,7 @@ module.exports = function(router, db, apiToken, querystring) {
     };
 
            console.log("trewdsfds" + response.event_location);
-    var stmt = db.run("INSERT INTO event (event_id, team_id, location_id) VALUES (NULL, ?, ?)", [req.params.team_id, response.event_location], function(err, rows) {   
+    var stmt = db.run("INSERT INTO event (team_id, location_id) VALUES (?, ?)", [req.params.team_id, response.event_location], function(err, rows) {   
       if (err) {
         console.log("error:" + err);
         res.send("error");
