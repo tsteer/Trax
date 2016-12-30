@@ -5,6 +5,7 @@ module.exports = function(router, db, apiToken, querystring) {
   });
 
   router.post('/newclub/:id', function(req, res, next) {
+    var club_id_entered;
     response = {
       club_name:req.body.club_name,
       sport:req.body.sport,
@@ -16,6 +17,7 @@ module.exports = function(router, db, apiToken, querystring) {
         res.send("error 1");
         return;
       }else{
+        club_id_entered = this.lastID;
           console.log("testing " + this.lastID);
           var stmt = db.run("INSERT INTO join_club (membership_id, holder_id, club_holder_id, on_committee, committee_role) VALUES (NULL, ?, ?, ?, ?)", [req.params.id, this.lastID, 'TRUE', 'President'], function(err, result){ 
           if (err) {
@@ -23,8 +25,16 @@ module.exports = function(router, db, apiToken, querystring) {
             res.send("error");
             return;
           }else{
-            res.render('clubadded', {id: req.params.id});
-          };
+            var stmt = db.run("INSERT INTO newsfeed VALUES (NULL, ?)", [club_id_entered], function(err, result){ 
+              if (err) {
+                console.log("error:" + err);
+                res.send("error");
+                return;
+              }else{
+                res.render('clubadded', {id: req.params.id});
+              };
+            });
+          };    
         }); 
            // var stmt = db.run("INSERT INTO join_club (membership_id, holder_id, club_holder_id, on_committee) VALUES (NULL, ?, ?, ?)", [req.params.id, club_id, 'TRUE'], function(err, result){ 
       };

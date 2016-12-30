@@ -1,0 +1,16 @@
+<% include templates/header.ejs %>
+	<div class="menu">
+		<form action="/newsfeed/<%= id %>/<%= club_id %>/<%= post_id %>/editpost" method="POST">
+			<p class="editoptions centerpost"><input class="edit" type="text" name="post_text" value="<%= post_text %>"></p>
+			</br>
+			<button class="button checkbutton centershift" type="submit" value="Submit">Edit Post</button>
+			</br>
+		</form>
+			</br>
+    <form action="/newsfeed/<%= id %>/<%= club_id %>/<%= post_id %>/deletepost" method="GET"> 
+    <button class="button checkbutton centershift" id="deletepost" type="submit">Delete Post</button>
+    </form>
+
+</div>
+</body>
+</html>

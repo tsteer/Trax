@@ -24,6 +24,13 @@
 .hero{
 	background-color: #1e2d2f;
 }
+.posts{
+	
+
+}
+.name{
+	text-align: left;
+}
 .clublist{
 	font-family: 'Raleway', sans-serif;
 	font-size: 110%;
@@ -130,6 +137,11 @@ th{
 	padding: 3%;
 	border-bottom: 1px solid #3D4C47;
 }
+.centerpost{
+	padding-bottom: 6%;
+	padding-right: 15%;
+}
+
 .editbutton{
 	background-color: #CF5C36;
 	color: #3D4C47;
@@ -264,6 +276,10 @@ width: 80%;
 .rightshift{
 	left: 21.5%;
 	width: 76%;
+}
+.centershift{
+	left: 19%;
+	width: 66%;
 }
 .buttongrid{
 	padding-left: 2%;

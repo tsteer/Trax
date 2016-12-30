@@ -2,7 +2,7 @@ var express = require('express');
 
 // libraries
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('mydbtest17.db');
+var db = new sqlite3.Database('mydbtest20.db');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
 var path = require('path');
@@ -88,6 +88,13 @@ require('./routes/eventdetails')(router, db, apiToken, querystring);
 require('./routes/addeventmembers')(router, db, apiToken, querystring);
 require('./routes/eventmembersadded')(router, db, apiToken, querystring);
 require('./routes/viewregister')(router, db, apiToken, querystring);
+require('./routes/newsfeed')(router, db, apiToken, querystring);
+require('./routes/newspost')(router, db, apiToken, querystring);
+require('./routes/postadded')(router, db, apiToken, querystring);
+require('./routes/editpost')(router, db, apiToken, querystring);
+require('./routes/postedited')(router, db, apiToken, querystring);
+require('./routes/deletepost')(router, db, apiToken, querystring);
+require('./routes/postdeleted')(router, db, apiToken, querystring);
 
 db.run("CREATE TABLE IF NOT EXISTS person (id INTEGER PRIMARY KEY, first_name TEXT NOT NULL, last_name TEXT NOT NULL, dob DATE, address TEXT, email EMAIL NOT NULL UNIQUE, telephone TEL, year NUMBER, password TEXT NOT NULL)");
 db.run("CREATE TABLE IF NOT EXISTS club (club_id INTEGER PRIMARY KEY, club_name TEXT NOT NULL, sport TEXT NOT NULL, club_email EMAIL NOT NULL UNIQUE)");
@@ -100,7 +107,8 @@ db.run("CREATE TABLE IF NOT EXISTS join_team (join_team_id INTEGER PRIMARY KEY, 
 db.run("CREATE TABLE IF NOT EXISTS event (event_id INTEGER PRIMARY KEY AUTOINCREMENT, team_id INTEGER NOT NULL REFERENCES team(team_id), event_date DATE, event_start_time TIME, event_end_time TIME, location_id INTEGER NOT NULL REFERENCES event_location(location_id))");
 db.run("CREATE TABLE IF NOT EXISTS join_event (join_event_id INTEGER PRIMARY KEY, holder_id INTEGER NOT NULL REFERENCES person(id), event_id INTEGER NOT NULL REFERENCES event(event_id), team_id INTEGER NOT NULL REFERENCES team(team_id), present BOOLEAN)");
 db.run("CREATE TABLE IF NOT EXISTS event_location (location_id INTEGER PRIMARY KEY, location_name TEXT NOT NULL, club_id INTEGER NOT NULL REFERENCES club(club_id))");
-
+db.run("CREATE TABLE IF NOT EXISTS newsfeed (newsfeed_id INTEGER PRIMARY KEY, club_holder_id INTEGER REFERENCES club(club_id))");
+db.run("CREATE TABLE IF NOT EXISTS newspost (post_id INTEGER PRIMARY KEY, post_text TEXT, newsfeed INTEGER REFERENCES newsfeed(club_holder_id), holder_id INTEGER NOT NULL REFERENCES person(id), date DATE)");
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express'});

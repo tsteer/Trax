@@ -1,0 +1,12 @@
+<% include templates/header.ejs %>
+      <div class="logintest">
+      <form action="/newsfeed/<%= id %>/<%= club_id %>/newspost" method="POST">
+        <input class="input" type="text" placeholder="Post..." name="post_text">
+        <br />
+        <br />  
+        <button class="button widebutton" type="submit">Submit</button>
+      </form> 
+      </div>
+    </body>
+  </html>
+

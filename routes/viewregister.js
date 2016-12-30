@@ -1,6 +1,6 @@
 module.exports = function(router, db, apiToken, querystring) {
   router.get('/committee/:id/:club_id/statistics/:team_id/viewregister', function(req, res, next) {
-  	var register = [];
+ // 	var register = [];
     var event = [];
     var member = {};
     db.all("select * from join_event where team_id = ? ORDER BY event_id ASC", [req.params.team_id], function(err, rows) {
@@ -17,7 +17,7 @@ module.exports = function(router, db, apiToken, querystring) {
           }else{
             i++;
             event[i] = [];
-            console.log("number " + i);
+    //        console.log("number " + i);
             event_tracker = row.event_id;
           }
         });
@@ -33,19 +33,27 @@ module.exports = function(router, db, apiToken, querystring) {
               if(event_tracker_second == row.event_id){
             		member = {event_id: row.event_id, holder_id: row.holder_id, present: row.present, first_name: row.first_name, last_name: row.last_name};
             		event[j].push(member);
-            		console.log("asdfsadfs " + j + JSON.stringify(event[j]));
+      //      		console.log("asdfsadfs " + j + JSON.stringify(event[j]));
               }else{
+            //    register.push(event[j]);
                 j++;
                 member = {event_id: row.event_id, holder_id: row.holder_id, present: row.present, first_name: row.first_name, last_name: row.last_name};
                 event[j].push(member);
                 event_tracker_second = row.event_id;
               }
             });
-            console.log("lenth " + event.length);
-            for (var k = 0; k < event.length; k++) {
+              //  register.push(event[j]);
+        //         console.log("this one " + JSON.stringify(register));
+         //   console.log("lenth " + event.length);
+          /*  for (var k = 0; k < event.length; k++) {
                console.log("blah " + k + JSON.stringify(event[k]));
-            }
+            }*/
           //    console.log(JSON.stringify(event));
+console.log("testing this: " + event);
+       //   console.log("testing this: " + JSON.stringify(event[0].member));
+
+console.log("hhhhhhhh: " + event.property);
+
         res.render('viewregister', {id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id, event: event});
   
           };

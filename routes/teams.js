@@ -17,6 +17,7 @@ module.exports = function(router, db, apiToken, querystring) {
         if (req.query.json) {
           res.send(JSON.stringify({success: true, team: team, teams: teams}));
         } else{
+          console.log(teams);
           res.render("teams", {teams: teams, id: req.params.id, club_id:req.params.club_id}); 
         }       
       } else {
