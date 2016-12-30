@@ -1,7 +1,19 @@
 <% include templates/header.ejs %>
-</br></br>
-	<p class="checkpage">Register!</p>
+  <table class="liftlist largemenu memberlayout">
+    <tr>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+    </tr>
+     <% for(var i=0; i < event.length; i++) {%>
+    <tr class="member">
+      <td class="member"><%= event[i].first_name %></td>
+      <td class="member"><%= event[i].last_name %></td>
+            <td class="member"><%= event[i].event_id %></td>
+      <td class="member"><%= event[i].present %></td>
+    </tr>
+       <% } %>
+  </table>
 </body>
-</body>
-</html> 
+</html>
 

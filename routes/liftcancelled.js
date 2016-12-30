@@ -14,9 +14,7 @@ module.exports = function(router, db, apiToken, querystring) {
             }
             if (rows.length > 0) { 
               var seats = rows[0].seats;
-              console.log("seats 1 " + seats);
               seats = seats + 1;
-              console.log("seats 2 " + rows[0].route_id);
               db.run("UPDATE route SET seats = ? WHERE route_id = ?", [seats, req.params.reserved_route_id], function(err, result){ 
                 if (err) { 
                   return next(err); 

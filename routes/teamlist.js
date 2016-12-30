@@ -19,6 +19,7 @@ module.exports = function(router, db, apiToken, querystring) {
                   res.send(
                   JSON.stringify({success: true, members: members, members_list: members_list, id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id}));
                 } else{
+                  console.log(members);
                   res.render("teamlist", {members: members, members_list: members_list, id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id});
                 }  
               } else{
