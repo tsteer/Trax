@@ -14,8 +14,6 @@ var apiToken = require('api-token');
 const querystring = require('querystring');
 var credential = require('credential');
 var security = credential();
-//var CryptoJS = require("crypto-js");
-//console.log(CryptoJS.HmacSHA1("Message", "Key"));
 
 // set up the main app object
 var app = express();

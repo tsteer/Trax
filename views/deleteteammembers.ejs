@@ -1,31 +1,28 @@
 <% include templates/header.ejs %>
   <table class="liftlist largemenu memberlayout">
     <tr>
-          <th scope="col"></th>
+      <th scope="col"></th>
       <th scope="col">First Name</th>
       <th scope="col">Last Name</th>
       <th scope="col">Email</th>
     </tr>
-     <% for(var i=0; i < members_list.length; i++) {%>
-    <tr class="member">
+    <% for(var i=0; i < members_list.length; i++) {%>
+      <tr class="member">
         <form action="/committee/<%= id %>/<%= club_id %>/teams/<%= team_id %>/deleteteammembers" method="POST" class="deleteteammembers">
-       <td class="member">  <input type="checkbox" name="team" value="<%= members_list[i].id %>"></td>
-      <td class="member"><%= members_list[i].first_name %></td>
-      <td class="member"><%= members_list[i].last_name %></td>
-      <td class="member"><%= members_list[i].email %></td>
-    </tr>
-
-       <% } %>
-  </table>
-        </br>
-      <button class="button checkbutton" type="submit" value="Submit">Submit</button>
-      </br>
-      </form>
-           </br>
-      <form action="/committee/<%= id %>/<%= club_id %>/teams/<%= team_id %>" method="GET">
-<button class="button checkpage checkbutton" type="submit">Cancel</button>
-</form>
+          <td class="member">  <input type="checkbox" name="team" value="<%= members_list[i].id %>"></td>
+          <td class="member"><%= members_list[i].first_name %></td>
+          <td class="member"><%= members_list[i].last_name %></td>
+          <td class="member"><%= members_list[i].email %></td>
+        </tr>
+        <% } %>
+    </table>
+    </br>
+    <button class="button checkbutton" type="submit" value="Submit">Submit</button>
+    </br>
+  </form>
+  </br>
+  <form action="/committee/<%= id %>/<%= club_id %>/teams/<%= team_id %>" method="GET">
+    <button class="button checkpage checkbutton" type="submit">Cancel</button>
+  </form>
 </body>
 </html>
-
- 

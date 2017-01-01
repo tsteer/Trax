@@ -2,7 +2,6 @@ module.exports = function(router, db, apiToken, querystring) {
 
   router.get('/liftsharing/:id/:club_id/addlift', function(req, res, next) {
  		if(req.session.userid == req.params.id){ 
-          console.log("0");
       res.render('addlift', { id: req.params.id, club: req.params.club_id});
     } else{
 			res.render('login');
@@ -20,8 +19,6 @@ module.exports = function(router, db, apiToken, querystring) {
       seats:req.body.seats,
       return_trip:req.body.return_trip
     };
-    console.log("1");
-    console.log(response);
     db.all("SELECT membership_id FROM join_club WHERE holder_id = ?", [req.params.id], function(err, rows) {
       if (err) {
         console.log("error:" + err);
@@ -29,7 +26,6 @@ module.exports = function(router, db, apiToken, querystring) {
         return;
       }
       if(rows.length > 0) {
-        console.log("2");
         var membership_id = rows[0].membership_id;
         var stmt = db.run("INSERT INTO route VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [membership_id, response.return_trip, response.seats, response.pick_up_location, response.pick_up_time, response.pick_up_date, response.drop_off_location, response.drop_off_time, response.drop_off_date], function(err, rows) {   
           if (err) {
@@ -37,7 +33,6 @@ module.exports = function(router, db, apiToken, querystring) {
             res.send("error");
             return;
           }else{
-            console.log("3");
             res.render('liftadded', { id: req.params.id, club: req.params.club_id});
           }
         });

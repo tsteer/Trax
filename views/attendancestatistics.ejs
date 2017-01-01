@@ -1,34 +1,28 @@
-   <% include templates/header.ejs %>
-
+<% include templates/header.ejs %>
   <table class="liftlist largemenu memberlayout">
-
     <tr>
       <th scope="col">Training Date</th>
       <th scope="col">No. Attended</th>
       <th scope="col">Percent Attended</th>
     </tr>
-       <% for(var i=0; i < event_date_list.length; i++) {%>
-       <% total_event_attend = total_event_attend + event_attendance_list[i] %>
-    <tr class="member">
-      <td class="member"><%= event_date_list[i] %></td>
-      <td class="member"><%= event_attendance_list[i] %></td>
-          <td class="member"><%= event_attendance_list[i] / team_size * 100 %></td>
-    </tr>
-       <% } %>
-
-
+    <% for(var i=0; i < event_date_list.length; i++) {%>
+      <% total_event_attend = total_event_attend + event_attendance_list[i] %>
+      <tr class="member">
+        <td class="member"><%= event_date_list[i] %></td>
+        <td class="member"><%= event_attendance_list[i] %></td>
+        <td class="member"><%= event_attendance_list[i] / team_size * 100 %></td>
+      </tr>
+    <% } %>
     <tr>
       <th scope="col">Total No. Sessions</th>
       <th scope="col">Team Size</th>
       <th scope="col">Total Percent Year Attended</th>
     </tr>
-      <tr class="member">
+    <tr class="member">
       <td class="member"><%= event_date_list.length %></td>
-       <td class="member"><%= team_size %></td>
-       <td class="member"><%= (total_event_attend / (team_size * event_date_list.length) * 100) %></td>
+      <td class="member"><%= team_size %></td>
+      <td class="member"><%= (total_event_attend / (team_size * event_date_list.length) * 100) %></td>
     </tr>
   </table>
-
-	</body>
-  </html>
-
+</body>
+</html>

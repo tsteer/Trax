@@ -1,21 +1,15 @@
 <% include templates/header.ejs %>
-
   <table class="liftlist largemenu memberlayout">
-
     <tr>
       <th scope="col">Training Date</th>
       <th scope="col">Training Location</th>
     </tr>
-       <% for(var i=0; i < event_date_list.length; i++) {%>
-    <tr class="member">
-      <td class="member"><%= event_date_list[i] %></td>
-      <td class="member"><%= event_room_list[i] %></td>
-    </tr>
-       <% } %>
-
-
+    <% for(var i=0; i < event_date_list.length; i++) {%>
+      <tr class="member">
+        <td class="member"><%= event_date_list[i] %></td>
+        <td class="member"><%= event_room_list[i] %></td>
+      </tr>
+    <% } %>
   </table>
-
-  </body>
-  </html>
-
+</body>
+</html>

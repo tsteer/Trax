@@ -9,23 +9,17 @@ module.exports = function(router, db, apiToken, querystring) {
 	        return;
 	      }
 	      if (req.query.json) {      
-	        if (rows.length > 0) {  //CHAGNE THIS!!!!!! SO SHOWS UP IF 0 LIFTS 
+	        if (rows.length > 0) {  
 	          res.send(JSON.stringify({success: true})); 
 	        } else{
 	          res.send(JSON.stringify({success: false, error: "no rows"}));    
 	        }  
 	      } else { 
-           // change thse so display if rows greater than 0 - but thin kabout if its first lift //changed this from if(rows.length > 0)
-          	var club = [];
-       
+          var club = [];
           	for (var i = 0; i < rows.length; i++){
           		club[i] = {club_name: rows[i].club_name, club_id: rows[i].club_id} 
-		        } // semicolon here?
-		       // console.log(JSON.stringify(club));
-		        console.log("check length here" + club.length);
-           //   var tokentest = querystring.stringify({token: token});
-            res.render('liftsharing', {id: req.params.id, club: club});
-          
+		        };
+          res.render('liftsharing', {id: req.params.id, club: club});
         };     
       });         
     }else{

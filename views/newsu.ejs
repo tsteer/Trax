@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-  <html>
-    <head>
-      <title><%= title %></title>
-      <link rel='stylesheet' href='/stylesheets/style.css' />
-    </head>
-    <body>
-      <% include templates/header.ejs %>
-      <form action="/newsu" method="POST">
-        <input type="text" placeholder="Students' Union Name" name="su_name">
-        <br />
-        <button type="submit">Submit</button>
-      </form> 
-    </body>
-  </html>
+<% include templates/header.ejs %>
+  <form action="/newsu" method="POST">
+    <input type="text" placeholder="Students' Union Name" name="su_name">
+    <br/>
+    <button type="submit">Submit</button>
+  </form> 
+</body>
+</html>

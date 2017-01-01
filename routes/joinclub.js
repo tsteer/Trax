@@ -46,7 +46,7 @@ module.exports = function(router, db){
           res.send("error");
           return;
         }
-        else{ //if (rows.length > 0) 
+        else{ 
           var club_id = rows[0].club_id;
           db.all("select * from join_club WHERE club_holder_id = ? and holder_id = ?", [club_id, req.params.id], function(err, rows) {
             if (err) {

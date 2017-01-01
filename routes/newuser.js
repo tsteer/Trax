@@ -15,14 +15,10 @@ module.exports = function(router, db, apiToken, querystring, security) {
       year:req.body.year,
       password:req.body.password
     };
-    console.log("response.password " + response.password);
     security.hash(response.password, function(err, pwhash) {
       if (err) {
         return next(err); 
       } else {
-        console.log("password " + pwhash);
-        // the hashed password and some other data is in
-        // "pwhash" - save this in the user table
         var stmt = db.run("INSERT INTO person VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)", [response.first_name, response.last_name, response.dob, response.address, response.email, response.telephone, response.year, pwhash], function(err, result){   
           if (err) { 
             return next(err); 

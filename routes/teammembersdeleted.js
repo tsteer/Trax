@@ -7,5 +7,4 @@ module.exports = function(router, db, apiToken, querystring) {
 			res.render('login');
     };     
   });
-
 }; 

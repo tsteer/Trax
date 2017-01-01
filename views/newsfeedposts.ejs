@@ -1,18 +1,17 @@
-      <% include templates/header.ejs %>
-      <ul>
-          <li><a class="menuoptions" href="/newsfeed/<%= id %>/<%= club_id %>/newspost">Post</a> </li>
-<div class="menu">
-      <form action="/newsfeed/<%= id %>/<%= club_id %>" method="GET">
-        <% for(var i=0; i < posts.length; i++) {%>
-          <li style="list-style-type:none"> 
-          <a class="menuoptions posts" href="/newsfeed/<%= id %>/<%= club_id %>/<%= posts[i].post_id %>/editpost">
-      <div class="name">  <b> <%= posts[i].first_name %>&nbsp;<%= posts[i].last_name %></b></div>  </br>
-       <div class="post">   <%= posts[i].post_text %> </div> </a> 
- 
-          </li>
-
-        <% } %>
-         </div>
-</form>
-    </body>
-  </html>
+<% include templates/header.ejs %>
+  <ul>
+    <li><a class="menuoptions" href="/newsfeed/<%= id %>/<%= club_id %>/newspost">Post</a> </li>
+      <div class="menu">
+        <form action="/newsfeed/<%= id %>/<%= club_id %>" method="GET">
+          <% for(var i=0; i < posts.length; i++) {%>
+            <li style="list-style-type:none"> 
+              <a class="menuoptions posts" href="/newsfeed/<%= id %>/<%= club_id %>/<%= posts[i].post_id %>/editpost">
+              <div class="name">  <b> <%= posts[i].first_name %>&nbsp;<%= posts[i].last_name %></b></div>  </br>
+              <div class="post">   <%= posts[i].post_text %> </div> </a> 
+            </li>
+          <% } %>
+        </div>
+    </form>
+  </ul>  
+</body>
+</html>

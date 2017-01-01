@@ -1,110 +1,89 @@
 <% include templates/header.ejs %>
 	<ul class="menu">
-	<% for(var i=0; i < mylifts.length; i++) {%>
-
-	<table class="liftlist largemenu">
-
-<li style="list-style-type:none">
-
-<td class="buttongrid">
-<form action="/liftsharing/<%= id %>/<%= club_id %>/mylifts/<%= route_id[i].route_id %>/editlift" method="GET"> 
-<button class="button" id="editlift" type="submit">Edit Lift</button>
-</form>
-</td>
-
-<td class="left">
-	Driver:</br>
-	Pickup Location:</br>
-	Drop Off Location:
-</td>
-<td class="leftvalue">
-	<b><%- mylifts[i].name %></b> </br>
-	<b><%- mylifts[i].pick_up_location %></b></br>
-	<b><%- mylifts[i].drop_off_location %></b>
-</td>
-
-<td class="center">
-	Seats:</br>
-	Pickup date:</br>
-	Drop Off date:
-</td>
-<td class="centervalue">
-	<b><%- mylifts[i].seats %> </b>	</br>
-	<b><%- mylifts[i].pick_up_date %></b></br>
-	<b><%- mylifts[i].drop_off_date %></b>
-</td>
-<td class="right">
-Return:</br>
-	Pickup time:</br>
-		Drop Off time:
-</td>
-<td class="rightvalue">
-<b><%- mylifts[i].return_trip %></b></br>
-<b><%- mylifts[i].pick_up_time %></b></br>
-<b><%- mylifts[i].drop_off_time %></b>
-</td>
-<!--
-	<li style="list-style-type:none"><a class="menuoptions" href="/liftsharing/<%= id %>/<%= club_id %>/mylifts/<%= route_id[i].route_id %>/editlift"> -->
-
-
-</li>
-	</ul>
-	</table>
-   
-<% } %>
-
-<ul class="menu">
-	<% for(var j=0; j < reservedlifts.length; j++) {%>
-
-	<table class="liftlist largemenu">
-
-<li style="list-style-type:none">
-
-<td class="buttongrid">
-<form action="/liftsharing/<%= id %>/<%= club_id %>/mylifts/<%= reserved_route_id[j].reserved_route_id %>/<%= reserved_seats_id[j].reserved_seats_id %>/cancellift" method="GET"> 
-<button class="button" id="cancellift" type="submit">Cancel Space</button>
-</form>
-</td>
-
-<td class="left">
-	Driver:</br>
-	Pickup Location:</br>
-	Drop Off Location:
-</td>
-<td class="leftvalue">
-	<b><%- reservedlifts[j].name %></b> </br>
-	<b><%- reservedlifts[j].pick_up_location %></b></br>
-	<b><%- reservedlifts[j].drop_off_location %></b>
-</td>
-
-<td class="center">
-	Seats:</br>
-	Pickup date:</br>
-	Drop Off date:
-</td>
-<td class="centervalue">
-	<b><%- reservedlifts[j].seats %> </b>	</br>
-	<b><%- reservedlifts[j].pick_up_date %></b></br>
-	<b><%- reservedlifts[j].drop_off_date %></b>
-</td>
-<td class="right">
-Return:</br>
-Pickup time:</br>
-Drop Off time:
-</td>
-<td class="rightvalue">
-<b><%- reservedlifts[j].return_trip %></b></br>
-<b><%- reservedlifts[j].pick_up_time %></b></br>
-<b><%- reservedlifts[j].drop_off_time %></b>
-</td>
-
-
-</li>
-	</ul>
-	</table>
-   
-<% } %>
-
+		<% for(var i=0; i < mylifts.length; i++) {%>
+			<table class="liftlist largemenu">
+				<li style="list-style-type:none">
+					<td class="buttongrid">
+						<form action="/liftsharing/<%= id %>/<%= club_id %>/mylifts/<%= route_id[i].route_id %>/editlift" method="GET"> 
+							<button class="button" id="editlift" type="submit">Edit Lift</button>
+						</form>
+					</td>
+					<td class="left">
+						Driver:</br>
+						Pickup Location:</br>
+						Drop Off Location:
+					</td>
+					<td class="leftvalue">
+						<b><%- mylifts[i].name %></b> </br>
+						<b><%- mylifts[i].pick_up_location %></b></br>
+						<b><%- mylifts[i].drop_off_location %></b>
+					</td>
+					<td class="center">
+						Seats:</br>
+						Pickup date:</br>
+						Drop Off date:
+					</td>
+					<td class="centervalue">
+						<b><%- mylifts[i].seats %> </b>	</br>
+						<b><%- mylifts[i].pick_up_date %></b></br>
+						<b><%- mylifts[i].drop_off_date %></b>
+					</td>
+					<td class="right">
+						Return:</br>
+						Pickup time:</br>
+						Drop Off time:
+					</td>
+					<td class="rightvalue">
+						<b><%- mylifts[i].return_trip %></b></br>
+						<b><%- mylifts[i].pick_up_time %></b></br>
+						<b><%- mylifts[i].drop_off_time %></b>
+					</td>
+				</li>
+			</ul>
+		</table>
+  <% } %>
+	<ul class="menu">
+		<% for(var j=0; j < reservedlifts.length; j++) {%>
+			<table class="liftlist largemenu">
+				<li style="list-style-type:none">
+					<td class="buttongrid">
+						<form action="/liftsharing/<%= id %>/<%= club_id %>/mylifts/<%= reserved_route_id[j].reserved_route_id %>/<%= reserved_seats_id[j].reserved_seats_id %>/cancellift" method="GET"> 
+							<button class="button" id="cancellift" type="submit">Cancel Space</button>
+						</form>
+					</td>
+					<td class="left">
+						Driver:</br>
+						Pickup Location:</br>
+						Drop Off Location:
+					</td>
+					<td class="leftvalue">
+						<b><%- reservedlifts[j].name %></b> </br>
+						<b><%- reservedlifts[j].pick_up_location %></b></br>
+						<b><%- reservedlifts[j].drop_off_location %></b>
+					</td>
+					<td class="center">
+						Seats:</br>
+						Pickup date:</br>
+						Drop Off date:
+					</td>
+					<td class="centervalue">
+						<b><%- reservedlifts[j].seats %> </b>	</br>
+						<b><%- reservedlifts[j].pick_up_date %></b></br>
+						<b><%- reservedlifts[j].drop_off_date %></b>
+					</td>
+					<td class="right">
+						Return:</br>
+						Pickup time:</br>
+						Drop Off time:
+					</td>
+					<td class="rightvalue">
+						<b><%- reservedlifts[j].return_trip %></b></br>
+						<b><%- reservedlifts[j].pick_up_time %></b></br>
+						<b><%- reservedlifts[j].drop_off_time %></b>
+					</td>
+				</li>
+			</ul>
+		</table>
+	<% } %>
 </body>
 </html> 
-

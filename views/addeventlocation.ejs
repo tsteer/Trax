@@ -1,14 +1,10 @@
-
-      <% include templates/header.ejs %>
-      <div class="logintest">
-<form action="/committee/<%= id %>/<%= club_id %>/statistics/addeventlocation" class=form method="POST">
-
-	<input class="input" type="text" placeholder="Training Name" name="location_name">
-        <br />
-        <br />  
-        <button class="button widebutton" type="submit">Submit</button>
-      </form> 
-      </div>
-    </body>
-  </html>
-
+<% include templates/header.ejs %>
+  <div class="logintest">
+    <form action="/committee/<%= id %>/<%= club_id %>/statistics/addeventlocation" class=form method="POST">
+      <input class="input" type="text" placeholder="Training Name" name="location_name">
+      <br /><br />  
+      <button class="button widebutton" type="submit">Submit</button>
+    </form> 
+  </div>
+</body>
+</html>

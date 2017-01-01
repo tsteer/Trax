@@ -1,10 +1,7 @@
 module.exports = function(router, db, apiToken, querystring) {
 
 	router.get('/userdeleted/:id', function(req, res, next){
-		console.log("one" + req.session.userid);
-		console.log("teo" + req.params.id);
-	 if(req.session.userid == req.params.id){
-					console.log("2");
+	  if(req.session.userid == req.params.id){
 			db.run("DELETE from person WHERE id = ?", [req.params.id], function(err, rows){
 				if (err) { 
 					return next(err); 
@@ -25,6 +22,3 @@ module.exports = function(router, db, apiToken, querystring) {
     };	
 	});
 };
-
-
-//db.run("DELETE from person INNER JOIN join_club WHERE person.id = join_club.holder_id and person.id = ?", [req.params.id], function(err, rows){

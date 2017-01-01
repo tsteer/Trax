@@ -1,12 +1,12 @@
 <% include templates/header.ejs %>
-</br></br>
-<p class="checkpage">Are you sure you want to remove your committee status?</p>
+	</br></br>
+	<p class="checkpage">Are you sure you want to remove your committee status?</p>
 	</br></br></br></br>
-<form action="/committee/<%= id %>/<%= club_id %>/committeeremoved" method="GET">
-<button class="button checkpage checkbutton" type="submit">Remove Committee Status</button>
-</form>
-<form action="/committee/<%= id %>/<%= club_id %>" method="GET">
-<button class="button checkpage checkbutton" type="submit">Cancel</button>
-</form>
+	<form action="/committee/<%= id %>/<%= club_id %>/committeeremoved" method="GET">
+		<button class="button checkpage checkbutton" type="submit">Remove Committee Status</button>
+	</form>
+	<form action="/committee/<%= id %>/<%= club_id %>" method="GET">
+		<button class="button checkpage checkbutton" type="submit">Cancel</button>
+	</form>
 </body>
 </html>

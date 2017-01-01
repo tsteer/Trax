@@ -17,8 +17,7 @@ module.exports = function(router, db, apiToken, querystring) {
         if (req.query.json) {
           res.send(JSON.stringify({success: true, team: team, teams: teams}));
         } else{
-console.log("sdsdsdsdsdsdsdsd");
-    res.render('statistics', {id: req.params.id, club_id: req.params.club_id, teams: teams});
+          res.render('statistics', {id: req.params.id, club_id: req.params.club_id, teams: teams});
         }       
       } else {
         if (req.query.json) {
@@ -31,10 +30,6 @@ console.log("sdsdsdsdsdsdsdsd");
   });
 
   router.get('/committee/:id/:club_id/statistics/addeventlocation', function(req, res, next) {
- 		
-              console.log("dsfdaskfjhasdhkf222222");
-      res.render('addeventlocation', { id: req.params.id, club_id: req.params.club_id});
-   
+ 		res.render('addeventlocation', { id: req.params.id, club_id: req.params.club_id});
   });
-	
 };

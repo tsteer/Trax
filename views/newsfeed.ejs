@@ -1,14 +1,12 @@
 <% include templates/header.ejs %>
-<div class="menu">
-      <form action="/newsfeed/<%= id %>" method="GET">
-        <% for(var i=0; i < clubs.length; i++) {%>
-          <li style="list-style-type:none"> 
-          <a class="menuoptions" href="/newsfeed/<%= id %>/<%= clubs[i].club_id %>"><%= clubs[i].club_name %></a> 
- 
-          </li>
-
-        <% } %>
-         </div>
-</form>
-    </body>
-  </html>
+	<div class="menu">
+    <form action="/newsfeed/<%= id %>" method="GET">
+      <% for(var i=0; i < clubs.length; i++) {%>
+        <li style="list-style-type:none"> 
+         	<a class="menuoptions" href="/newsfeed/<%= id %>/<%= clubs[i].club_id %>"><%= clubs[i].club_name %></a> 
+				</li>
+			<% } %>
+    </div>
+	</form>
+</body>
+</html>

@@ -21,8 +21,6 @@ module.exports = function(router, db, apiToken, querystring) {
 					 	rows.forEach(function(row){
 				     	event_date_list.push(row.event_date);
 			      });
-						console.log("event_room_list " + event_room_list);
-						console.log("event_date_list " + event_date_list);
 						res.render('roomstatistics', {id:req.params.id, club_id:req.params.club_id, team_id:req.params.team_id, event_room_list: event_room_list, event_date_list: event_date_list});
 					}
 				});	

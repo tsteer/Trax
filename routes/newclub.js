@@ -18,7 +18,6 @@ module.exports = function(router, db, apiToken, querystring) {
         return;
       }else{
         club_id_entered = this.lastID;
-          console.log("testing " + this.lastID);
           var stmt = db.run("INSERT INTO join_club (membership_id, holder_id, club_holder_id, on_committee, committee_role) VALUES (NULL, ?, ?, ?, ?)", [req.params.id, this.lastID, 'TRUE', 'President'], function(err, result){ 
           if (err) {
             console.log("error:" + err);
@@ -36,9 +35,7 @@ module.exports = function(router, db, apiToken, querystring) {
             });
           };    
         }); 
-           // var stmt = db.run("INSERT INTO join_club (membership_id, holder_id, club_holder_id, on_committee) VALUES (NULL, ?, ?, ?)", [req.params.id, club_id, 'TRUE'], function(err, result){ 
       };
-    //res.end(JSON.stringify({success: true, club_name: response.club_name, sport: response.sport, club_email: response.club_email}));
     });
   });  
 };

@@ -11,7 +11,6 @@
   top: 35%; bottom: 0; 
   padding-left: 10%;
   padding-right: 10%;
-
 }
 .id{
 	padding-bottom: 2%;
@@ -23,10 +22,6 @@
 }
 .hero{
 	background-color: #1e2d2f;
-}
-.posts{
-	
-
 }
 .name{
 	text-align: left;
@@ -67,7 +62,6 @@ body {
 	font-family: 'Raleway', sans-serif;
 	font-size: 110%;
   height:100%;
-  
 }
 table{
 	table-layout: fixed;
@@ -82,10 +76,10 @@ th{
 	padding-left: 3%;
 	padding-bottom: 2%;
 	padding-top: 2%;
-		border-bottom: 1px solid #3D4C47;
+	border-bottom: 1px solid #3D4C47;
 }
 .member:hover{
-		background-color: #CF5C36;
+	background-color: #CF5C36;
 }
 .menu{
 	list-style-type: none;
@@ -110,12 +104,12 @@ th{
 	display: block;
 	width: 100%;
 	border:none;
-	  background-color: #F2E3BC;
-	  padding-top:3%;
-	  padding-bottom: 3%; 
-	  	border-bottom: 1px solid #3D4C47;
-	  	text-align: left;
-	  	padding-left: 3%;
+	background-color: #F2E3BC;
+	padding-top:3%;
+	padding-bottom: 3%; 
+	border-bottom: 1px solid #3D4C47;
+	text-align: left;
+	padding-left: 3%;
 }
 .menuoptionsbutton:hover{
 	background-color: #CF5C36;
@@ -141,7 +135,6 @@ th{
 	padding-bottom: 6%;
 	padding-right: 15%;
 }
-
 .editbutton{
 	background-color: #CF5C36;
 	color: #3D4C47;
@@ -177,7 +170,6 @@ a {
 .widebutton { 
 	width: 100%; 
 }
-
 .largemenu {
 	padding-top: 1%;
 	padding-bottom: 1%;
@@ -185,17 +177,16 @@ a {
 }
 .form{
 	padding: 10%;
-
 }
 .halfbutton{
-width: 100%;
+	width: 100%;
 	display: inline-block;
 }
 .inline{
 	display: inline-block;
-width: 100%;
+	width: 100%;
 	padding-bottom: 2%; 
-		font-family: 'Raleway', sans-serif;
+	font-family: 'Raleway', sans-serif;
 	font-size: 110%;
 }
 .liftlist{
@@ -216,7 +207,6 @@ width: 100%;
 }
 td.left{
 	text-align: left;
-	
 }
 td.leftvalue{
 	text-align: left;
@@ -226,7 +216,6 @@ td.center{
 }
 td.centervalue{
 	text-align: left;
-
 }
 td.right{
 	text-align: left;
@@ -236,17 +225,14 @@ td.rightvalue{
 	padding-right: 5%;
 }
 td.tablebutton{
-
 	padding-top: 1%;
 	padding-left: 5%;
 }
 .checkpage{
-
 	text-align: center;
 	font-family: 'Raleway', sans-serif;
 	font-size: 110%;
 	color: #1e2d2f;
-
 }
 .checkbutton{
 width: 80%;
@@ -257,19 +243,14 @@ width: 80%;
 	border-style: none;
 }
 .button:hover{
-		background: #CF5C36;
-		border: 1px solid #CF5C36;
-	/* border-style: none; */
+	background: #CF5C36;
+	border: 1px solid #CF5C36;
 }
 .reservebutton:hover{
-
-		background: #CF5C36;
-	/* border-style: none;
-	width: 100%; */
+	background: #CF5C36;
 	border: 1px solid #CF5C36;
 }
 .buttonspan{
-	
 	width: 80%;
 	margin: 10%;
 }
@@ -285,11 +266,10 @@ width: 80%;
 	padding-left: 2%;
 	padding-top: 2%;
 }
-
 .navigationbar {
 	padding-left: 2em;
 	padding-right: 2em;
-		font-family: 'Raleway', sans-serif;
+	font-family: 'Raleway', sans-serif;
 	font-size: 110%;
 	color: #CF5C36;
 }

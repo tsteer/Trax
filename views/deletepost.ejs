@@ -1,12 +1,12 @@
 <% include templates/header.ejs %>
-</br></br>
-<p class="checkpage">Are you sure you want to delete your post?</p>
-<form action="/newsfeed/<%= id %>/<%= club_id %>/<%= post_id %>/postdeleted" method="GET">
+	</br></br>
+	<p class="checkpage">Are you sure you want to delete your post?</p>
+	<form action="/newsfeed/<%= id %>/<%= club_id %>/<%= post_id %>/postdeleted" method="GET">
 		</br></br></br></br>
-<button class="button checkpage checkbutton" type="submit">Delete</button>
-</form>
-<form action="/newsfeed/<%= id %>/<%= club_id %>" method="GET">
-<button class="button checkpage checkbutton" type="submit">Cancel</button>
-</form>
+		<button class="button checkpage checkbutton" type="submit">Delete</button>
+	</form>
+	<form action="/newsfeed/<%= id %>/<%= club_id %>" method="GET">
+		<button class="button checkpage checkbutton" type="submit">Cancel</button>
+	</form>
 </body>
 </html>

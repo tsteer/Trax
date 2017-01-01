@@ -1,33 +1,20 @@
 module.exports = function(router, db, apiToken, querystring) {
-/*
-  router.get('/liftsharing/:id/:club_id/:route_id/reservelift', function(req, res, next) {
- 		if(req.session.userid == req.params.id){ 
-      		res.render('reservelift', { id: req.params.id, club_id: req.params.club_id, route_id: req.params.route_id});
-    		} else{
-					res.render('login');  
-  	};	
-  });
-
-*/
-var seats; //move?
+  
+  var seats;
   router.get('/liftsharing/:id/:club_id/:route_id/reservelift', function(req, res, next) {
  		if(req.session.userid == req.params.id){ 
       db.all("select seats from route where route_id = ?", [req.params.route_id], function(err, rows){
-        console.log("test seats here");
         if (err) { 
           return next(err); 
         }
         if (rows.length > 0) {
           seats = rows[0].seats;
-          console.log("seats = " + seats);
           res.render('reservelift', {id: req.params.id, club_id: req.params.club_id, route_id: req.params.route_id});
         }else{
-             console.log("this8");
           res.render('login');
         };
       });
     }else{
-         console.log("this9");
       res.render('login');
     };
   });
@@ -50,13 +37,10 @@ var seats; //move?
           }
         });  
       }else{
-        console.log("this7");
         res.render('login');
       }
     }else{
-       console.log("testthis");
       res.render('login');
     }; 
   });        
-
 };  

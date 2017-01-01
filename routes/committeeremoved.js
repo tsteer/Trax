@@ -7,7 +7,6 @@ module.exports = function(router, db, apiToken, querystring) {
           res.send("error");
           return next(err); 
         }else{
-              console.log("remove check 2");
           res.render('committeeremoved', {id: req.params.id, club_id: req.params.club_id});
         };  
       });

@@ -1,7 +1,7 @@
 <% include templates/header.ejs %>
-<ul>
-     <li><a class="menuoptions" href="/newclub/<%= id %>">New Club</a> </li>
-<div class="menu">
+  <ul>
+    <li><a class="menuoptions" href="/newclub/<%= id %>">New Club</a> </li>
+    <div class="menu">
       <form action="/joinclub/<%= id %>" method="POST">
         <% for(var i=0; i < clubs.length; i++) {%>
           <li style="list-style-type:none"> 
@@ -10,6 +10,7 @@
         <% } %>
         </div>
       </form>
-
-    </body>
-  </html> 
+    </div>
+  </ul>    
+</body>
+</html> 

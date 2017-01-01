@@ -1,27 +1,25 @@
 <% include templates/header.ejs %>
   <form action="/committee/<%= id %>/<%= club_id %>/statistics/<%= team_id %>/addevent/<%= event_id %>/eventdetails" class=form method="POST">
-
     <div class="inline">
       <p class="control has-icon halfbutton">
         <input class="input" type="date" placeholder="Event Date" name="event_date">
         <i class="fa fa-calendar-o"></i>
       </p>
-    </div>
-    <p class="control has-icon">
-      <input class="input" type="time" placeholder="Event Start Time" name="event_start_time">
-      <i class="fa fa-map-marker"></i>
-    </p>
-    <div class="inline">
-      <p class="control has-icon halfbutton">
-        <input class="input" type="time" placeholder="Event End Time" name="event_end_time">
-        <i class="fa fa-clock-o"></i>
+      </div>
+      <p class="control has-icon">
+        <input class="input" type="time" placeholder="Event Start Time" name="event_start_time">
+        <i class="fa fa-map-marker"></i>
       </p>
+      <div class="inline">
+        <p class="control has-icon halfbutton">
+          <input class="input" type="time" placeholder="Event End Time" name="event_end_time">
+          <i class="fa fa-clock-o"></i>
+        </p>
+      </div>
+      <p class="control has-addons">  
+        <button style = "width: 100%;" class="button" type="submit">Submit</button>
+      </p>  
     </div>
-
-          <p class="control has-addons">  
-          <button style = "width: 100%;" class="button" type="submit">Submit</button>
-        </p>  
-  </div>
   </form>
 </body>
 </html> 

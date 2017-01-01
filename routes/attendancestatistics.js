@@ -15,16 +15,14 @@ module.exports = function(router, db, apiToken, querystring) {
 				  if(current_event == row.event_id){
 				    if(row.present == 'TRUE'){
 				      attendance_count = attendance_count + 1;
-				    }else{
-						}	
+				    }else{}	
 				    event_attendance_list.push(attendance_count); 
 				  }else{
 				    attendance_count = 0;
 				    current_event = row.event_id;
 				    if(row.present == 'TRUE'){
 				     	attendance_count = attendance_count + 1;
-				    }else{
-	         	}	
+				    }else{}	
 				  }
 			  });	
 				event_date_list = [];
@@ -41,7 +39,7 @@ module.exports = function(router, db, apiToken, querystring) {
 		      	db.all("select * from join_team where team_id = ? ", [req.params.team_id], function(err, rows) {
 							var team_size = 0;
 							team_size = rows.length;
-						res.render('attendancestatistics', {id:req.params.id, club_id:req.params.club_id, team_id:req.params.team_id, team_size: team_size, total_event_attend: total_event_attend, event_date_list: event_date_list, event_attendance_list: event_attendance_list});
+							res.render('attendancestatistics', {id:req.params.id, club_id:req.params.club_id, team_id:req.params.team_id, team_size: team_size, total_event_attend: total_event_attend, event_date_list: event_date_list, event_attendance_list: event_attendance_list});
 					 	});
 					 }
 				});

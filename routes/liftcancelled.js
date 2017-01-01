@@ -32,5 +32,4 @@ module.exports = function(router, db, apiToken, querystring) {
       res.send(JSON.stringify({success: false}));
     };  
   });		
-};  
-
+}; 

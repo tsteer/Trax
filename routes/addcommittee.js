@@ -15,25 +15,17 @@ module.exports = function(router, db, apiToken, querystring) {
               for (var j = 0; j < rows.length; j++){
                 member[j] = {membership_id: rows[j].membership_id, first_name: rows[j].first_name, last_name: rows[j].last_name, email: rows[j].email};
               };  
-               console.log(JSON.stringify(member));
-            	 res.render("addcommittee", {holder_id: rows[0].holder_id, id: req.params.id, club_id: req.params.club_id, member: member}); 
+              res.render("addcommittee", {holder_id: rows[0].holder_id, id: req.params.id, club_id: req.params.club_id, member: member}); 
             } else {
-               console.log("1");
               res.render('login');
             }
           });
         }else{
-               console.log("2");
           res.render('login');
         };  
       });
     }else{
-           console.log("3");
       res.render('login');
     }; 
   });
-
 };
-
-
-

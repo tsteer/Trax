@@ -1,12 +1,12 @@
 <% include templates/header.ejs %>
-</br></br>
-<p class="checkpage">Are you sure you want to cancel your lift?</p>
-<form action="/liftsharing/<%= id %>/<%= club_id %>/mylifts/<%= reserved_route_id %>/<%= reserved_seats_id %>/liftcancelled" method="GET">
-		</br></br></br></br>
-<button class="button checkpage checkbutton" type="submit">Cancel Lift</button>
-</form>
-<form action="/liftsharing/<%= id %>/<%= club_id %>/mylifts" method="GET">
-<button class="button checkpage checkbutton" type="submit">Go Back</button>
-</form>
+	</br></br>
+	<p class="checkpage">Are you sure you want to cancel your lift?</p>
+	<form action="/liftsharing/<%= id %>/<%= club_id %>/mylifts/<%= reserved_route_id %>/<%= reserved_seats_id %>/liftcancelled" method="GET">
+			</br></br></br></br>
+		<button class="button checkpage checkbutton" type="submit">Cancel Lift</button>
+	</form>
+	<form action="/liftsharing/<%= id %>/<%= club_id %>/mylifts" method="GET">
+		<button class="button checkpage checkbutton" type="submit">Go Back</button>
+	</form>
 </body>
 </html>

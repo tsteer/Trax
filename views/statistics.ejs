@@ -1,14 +1,13 @@
 <% include templates/header.ejs %>
-<a class="menuoptions" href="/committee/<%= id %>/<%= club_id %>/statistics/addeventlocation">Add Event Location</a> </li>
-     <div class="menu">
-      <form action="/committee/<%= id %>/<%= club_id %>/teams" method="GET">
-        <% for(var i=0; i < teams.length; i++) {%>
-          <li style="list-style-type:none"> 
+  <a class="menuoptions" href="/committee/<%= id %>/<%= club_id %>/statistics/addeventlocation">Add Event Location</a> </li>
+  <div class="menu">
+    <form action="/committee/<%= id %>/<%= club_id %>/teams" method="GET">
+      <% for(var i=0; i < teams.length; i++) {%>
+        <li style="list-style-type:none"> 
           <a class="menuoptions" href="/committee/<%= id %>/<%= club_id %>/statistics/<%= teams[i].team_id %>"><%= teams[i].team_name %></a> 
-          </li>
-
-        <% } %>
-         </div>
-</form>
-    </body>
-  </html>
+        </li>
+      <% } %>
+    </div>
+  </form>
+</body>
+</html>

@@ -1,17 +1,12 @@
 <% include templates/header.ejs %>
-</br></br>
-<p class="checkpage">Are you sure you want to delete this club?</p>
-<form action="/committee/<%= id %>/<%= club_id %>/clubdeleted" method="GET">
-    </br></br></br></br>
-<button class="button checkpage checkbutton" type="submit">Delete Club</button>
-</form>
-<form action="/committee/<%= id %>/<%= club_id %>" method="GET">
-<button class="button checkpage checkbutton" type="submit">Cancel</button>
-</form>
+	</br></br>
+	<p class="checkpage">Are you sure you want to delete this club?</p>
+	<form action="/committee/<%= id %>/<%= club_id %>/clubdeleted" method="GET">
+	  </br></br></br></br>
+		<button class="button checkpage checkbutton" type="submit">Delete Club</button>
+	</form>
+	<form action="/committee/<%= id %>/<%= club_id %>" method="GET">
+		<button class="button checkpage checkbutton" type="submit">Cancel</button>
+	</form>
 </body>
 </html>
-
-
-<!-- npm send email -->
-<!--
-email with token, link back to website - then check token with email in reset table -->

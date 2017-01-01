@@ -10,19 +10,18 @@
       <th scope="col">Year</th>
       <th scope="col">Committee</th>
     </tr>
-     <% for(var i=0; i < members_list.length; i++) {%>
-    <tr class="member">
-      <td class="member"><%= members_list[i].first_name %></td>
-      <td class="member"><%= members_list[i].last_name %></td>
-      <td class="member"><%= members_list[i].dob %></td>
-      <td class="member"><%= members_list[i].address %></td>
-      <td class="member"><%= members_list[i].email %></td>
-      <td class="member"><%= members_list[i].telephone %></td>
-      <td class="member"><%= members_list[i].year %></td>
-      <td class="member"><%= members_list[i].committee_role %></td>
-    </tr>
-       <% } %>
+    <% for(var i=0; i < members_list.length; i++) {%>
+      <tr class="member">
+        <td class="member"><%= members_list[i].first_name %></td>
+        <td class="member"><%= members_list[i].last_name %></td>
+        <td class="member"><%= members_list[i].dob %></td>
+        <td class="member"><%= members_list[i].address %></td>
+        <td class="member"><%= members_list[i].email %></td>
+        <td class="member"><%= members_list[i].telephone %></td>
+        <td class="member"><%= members_list[i].year %></td>
+        <td class="member"><%= members_list[i].committee_role %></td>
+      </tr>
+    <% } %>
   </table>
 </body>
 </html>
-

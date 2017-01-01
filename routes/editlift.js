@@ -29,25 +29,18 @@ module.exports = function(router, db, apiToken, querystring) {
       return_trip:req.body.return_trip
     };
     if(req.session.userid == req.params.id){ 
-      console.log(response);
-    //   db.run("UPDATE route SET drop_off_location = ? WHERE id = ?", [response.drop_off_location, req.params.route_id], function(err, result){ 
       db.run("UPDATE route SET pick_up_location = ?, pick_up_time = ?, pick_up_date = ?, drop_off_location = ?, drop_off_time = ?, drop_off_date = ?, seats = ?, return_trip = ? WHERE route_id = ?", [response.pick_up_location, response.pick_up_time, response.pick_up_date, response.drop_off_location, response.drop_off_time, response.drop_off_date, response.seats, response.return_trip, req.params.route_id], function(err, result){ 
         if (err) { 
           return next(err); 
         }
         res.render('liftedited', {id: req.params.id, club_id: req.params.club_id, route_id: req.params.route_id});
       });
-      }else{
+    }else{
       res.render('login');
     };
   });
 
-router.get('/liftsharing/:id/:club_id/mylifts/:route_id/deletelift', function(req, res){
-  res.render('deletelift', {id: req.params.id, club_id: req.params.club_id, route_id: req.params.route_id});
-});
+  router.get('/liftsharing/:id/:club_id/mylifts/:route_id/deletelift', function(req, res){
+    res.render('deletelift', {id: req.params.id, club_id: req.params.club_id, route_id: req.params.route_id});
+  });
 };  
-
-
-
-
-
