@@ -15,18 +15,34 @@ module.exports = function(router, db, apiToken, querystring, security) {
       year:req.body.year,
       password:req.body.password
     };
-    security.hash(response.password, function(err, pwhash) {
-      if (err) {
-        return next(err); 
-      } else {
-        var stmt = db.run("INSERT INTO person VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)", [response.first_name, response.last_name, response.dob, response.address, response.email, response.telephone, response.year, pwhash], function(err, result){   
-          if (err) { 
-            return next(err); 
-          }else{
-            res.render('accountcreated');
-          };
-        });
-      };    
-    });  
+    if(response.password === "" || response.email === ""){  
+      res.render('notvalid');
+    }else{  
+      db.all("select * from person where email = ?", [response.email], function(err, rows) {
+        if (err) {
+          console.log("error:" + err);
+          res.send("error");
+          return;
+        }
+        if(rows.length > 0){
+          res.render('notvalid');
+        }
+        else{
+          security.hash(response.password, function(err, pwhash) {
+            if (err) {
+              return next(err); 
+            } else {
+              var stmt = db.run("INSERT INTO person VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)", [response.first_name, response.last_name, response.dob, response.address, response.email, response.telephone, response.year, pwhash], function(err, result){   
+                if (err) { 
+                  return next(err);
+                }else{
+                  res.render('accountcreated');
+                };
+              });
+            };    
+          }); 
+        };
+      });    
+    };
   });
 }; 

@@ -11,11 +11,11 @@ module.exports = function(router, db, apiToken, querystring) {
           seats = rows[0].seats;
           res.render('reservelift', {id: req.params.id, club_id: req.params.club_id, route_id: req.params.route_id});
         }else{
-          res.render('login');
+          res.render('noroute', {id: req.params.id, club_id: req.params.club_id});
         };
       });
     }else{
-      res.render('login');
+      res.render('login'); 
     };
   });
   
@@ -31,14 +31,14 @@ module.exports = function(router, db, apiToken, querystring) {
               if (err) { 
                 return next(err); 
               }else{
-                res.render('liftreserved', {id: req.params.id, club_id: req.params.club_id, route_id: req.params.route_id})
-              }
+                res.render('liftreserved', {id: req.params.id, club_id: req.params.club_id, route_id: req.params.route_id});
+              }; 
             }); 
-          }
+          };
         });  
       }else{
-        res.render('login');
-      }
+        res.render('noseats', {id: req.params.id, club_id: req.params.club_id});
+      };
     }else{
       res.render('login');
     }; 

@@ -18,13 +18,13 @@ module.exports = function(router, db, apiToken, querystring) {
           res.send(JSON.stringify({success: true, team: team, teams: teams}));
         } else{
           res.render("teams", {teams: teams, id: req.params.id, club_id:req.params.club_id}); 
-        }       
+        };       
       } else {
         if (req.query.json) {
           res.send(JSON.stringify({success: false, error: "no rows"}));
         } else{
           res.render('noteams', {id:req.params.id, club_id:req.params.club_id});
-        }    
+        };    
       }; 
     });
   });
@@ -48,17 +48,17 @@ module.exports = function(router, db, apiToken, querystring) {
             res.send(JSON.stringify({success: true, members: members, members_list: members_list, id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id}));
           } else{
             res.render("teamlist", {members: members, members_list: members_list, id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id});
-          }  
+          };  
         } else{
           if (req.query.json) {
             res.send(JSON.stringify({success: false, error: "no rows"})); /// change this so shows no teams not no rows
           } else{
             res.render('noteammembers', {id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id});
-          }  
-        }  
+          };  
+        };  
       });  
     }else{
       res.render('login');
-    }   
+    };   
   });
 };

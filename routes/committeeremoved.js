@@ -12,6 +12,6 @@ module.exports = function(router, db, apiToken, querystring) {
       });
     }else{
       res.render('login');
-    }
+    };
   });  
 }; 

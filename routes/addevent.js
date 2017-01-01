@@ -1,7 +1,11 @@
 module.exports = function(router, db, apiToken, querystring) {
 
   router.get('/committee/:id/:club_id/statistics/:team_id', function(req, res, next) {
-    res.render("teamevent", {id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id}); 
+     if(req.session.userid == req.params.id){
+      res.render("teamevent", {id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id}); 
+    }else{
+      res.render('login');
+    };
   });  
 
   router.get('/committee/:id/:club_id/statistics/:team_id/addevent', function(req, res, next) {
@@ -12,11 +16,14 @@ module.exports = function(router, db, apiToken, querystring) {
           console.log("error:" + err);
           res.send("error");
           return;
-        }else{
+        }
+        if(rows.length > 0){
           for (var k = 0; k < rows.length; k++){
             event_location[k] = {location_id: rows[k].location_id, location_name: rows[k].location_name}; 
           };  
           res.render('addevent', { id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id, event_location: event_location});
+        }else{
+          res.render('eventnolocation', { id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id});
         };
       });
     }else{

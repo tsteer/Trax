@@ -11,10 +11,12 @@ module.exports = function(router, db, apiToken, querystring) {
         if (rows.length > 0) { 
       		res.render('editlift', {id: req.params.id, club_id: req.params.club_id, route_id: req.params.route_id, return_trip: rows[0].return_trip, seats: rows[0].seats, pick_up_location: rows[0].pick_up_location, pick_up_time: rows[0].pick_up_time, pick_up_date: rows[0].pick_up_date, drop_off_location: rows[0].drop_off_location, drop_off_time: rows[0].drop_off_time, drop_off_date: rows[0].drop_off_date});
     		} else{
-					res.render('login');
+					res.render('noroute', {id: req.params.id, club_id: req.params.club_id, route_id: req.params.route_id});
     		}    
   		});
-  	};	
+  	} else{
+      res.render('login');
+    };  	
   });		
 
   router.post('/liftsharing/:id/:club_id/mylifts/:route_id/editlift', function(req, res, next) {
@@ -32,8 +34,9 @@ module.exports = function(router, db, apiToken, querystring) {
       db.run("UPDATE route SET pick_up_location = ?, pick_up_time = ?, pick_up_date = ?, drop_off_location = ?, drop_off_time = ?, drop_off_date = ?, seats = ?, return_trip = ? WHERE route_id = ?", [response.pick_up_location, response.pick_up_time, response.pick_up_date, response.drop_off_location, response.drop_off_time, response.drop_off_date, response.seats, response.return_trip, req.params.route_id], function(err, result){ 
         if (err) { 
           return next(err); 
-        }
-        res.render('liftedited', {id: req.params.id, club_id: req.params.club_id, route_id: req.params.route_id});
+        } else{
+          res.render('liftedited', {id: req.params.id, club_id: req.params.club_id, route_id: req.params.route_id});
+        };
       });
     }else{
       res.render('login');
@@ -41,6 +44,10 @@ module.exports = function(router, db, apiToken, querystring) {
   });
 
   router.get('/liftsharing/:id/:club_id/mylifts/:route_id/deletelift', function(req, res){
-    res.render('deletelift', {id: req.params.id, club_id: req.params.club_id, route_id: req.params.route_id});
+    if(req.session.userid == req.params.id){ 
+      res.render('deletelift', {id: req.params.id, club_id: req.params.club_id, route_id: req.params.route_id});
+    }else{
+      res.render('login');
+    };
   });
 };  

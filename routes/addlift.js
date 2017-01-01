@@ -19,26 +19,30 @@ module.exports = function(router, db, apiToken, querystring) {
       seats:req.body.seats,
       return_trip:req.body.return_trip
     };
-    db.all("SELECT membership_id FROM join_club WHERE holder_id = ?", [req.params.id], function(err, rows) {
-      if (err) {
-        console.log("error:" + err);
-        res.send("error");
-        return;
-      }
-      if(rows.length > 0) {
-        var membership_id = rows[0].membership_id;
-        var stmt = db.run("INSERT INTO route VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [membership_id, response.return_trip, response.seats, response.pick_up_location, response.pick_up_time, response.pick_up_date, response.drop_off_location, response.drop_off_time, response.drop_off_date], function(err, rows) {   
-          if (err) {
-            console.log("error:" + err);
-            res.send("error");
-            return;
-          }else{
-            res.render('liftadded', { id: req.params.id, club: req.params.club_id});
-          }
-        });
-      }else{
-        res.render('login');
-      }; 
-    });  
+    if(req.session.userid == req.params.id){ 
+      db.all("SELECT membership_id FROM join_club WHERE holder_id = ?", [req.params.id], function(err, rows) {
+        if (err) {
+          console.log("error:" + err);
+          res.send("error");
+          return;
+        }
+        if(rows.length > 0) {
+          var membership_id = rows[0].membership_id;
+          var stmt = db.run("INSERT INTO route VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [membership_id, response.return_trip, response.seats, response.pick_up_location, response.pick_up_time, response.pick_up_date, response.drop_off_location, response.drop_off_time, response.drop_off_date], function(err, rows) {   
+            if (err) {
+              console.log("error:" + err);
+              res.send("error");
+              return;
+            }else{
+              res.render('liftadded', { id: req.params.id, club: req.params.club_id});
+            }
+          });
+        }else{
+          res.render('login');
+        }; 
+      });  
+    }else{
+      res.render('login');
+    };  
   });
 };

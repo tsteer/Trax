@@ -14,12 +14,12 @@ module.exports = function(router, db, apiToken, querystring) {
 							res.send(JSON.stringify({success: true, id: req.params.id}));
 						}	else{
 							res.render("teamdeleted", {id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id});
-						}
+						};
 					});
 				};		
 			}); 
      }else{
       res.send("Please log in!");
-    }   			
+    };   			
 	});
 };

@@ -6,7 +6,7 @@ module.exports = function(router, db, apiToken, querystring) {
   router.get('/liftsharing/:id/:club_id/mylifts', function(req, res, next) {
     if(req.session.userid == req.params.id){ 
       db.all("SELECT * FROM route LEFT JOIN join_club on join_club.membership_id = route.driver_id LEFT JOIN person on person.id = join_club.holder_id WHERE route.driver_id = ?", [req.params.id], function(err, rows){  
-          var mylifts = [];
+        var mylifts = [];
         if(err) {
           console.log("error:" + err);
           res.send("error");

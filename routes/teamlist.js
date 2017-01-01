@@ -19,17 +19,17 @@ module.exports = function(router, db, apiToken, querystring) {
             res.send(JSON.stringify({success: true, members: members, members_list: members_list, id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id}));
           } else{
             res.render("teamlist", {members: members, members_list: members_list, id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id});
-          }  
+          };  
         } else{
           if (req.query.json) {
             res.send(JSON.stringify({success: false, error: "no rows"}));
           } else{
             res.render('noteammembers', {id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id});
-          }  
-        }  
+          };  
+        };  
       });  
     }else{
       res.render('login');
-    }   
+    };   
   });
 };	

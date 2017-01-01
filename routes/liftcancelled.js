@@ -20,16 +20,16 @@ module.exports = function(router, db, apiToken, querystring) {
                   return next(err); 
                 }else{
                   res.render('liftcancelled', { id: req.params.id, club_id: req.params.club_id, reserved_seats_id: req.params.reserved_seats_id});
-                }
+                };
               });
             }else{
-              res.send("no seats!");
-            }
+              res.send("No seats!");
+            };
           }); 
         };  
       }); 
     } else{
-      res.send(JSON.stringify({success: false}));
+      res.render('login');
     };  
   });		
 }; 

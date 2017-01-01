@@ -21,16 +21,16 @@ module.exports = function(router, db, apiToken, querystring) {
               	res.render("editclub", {club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email, club_id: req.params.club_id, id: req.params.id}); 
               } else {
                 res.send("no rows");
-              }
-            }  
+              };
+            };  
           });
         }else{
           res.send("You must be a committee member in order to access this page");
-        }  
+        };  
       });  
      }else{
       res.send("Please log in!");
-    }     
+    };     
   });
 
   router.post("/committee/:id/:club_id/editclub", function(req, res, next) {
@@ -47,8 +47,9 @@ module.exports = function(router, db, apiToken, querystring) {
               console.log("error:" + err);
               res.send("error");
               return next(err); 
-            }
-            res.render('clubedited', {id: req.params.id, club_id: req.params.club_id});
+            }else{
+              res.render('clubedited', {id: req.params.id, club_id: req.params.club_id});
+            };
           });
         }else{
           res.send("You must be a committee member in order to access this page");

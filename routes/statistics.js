@@ -18,13 +18,13 @@ module.exports = function(router, db, apiToken, querystring) {
           res.send(JSON.stringify({success: true, team: team, teams: teams}));
         } else{
           res.render('statistics', {id: req.params.id, club_id: req.params.club_id, teams: teams});
-        }       
+        };       
       } else {
         if (req.query.json) {
           res.send(JSON.stringify({success: false, error: "no rows"}));
         } else{
           res.render('noteams', {id:req.params.id, club_id:req.params.club_id});
-        }    
+        };    
       }; 
     });
   });

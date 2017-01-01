@@ -19,8 +19,8 @@ module.exports = function(router, db, apiToken, querystring) {
             res.render("edituser", {first_name: rows[0].first_name, last_name: rows[0].last_name, id: rows[0].id, dob: rows[0].dob, address: rows[0].address, email: rows[0].email, telephone: rows[0].telephone, year: rows[0].year}); 
           } else {
             res.send("no rows");
-          }
-        }  
+          };
+        };  
       });
     } else{
       res.send("Please log in!");
@@ -41,8 +41,9 @@ module.exports = function(router, db, apiToken, querystring) {
       db.run("UPDATE person SET first_name = ?, last_name = ?, dob = ?, address = ?, email = ?, telephone = ?, year = ? WHERE id = ?", [response.first_name, response.last_name, response.dob, response.address, response.email, response.telephone, response.year, req.params.id], function(err, result){   
         if (err) { 
           return next(err); 
-        }
-        res.send(JSON.stringify({success: true, first_name: response.first_name, last_name: response.last_name, dob: response.dob, address: response.address, email: response.email, telephone: response.telephone, year: response.year})); //dont need for app
+        }else{
+          res.send(JSON.stringify({success: true, first_name: response.first_name, last_name: response.last_name, dob: response.dob, address: response.address, email: response.email, telephone: response.telephone, year: response.year})); //dont need for app
+        };
       });
     }else{
       res.send("Please log in!");

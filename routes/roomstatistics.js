@@ -7,7 +7,8 @@ module.exports = function(router, db, apiToken, querystring) {
 			  console.log("error:" + err);
 			  res.send("error");
 			  return;
-			}else{
+			}
+			if(rows.length > 0){
 				rows.forEach(function(row){
 					event_room_list.push(row.location_name); 
 				});	
@@ -17,14 +18,19 @@ module.exports = function(router, db, apiToken, querystring) {
 				    console.log("error:" + err);
 			      res.send("error");
 		        return;
-		      }else{
+		      }  
+		      if(rows.length > 0){
 					 	rows.forEach(function(row){
 				     	event_date_list.push(row.event_date);
 			      });
 						res.render('roomstatistics', {id:req.params.id, club_id:req.params.club_id, team_id:req.params.team_id, event_room_list: event_room_list, event_date_list: event_date_list});
-					}
+					}else{
+						res.render('noevents', {id:req.params.id, club_id:req.params.club_id, team_id:req.params.team_id});
+					};
 				});	
-			}
+			}else{
+				res.render('noevents', {id:req.params.id, club_id:req.params.club_id, team_id:req.params.team_id});
+			};
 		});
 	});    	
 };

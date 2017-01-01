@@ -7,11 +7,11 @@ module.exports = function(router, db, apiToken, querystring) {
           return next(err); 
         } else{
           res.render('liftdeleted', { id: req.params.id, club_id: req.params.club_id, route_id: req.params.route_id});
-        }
+        };
       }); 
     } else{
-      res.send(JSON.stringify({success: false}));
-    }
+      res.render('login');
+    };
   });		
 };  
 

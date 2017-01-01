@@ -8,7 +8,7 @@ module.exports = function(router, db, apiToken, querystring) {
           res.send("error");
           return;
         }
-        else {  
+        if (rows.length > 0) { 
           var car = [];
           var name = [];
           var returntrip;
@@ -18,13 +18,17 @@ module.exports = function(router, db, apiToken, querystring) {
             }
             else{
               returntrip = "no";
-            }
+            };
             name = rows[j].first_name + " " + rows[j].last_name;
             car[j] = {route_id: rows[j].route_id, driver: name, return_trip: returntrip, seats:rows[j].seats, pick_up_location:rows[j].pick_up_location, pick_up_time:rows[j].pick_up_time, pick_up_date:rows[j].pick_up_date, drop_off_location:rows[j].drop_off_location, drop_off_time:rows[j].drop_off_time, drop_off_date:rows[j].drop_off_date};
-          }
-          res.render('lifts', { id: req.params.id, club_id: req.params.club_id, car: car});
-        }    
+          };
+          res.render('lifts', {id: req.params.id, club_id: req.params.club_id, car: car});
+        } else{
+          res.render('noroute', {id: req.params.id, club_id: req.params.club_id});
+        };   
       });
-    };     
+    } else{
+      res.render('login');
+    };    
   });
 };  

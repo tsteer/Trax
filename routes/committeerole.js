@@ -1,7 +1,11 @@
  module.exports = function(router, db, apiToken, querystring) {
 
   router.get('/committee/:id/:club_id/addcommittee/:membership_id/committeerole', function(req, res, next) {
-    res.render("committeerole", {membership_id: req.params.membership_id, id: req.params.id, club_id: req.params.club_id});
+    if(req.session.userid == req.params.id){
+      res.render("committeerole", {membership_id: req.params.membership_id, id: req.params.id, club_id: req.params.club_id});
+    }else{
+      res.send("Please log in");
+    };   
   });  
 
   router.post("/committee/:id/:club_id/addcommittee/:membership_id/committeerole", function(req, res, next) {

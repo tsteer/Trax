@@ -13,22 +13,31 @@ module.exports = function(router, db){
           var id = rows[0].id;
           var clubs = [];
           db.all("select club_name from club", function(err, rows) {
-            rows.forEach(function(row){
-              clubs.push(row.club_name);
-            });
-            if (req.query.json) {
-              res.send(JSON.stringify({success: true, first_name: first_name, id: id, clubs: clubs}));
-            } else{
-              res.render("joinclub", {first_name: first_name, id: id, clubs: clubs}); 
-            }       
+            if (err) {
+              console.log("error:" + err);
+              res.send("error");
+              return;
+            }
+            if (rows.length > 0) {
+              rows.forEach(function(row){
+                clubs.push(row.club_name);
+              });
+              if (req.query.json) {
+                res.send(JSON.stringify({success: true, first_name: first_name, id: id, clubs: clubs}));
+              } else{
+                res.render("joinclub", {first_name: first_name, id: id, clubs: clubs}); 
+              }; 
+            }else{
+              res.render('noclubs', {id: req.params.id});
+            };        
           }); 
         } else {
           if (req.query.json) {
             res.send(JSON.stringify({success: false, error: "no rows"}));
           } else{
-            res.render('noclubs', {id:req.params.id});
-          }    
-        }
+            res.render('login');
+          };    
+        };
       });
     }else{
       res.send("Please log in!");
@@ -46,7 +55,7 @@ module.exports = function(router, db){
           res.send("error");
           return;
         }
-        else{ 
+        if (rows.length > 0) {
           var club_id = rows[0].club_id;
           db.all("select * from join_club WHERE club_holder_id = ? and holder_id = ?", [club_id, req.params.id], function(err, rows) {
             if (err) {
@@ -62,10 +71,12 @@ module.exports = function(router, db){
                   return next(err); 
                 }else{
                   res.render('clubjoined', {success: true, id: req.params.id, club_holder_id: club_id, on_committee: false});
-                }
+                };
               });  
             };
           });
+        }else{
+          res.render('noclubs', {id: req.params.id});
         };
       });
     }else{

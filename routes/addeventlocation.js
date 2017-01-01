@@ -1,7 +1,11 @@
 module.exports = function(router, db, apiToken, querystring) {
 
   router.get('/committee/:id/:club_id/statistics/addeventlocation', function(req, res, next) {
- 		res.render('addeventlocation', { id: req.params.id, club_id: req.params.club_id});
+ 		if(req.session.userid == req.params.id){
+      res.render('addeventlocation', { id: req.params.id, club_id: req.params.club_id});
+    }else{
+      res.render('login');
+    };
   });
 
   router.post('/committee/:id/:club_id/statistics/addeventlocation', function(req, res, next){
@@ -20,7 +24,10 @@ module.exports = function(router, db, apiToken, querystring) {
   });
 
   router.get('/committee/:id/:club_id/statistics/eventlocationadded', function(req, res, next) {
-    res.render('eventlocationadded', {id: req.params.id, club_id: req.params.club_id});
+    if(req.session.userid == req.params.id){
+      res.render('eventlocationadded', {id: req.params.id, club_id: req.params.club_id});
+    }else{
+      res.render('login');
+    };
   });
-
 };

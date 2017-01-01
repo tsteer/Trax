@@ -36,12 +36,12 @@ module.exports = function(router, db, apiToken, querystring, security) {
               };
             } else {
               res.render('login');
-            }
-          }
+            };
+          };
         });
       }else{
-        res.send("no rows");
-      }
+        res.render('nouser');
+      };
     });
   });
 
