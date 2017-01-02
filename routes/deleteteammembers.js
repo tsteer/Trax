@@ -46,8 +46,8 @@ module.exports = function(router, db, apiToken, querystring) {
             return;
           }else{}
         });
-       res.render('teammembersdeleted', {id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id});
-      }
+      };
+      res.render('teammembersdeleted', {id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id});
     }else{
       res.send("Please log in!");
     };  

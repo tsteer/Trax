@@ -17,19 +17,16 @@ module.exports = function(router, db){
               console.log("error:" + err);
               res.send("error");
               return;
-            }
-            if (rows.length > 0) {
-              rows.forEach(function(row){
+            }else{
+                rows.forEach(function(row){
                 clubs.push(row.club_name);
               });
               if (req.query.json) {
                 res.send(JSON.stringify({success: true, first_name: first_name, id: id, clubs: clubs}));
               } else{
                 res.render("joinclub", {first_name: first_name, id: id, clubs: clubs}); 
-              }; 
-            }else{
-              res.render('noclubs', {id: req.params.id});
-            };        
+              }  
+            };           
           }); 
         } else {
           if (req.query.json) {

@@ -10,7 +10,7 @@
       <tr class="member">
         <td class="member"><%= event_date_list[i] %></td>
         <td class="member"><%= event_attendance_list[i] %></td>
-        <td class="member"><%= event_attendance_list[i] / team_size * 100 %></td>
+        <td class="member"><%= (event_attendance_list[i] / team_size * 100).toFixed(0) %></td>
       </tr>
     <% } %>
     <tr>
@@ -21,7 +21,7 @@
     <tr class="member">
       <td class="member"><%= event_date_list.length %></td>
       <td class="member"><%= team_size %></td>
-      <td class="member"><%= (total_event_attend / (team_size * event_date_list.length) * 100) %></td>
+      <td class="member"><%= (total_event_attend / (team_size * event_date_list.length) * 100).toFixed(0) %></td>
     </tr>
   </table>
 </body>

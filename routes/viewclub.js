@@ -6,7 +6,7 @@ module.exports = function(router, db, apiToken, querystring) {
     if(req.session.userid == req.params.id){ 
       db.all("SELECT * FROM join_club WHERE holder_id = ? AND club_holder_id = ?", [req.params.id, req.params.club_id], function(err, rows){
         if(rows[0].on_committee == 'TRUE'){
-          db.all("SELECT * FROM join_club INNER JOIN person ON person.id = join_club.holder_id WHERE join_club.club_holder_id = ?", [req.params.id], function(err, rows) {
+          db.all("SELECT * FROM join_club INNER JOIN person ON person.id = join_club.holder_id WHERE join_club.club_holder_id = ?", [req.params.club_id], function(err, rows) {
             if (err) {
               console.log("error:" + err);
               res.send("error");

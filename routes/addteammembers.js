@@ -33,7 +33,7 @@ module.exports = function(router, db, apiToken, querystring) {
     }   
   });
 
-  router.post("/committee/:id/:club_id/teams/:team_id/addteammembers", function(req, res, next) { // /edituser?:token ???
+  router.post("/committee/:id/:club_id/teams/:team_id/addteammembers", function(req, res, next) { 
     response = {
       team:req.body.team
     };
@@ -46,8 +46,8 @@ module.exports = function(router, db, apiToken, querystring) {
             return;
           }else{}
         });
-       res.render('teammembersadded', {id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id});
-      }
+      };
+      res.render('teammembersadded', {id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id});
     }else{
       res.send("Please log in!");
     };  

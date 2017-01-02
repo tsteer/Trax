@@ -6,8 +6,6 @@
       <th scope="col">Date of Birth</th>
       <th scope="col">Address</th>
       <th scope="col">Email</th>
-      <th scope="col">Telephone</th>
-      <th scope="col">Year</th>
       <th scope="col">Committee</th>
     </tr>
     <% for(var i=0; i < members_list.length; i++) {%>
@@ -17,8 +15,6 @@
         <td class="member"><%= members_list[i].dob %></td>
         <td class="member"><%= members_list[i].address %></td>
         <td class="member"><%= members_list[i].email %></td>
-        <td class="member"><%= members_list[i].telephone %></td>
-        <td class="member"><%= members_list[i].year %></td>
         <td class="member"><%= members_list[i].committee_role %></td>
       </tr>
     <% } %>
