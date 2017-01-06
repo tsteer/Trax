@@ -12,7 +12,7 @@ module.exports = function(router, db, apiToken, querystring, security) {
     db.all("SELECT * FROM person WHERE email = ?", [response.email], function(err, rows) {
       if (err) {
         console.log("error:" + err);
-        res.send("error 1");
+        res.send("error");
         return;
       }
       if (rows.length > 0) { 
@@ -30,17 +30,25 @@ module.exports = function(router, db, apiToken, querystring, security) {
               var user = apiToken.addUser(id);
               var token = user.token;
               if (req.query.json) {
-                res.send(JSON.stringify({token: token, id: id}));
+                res.send(JSON.stringify({success: true, token: token, id: id}));
               } else {
                 res.render("account", {id: id});
               };
             } else {
-              res.render('login');
+              if (req.query.json) {
+                res.send(JSON.stringify({success: false, error: "login"}));
+              } else {
+                res.render('login');
+              };
             };
           };
         });
       }else{
-        res.render('nouser');
+        if (req.query.json) {
+          res.send(JSON.stringify({success: false, error: "login"}));
+        } else {
+          res.render('nouser');
+        };
       };
     });
   });

@@ -11,6 +11,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var sessions = {};
 var apiToken = require('api-token');
+apiToken.setExpirationTime(5);
 const querystring = require('querystring');
 var credential = require('credential');
 var security = credential();
