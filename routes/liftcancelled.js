@@ -7,16 +7,16 @@ module.exports = function(router, db, apiToken, querystring) {
       if (valid) {
         db.run("BEGIN TRANSACTION");
         db.run("DELETE from seats WHERE seats_id = ?", [req.params.reserved_seats_id], function(err, rows){
-          if (err) { 
+          if (err) { /* delete reserved lift */
             db.run("ROLLBACK"); 
             return next(err); 
           } else{
             db.run("UPDATE route SET seats = seats + 1 WHERE route_id = ?", [req.params.reserved_route_id], function(err, result){ 
-              if (err) {
+              if (err) { /* add new space back to available spaces in car */
                 db.run("ROLLBACK");  
                 return next(err); 
               }else{
-                db.run("COMMIT TRANSACTION");
+                db.run("COMMIT TRANSACTION"); 
                 res.render('liftcancelled', { id: req.params.id, club_id: req.params.club_id, reserved_seats_id: req.params.reserved_seats_id});
               };
             });

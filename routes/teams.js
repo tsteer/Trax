@@ -2,7 +2,7 @@ module.exports = function(router, db, apiToken, querystring) {
 
   router.get("/committee/:id/:club_id/teams", function(req, res) {
     db.all("select * from team where team_club_id = ?", [req.params.club_id], function(err, rows) {
-      if (err) {
+      if (err) { /* select all teams in club */
         console.log("error:" + err);
         res.send("error");
         return;
@@ -10,7 +10,7 @@ module.exports = function(router, db, apiToken, querystring) {
       if (rows.length > 0) { 
         var teams = [];
         var team = {};
-        rows.forEach(function(row){
+        rows.forEach(function(row){ /* store team data as object, object added to array of all teams */
           team = {team_id: row.team_id, team_name: row.team_name, team_club_id: row.team_club_id};
           teams.push(team);
         });
@@ -34,13 +34,13 @@ module.exports = function(router, db, apiToken, querystring) {
     var members = {};
     if(req.session.userid == req.params.id){ 
       db.all("SELECT * FROM join_team Left JOIN person ON person.id = join_team.holder_id WHERE join_team.team_id = ?", [req.params.team_id], function(err, rows) {
-        if (err) {
+        if (err) { /* select all team members */
           console.log("error:" + err);
           res.send("error");
           return;
         }
         if (rows.length > 0) {
-          rows.forEach(function(row){
+          rows.forEach(function(row){ /* store each member data as object, add to array of all members */
             members = {id: row.id, first_name: row.first_name, last_name: row.last_name, email: row.email};
             members_list.push(members);
           });

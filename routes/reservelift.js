@@ -4,7 +4,7 @@ module.exports = function(router, db, apiToken, querystring) {
   router.get('/liftsharing/:id/:club_id/:route_id/reservelift', function(req, res, next) {
  		if(req.session.userid == req.params.id){ 
       db.all("select seats from route where route_id = ?", [req.params.route_id], function(err, rows){
-        if (err) { 
+        if (err) { /* select seats in route - later used to check seats are available */
           return next(err); 
         }
         if (rows.length > 0) {
@@ -24,15 +24,15 @@ module.exports = function(router, db, apiToken, querystring) {
       var token = req.get('X-Auth-Token');
       var valid = apiToken.isTokenValid(token);
       if (valid) {
-        if(seats > 0){
+        if(seats > 0){ /* check seats available */
           db.run("BEGIN TRANSACTION");
           var stmt = db.run("INSERT into seats values (NULL, ?, ?)", [req.params.id, req.params.route_id], function(err, result) {
-            if (err) { 
+            if (err) { /* reserve seat */
               db.run("ROLLBACK"); 
               return next(err); 
             }else{
               db.run("UPDATE route set seats = seats - 1 where route_id = ?", [req.params.route_id], function(err, result){
-                if (err) { 
+                if (err) { /* decrease number of seats currently available in lift */
                   db.run("ROLLBACK"); 
                   return next(err); 
                 }else{

@@ -5,13 +5,13 @@ module.exports = function(router, db, apiToken, querystring) {
     var members = {};
     if(req.session.userid == req.params.id){ 
       db.all("SELECT * FROM join_club INNER JOIN person ON person.id = join_club.holder_id WHERE join_club.club_holder_id = ?", [req.params.club_id], function(err, rows) {
-        if (err) {
+        if (err) { /* select all club members */
           console.log("error:" + err);
           res.send("error");
           return;
         }
         if (rows.length > 0) {
-          rows.forEach(function(row){
+          rows.forEach(function(row){ /* store each member as an object and then add object to array */
             members = {id: row.id, first_name: row.first_name, last_name: row.last_name, email: row.email};
             members_list.push(members);
           });
@@ -40,7 +40,7 @@ module.exports = function(router, db, apiToken, querystring) {
     if(req.session.userid == req.params.id){
       for(var i = 0; i < response.team.length; i++){
         var stmt = db.run("INSERT INTO join_team VALUES (NULL, ?, ?, ?)", [req.params.team_id, response.team[i], 'FALSE'], function(err, result){
-          if (err) {
+          if (err) { /* add selected club members to team, by inserting into join_team for each new member */
             console.log("error:" + err);
             res.send("error");
             return;

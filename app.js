@@ -2,7 +2,7 @@ var express = require('express');
 
 // libraries
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('mydbtest20.db');
+var db = new sqlite3.Database('mydbtest21.db');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
 var path = require('path');
@@ -44,7 +44,6 @@ require('./routes/newsu')(router, db, apiToken, querystring);
 require('./routes/addcommittee')(router, db, apiToken, querystring);
 require('./routes/viewclub')(router, db, apiToken, querystring);
 require('./routes/login')(router, db, apiToken, querystring, security);
-require('./routes/test')(router, db, apiToken, querystring);
 require('./routes/news')(router, db, apiToken, querystring);
 require('./routes/account')(router, db, apiToken, querystring);
 require('./routes/userdeleted')(router, db, apiToken, querystring);
@@ -86,7 +85,6 @@ require('./routes/addeventlocation')(router, db, apiToken, querystring);
 require('./routes/eventdetails')(router, db, apiToken, querystring);
 require('./routes/addeventmembers')(router, db, apiToken, querystring);
 require('./routes/eventmembersadded')(router, db, apiToken, querystring);
-require('./routes/viewregister')(router, db, apiToken, querystring);
 require('./routes/newsfeed')(router, db, apiToken, querystring);
 require('./routes/newspost')(router, db, apiToken, querystring);
 require('./routes/postadded')(router, db, apiToken, querystring);
@@ -104,6 +102,7 @@ require('./routes/noseats')(router, db, apiToken, querystring);
 require('./routes/eventnolocation')(router, db, apiToken, querystring);
 require('./routes/useredited')(router, db, apiToken, querystring);
 require('./routes/logout')(router, db, apiToken, querystring);
+require('./routes/noeditpost')(router, db, apiToken, querystring);
 
 db.run("CREATE TABLE IF NOT EXISTS person (id INTEGER PRIMARY KEY, first_name TEXT NOT NULL, last_name TEXT NOT NULL, dob DATE, address TEXT, email EMAIL NOT NULL UNIQUE, telephone TEL, year NUMBER, password TEXT NOT NULL)");
 db.run("CREATE TABLE IF NOT EXISTS club (club_id INTEGER PRIMARY KEY, club_name TEXT NOT NULL, sport TEXT NOT NULL, club_email EMAIL NOT NULL UNIQUE)");

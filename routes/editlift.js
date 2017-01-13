@@ -3,7 +3,7 @@ module.exports = function(router, db, apiToken, querystring) {
   router.get('/liftsharing/:id/:club_id/mylifts/:route_id/editlift', function(req, res, next) {
  		if(req.session.userid == req.params.id){ 
  			db.all("SELECT * FROM route WHERE route_id = ?", [req.params.route_id], function(err, rows){	
-        if(err) {
+        if(err) { /* select data for given route */
           console.log("error:" + err);
           res.send("error");
           return;
@@ -32,7 +32,7 @@ module.exports = function(router, db, apiToken, querystring) {
     };
     if(req.session.userid == req.params.id){ 
       db.run("UPDATE route SET pick_up_location = ?, pick_up_time = ?, pick_up_date = ?, drop_off_location = ?, drop_off_time = ?, drop_off_date = ?, seats = ?, return_trip = ? WHERE route_id = ?", [response.pick_up_location, response.pick_up_time, response.pick_up_date, response.drop_off_location, response.drop_off_time, response.drop_off_date, response.seats, response.return_trip, req.params.route_id], function(err, result){ 
-        if (err) { 
+        if (err) { /* update route with responses entered */
           return next(err); 
         } else{
           res.render('liftedited', {id: req.params.id, club_id: req.params.club_id, route_id: req.params.route_id});

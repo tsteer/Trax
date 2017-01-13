@@ -15,11 +15,11 @@ module.exports = function(router, db, apiToken, querystring, security) {
       year:req.body.year,
       password:req.body.password
     };
-    if(response.password === "" || response.email === ""){  
+    if(response.password === "" || response.email === ""){  /*check password and email valid */
       res.render('notvalid');
     }else{  
       db.all("select * from person where email = ?", [response.email], function(err, rows) {
-        if (err) {
+        if (err) { /* check email not currently in use */
           console.log("error:" + err);
           res.send("error");
           return;
@@ -29,11 +29,11 @@ module.exports = function(router, db, apiToken, querystring, security) {
         }
         else{
           security.hash(response.password, function(err, pwhash) {
-            if (err) {
+            if (err) { /* hash password */
               return next(err); 
             } else {
               var stmt = db.run("INSERT INTO person VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)", [response.first_name, response.last_name, response.dob, response.address, response.email, response.telephone, response.year, pwhash], function(err, result){   
-                if (err) { 
+                if (err) { /* add new user to database */
                   return next(err);
                 }else{
                   res.render('accountcreated');

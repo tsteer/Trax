@@ -6,11 +6,11 @@ module.exports = function(router, db, apiToken, querystring) {
       var valid = apiToken.isTokenValid(token);
       if (valid) {
       	db.run("DELETE from person WHERE id = ?", [req.params.id], function(err, rows){
-					if (err) { 
+					if (err) { /* delete user */
 						return next(err); 
 					}else{
 						db.run("DELETE from join_club WHERE holder_id = ?", [req.params.id], function(err, rows){
-							if (err) { 
+							if (err) { /* delete all user's club memberships */
 								return next(err); 
 							}else{
 								res.send(JSON.stringify({success: true, id: req.params.id}));

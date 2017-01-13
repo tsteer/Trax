@@ -14,13 +14,13 @@ module.exports = function(router, db, apiToken, querystring) {
     };
     if(req.session.userid == req.params.id){ 
       var stmt = db.run("INSERT INTO team VALUES (NULL, ?, ?)", [response.team_name, req.params.club_id], function(err, rows) {
-        if (err) {
+        if (err) { /* create new team */
           console.log("error:" + err);
           res.send("error");
           return;
         }else{
           var stmt = db.run("INSERT INTO join_team VALUES (NULL, ?, ?, ?) ", [this.lastID, req.params.id, 'TRUE'], function(err, result){ 
-            if (err) {
+            if (err) { /* add user to team just created */
               console.log("error:" + err);
               res.send("error");
               return;

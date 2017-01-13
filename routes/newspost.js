@@ -15,7 +15,7 @@ module.exports = function(router, db, apiToken, querystring) {
     var date_now = new Date();
     if(req.session.userid == req.params.id){ 
       var stmt = db.run("INSERT INTO newspost VALUES (NULL, ?, ?, ?, ?)", [response.post_text, req.params.club_id, req.params.id, date_now], function(err, rows) {
-        if (err) {
+        if (err) { /* add new post to newsfeed */
           console.log("error:" + err);
           res.send("error");
           return;

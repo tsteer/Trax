@@ -10,12 +10,12 @@ module.exports = function(router, db, apiToken, querystring, security) {
       password:req.body.password
     };
     db.all("SELECT * FROM person WHERE email = ?", [response.email], function(err, rows) {
-      if (err) {
+      if (err) { 
         console.log("error:" + err);
         res.send("error");
         return;
       }
-      if (rows.length > 0) { 
+      if (rows.length > 0) { /* check email is found on database */
         var pwhash = rows[0].password;
         var password = response.password;
         security.verify(pwhash, password, function(err, ok) {
@@ -23,11 +23,11 @@ module.exports = function(router, db, apiToken, querystring, security) {
             res.send("error");
             return;
           } else {
-            if (ok) {
+            if (ok) { /* verify password */
               var id = rows[0].id;
-              req.session.userid = id;
+              req.session.userid = id; /* current user's session saved */
               var user = apiToken.addUser(id);
-              var token = user.token;
+              var token = user.token; /* mobile token generated */
               if (req.query.json) {
                 res.send(JSON.stringify({success: true, token: token, id: id}));
               } else {
@@ -42,7 +42,7 @@ module.exports = function(router, db, apiToken, querystring, security) {
             };
           };
         });
-      }else{
+      }else{ /* no user found */
         if (req.query.json) {
           res.send(JSON.stringify({success: false, error: "login"}));
         } else {

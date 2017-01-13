@@ -3,11 +3,11 @@ module.exports = function(router, db, apiToken, querystring) {
 	router.get('/committee/:id/:club_id/teams/:team_id/teamdeleted', function(req, res, next){
 	  if(req.session.userid == req.params.id){ 
 			db.run("DELETE from team WHERE team_id = ?", [req.params.team_id], function(err, rows){
-				if (err) { 
+				if (err) { /* delete team */
 					return next(err); 
 				} else{
 					db.run("DELETE from join_team WHERE team_id = ?", [req.params.team_id], function(err, rows){
-						if (err) { 
+						if (err) { /* delete team members */
 							return next(err); 
 						}
 						if (req.query.json) {

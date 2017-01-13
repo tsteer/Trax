@@ -4,9 +4,9 @@ module.exports = function(router, db, apiToken, querystring) {
     if (req.query.json) {
       var token = req.get('X-Auth-Token');
       var valid = apiToken.isTokenValid(token);
-      if (valid) {
+      if (valid) { /* check valid mobile request */
          db.all("select * from club left join join_club on join_club.club_holder_id = club.club_id where join_club.holder_id = ?", [req.params.id], function(err, rows) {
-        if (err) {
+        if (err) { /* select all clubs that user is a member of */
           console.log("error:" + err);
           res.send("error");
           return;
@@ -14,7 +14,7 @@ module.exports = function(router, db, apiToken, querystring) {
         if (rows.length > 0) {
           var clubs = [];
           var club = {};
-          rows.forEach(function(row){
+          rows.forEach(function(row){ /* store each club info as object, which is added to array of all clubs */
             club = {club_id: row.club_id, club_name: row.club_name};
             clubs.push(club);
           });
@@ -27,7 +27,7 @@ module.exports = function(router, db, apiToken, querystring) {
         res.send(JSON.stringify({success: false, error: "login"}));
       };    
     }     
-    else if(req.session.userid == req.params.id){ 
+    else if(req.session.userid == req.params.id){ /* check user logged in to web application */
       db.all("select * from club left join join_club on join_club.club_holder_id = club.club_id where join_club.holder_id = ?", [req.params.id], function(err, rows) {
         if (err) {
           console.log("error:" + err);
@@ -58,7 +58,7 @@ module.exports = function(router, db, apiToken, querystring) {
   router.get("/clubs/:id/:club_id", function(req, res, next) {
     if(req.session.userid == req.params.id){
       db.all("select * from club WHERE club_id = ?", [req.params.club_id], function(err, rows) {
-        if (err) {
+        if (err) { /* select club information to be displayed */
           console.log("error:" + err);
           res.send("error");
           return;

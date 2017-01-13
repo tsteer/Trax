@@ -18,19 +18,19 @@ module.exports = function(router, db, apiToken, querystring) {
     };   
     if(req.session.userid == req.params.id){  
       db.run("UPDATE event SET event_date = ?, event_start_time = ?, event_end_time = ? WHERE event_id = ?", [response.event_date, response.event_start_time, response.event_end_time, req.params.event_id], function(err, rows) {   
-        if (err) {
+        if (err) { /* add more details for event just added - including time and date */
           console.log("error:" + err);
           res.send("error");
           return;
         }else{
           db.all("SELECT * FROM join_team INNER JOIN person ON person.id = join_team.holder_id WHERE join_team.team_id = ?", [req.params.team_id], function(err, rows) {
-            if (err) {
+            if (err) { /* select all team members - used to take attendance for event */
               console.log("error:" + err);
               res.send("error");
               return;
             }
             if (rows.length > 0) {
-              rows.forEach(function(row){
+              rows.forEach(function(row){ /* store each team member data as object. Add object to array of members */
                 members = {id: row.id, first_name: row.first_name, last_name: row.last_name};
                 members_list.push(members);
               });

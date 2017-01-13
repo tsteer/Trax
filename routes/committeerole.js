@@ -14,7 +14,7 @@
     };
     if(req.session.userid == req.params.id){
       db.run("UPDATE join_club SET on_committee = ?, committee_role = ? WHERE membership_id = ?", ['TRUE', response.committee_role, req.params.membership_id], function(err, result){   
-        if (err) { 
+        if (err) { /* add new committee member, with committee role entered */
           console.log("error:" + err);
           res.send("error");
           return next(err); 

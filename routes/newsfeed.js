@@ -3,7 +3,7 @@ module.exports = function(router, db, apiToken, querystring) {
   router.get('/newsfeed/:id', function(req, res, next) {
     if(req.session.userid == req.params.id){ 
       db.all("select * from join_club left join club on club.club_id = join_club.club_holder_id WHERE join_club.holder_id = ?", [req.params.id], function(err, rows) {
-        if (err) {
+        if (err) { /* select all clubs user is a member of */
           console.log("error:" + err);
           res.send("error");
           return;
@@ -39,7 +39,7 @@ module.exports = function(router, db, apiToken, querystring) {
       var valid = apiToken.isTokenValid(token);
       if (valid) {
         db.all("select * from newspost left join newsfeed on newsfeed.newsfeed_id = newspost.newsfeed left join person on person.id = newspost.holder_id WHERE newsfeed.club_holder_id = ? ORDER BY newspost.date DESC", [req.params.club_id], function(err, rows) {
-          if (err) {
+          if (err) { /* select all posts on club newsfeed, with most recent first */
             console.log("error:" + err);
             res.send("error");
             return;
@@ -47,7 +47,7 @@ module.exports = function(router, db, apiToken, querystring) {
           if (rows.length > 0) {
             var posts = [];
             var post = {};
-            rows.forEach(function(row){
+            rows.forEach(function(row){ /* store post info as object, add object to array of all posts */
               post = {post_id: row.post_id, post_text: row.post_text, holder_id: row.holder_id, date: row.date, first_name: row.first_name, last_name: row.last_name};
               posts.push(post);
             });

@@ -3,9 +3,9 @@ module.exports = function(router, db, apiToken, querystring) {
   router.get("/committee/:id/:club_id/editclub", function(req, res, next) {
     if(req.session.userid == req.params.id){ 
       db.all("SELECT * FROM join_club WHERE holder_id = ? AND club_holder_id = ?", [req.params.id, req.params.club_id], function(err, rows){
-        if(rows[0].on_committee == 'TRUE'){
+        if(rows[0].on_committee == 'TRUE'){ /* check user is committee member of given club */
           db.all("select * from club where club_id = ?", [req.params.id], function(err, rows) {
-            if (err) {
+            if (err) { /* select club data to be displayed as placeholder on edit club form */
               console.log("error:" + err);
               res.send("error");
               return;
@@ -41,9 +41,9 @@ module.exports = function(router, db, apiToken, querystring) {
     };
     if(req.session.userid == req.params.id){ 
       db.all("SELECT * FROM join_club WHERE holder_id = ? AND club_holder_id = ?", [req.params.id, req.params.club_id], function(err, rows){
-        if(rows[0].on_committee == 'TRUE'){
+        if(rows[0].on_committee == 'TRUE'){ /* check user is committee member of given club */
           db.run("UPDATE club SET club_name = ?, sport = ?, club_email = ? where club_id = ?", [response.club_name, response.sport, response.club_email, req.params.club_id], function(err, result){   
-            if (err) { 
+            if (err) {  /* update club with responses entered on edit club form */
               console.log("error:" + err);
               res.send("error");
               return next(err); 

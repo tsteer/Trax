@@ -29,7 +29,7 @@ module.exports = function(router, db, apiToken, querystring) {
         if(rows.length > 0) {
           var membership_id = rows[0].membership_id;
           var stmt = db.run("INSERT INTO route VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [membership_id, response.return_trip, response.seats, response.pick_up_location, response.pick_up_time, response.pick_up_date, response.drop_off_location, response.drop_off_time, response.drop_off_date], function(err, rows) {   
-            if (err) {
+            if (err) { /* add a new lift */
               console.log("error:" + err);
               res.send("error");
               return;

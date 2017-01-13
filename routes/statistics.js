@@ -2,7 +2,7 @@ module.exports = function(router, db, apiToken, querystring) {
 
   router.get('/committee/:id/:club_id/statistics', function(req, res, next) {
     db.all("select * from team where team_club_id = ?", [req.params.club_id], function(err, rows) {
-      if (err) {
+      if (err) { /* select all teams in club */
         console.log("error:" + err);
         res.send("error");
         return;
@@ -10,7 +10,7 @@ module.exports = function(router, db, apiToken, querystring) {
       if (rows.length > 0) { 
         var teams = [];
         var team = {};
-        rows.forEach(function(row){
+        rows.forEach(function(row){ /* store team data as an object, add object to array */
           team = {team_id: row.team_id, team_name: row.team_name, team_club_id: row.team_club_id};
           teams.push(team);
         });
