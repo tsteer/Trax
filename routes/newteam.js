@@ -13,18 +13,22 @@ module.exports = function(router, db, apiToken, querystring) {
       team_name:req.body.team_name
     };
     if(req.session.userid == req.params.id){ 
+      db.run("BEGIN TRANSACTION");
       var stmt = db.run("INSERT INTO team VALUES (NULL, ?, ?)", [response.team_name, req.params.club_id], function(err, rows) {
         if (err) { /* create new team */
+          db.run("ROLLBACK"); 
           console.log("error:" + err);
           res.send("error");
           return;
         }else{
           var stmt = db.run("INSERT INTO join_team VALUES (NULL, ?, ?, ?) ", [this.lastID, req.params.id, 'TRUE'], function(err, result){ 
             if (err) { /* add user to team just created */
+              db.run("ROLLBACK"); 
               console.log("error:" + err);
               res.send("error");
               return;
             }else{
+              db.run("COMMIT TRANSACTION");
               res.render('teamadded', {id: req.params.id, club_id: req.params.club_id});
             };
           }); 
