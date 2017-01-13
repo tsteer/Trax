@@ -1,12 +1,33 @@
 <% include templates/header.ejs %>
-  <ul class="profile">
-    <li class="menuoptions"><b>First Name: </b><%- first_name %> </li>
-    <li class="menuoptions"><b>Last Name: </b><%- last_name %></li>
-    <li class="menuoptions"><b>Date of Birth: </b><%- dob %></li>
-    <li class="menuoptions"><b>Address: </b><%- address %></li>
-    <li class="menuoptions"><b>Email: </b><%- email %></li>
-    <li class="menuoptions"><b>Telephone: </b><%- telephone %></li>
-    <li class="menuoptions"><b>Year: </b><%- year %></li>
-  </ul>
+  <table class="liftlist largemenu memberlayout">
+    <tr class="member">
+      <td class="member"><b>First Name: </b></td>
+      <td class="member"><%- first_name %></td>
+    </tr>
+    <tr class="member">
+      <td class="member"><b>Last Name: </b></td>
+      <td class="member"><%- last_name %></td>
+    </tr>
+    <tr class="member">
+      <td class="member"><b>Date of Birth: </b></td>
+      <td class="member"><%- dob %></td>
+    </tr>      
+    <tr class="member">
+      <td class="member"><b>Address: </b></td>
+      <td class="member"><%- address %></td>
+    </tr>
+    <tr class="member">
+      <td class="member"><b>Email: </b></td>
+      <td class="member"><%- email %></td>
+    </tr>
+    <tr class="member">
+      <td class="member"><b>Telephone: </b></td>
+      <td class="member"><%- telephone %></td>
+    </tr>
+    <tr class="member">
+      <td class="member"><b>Year: </b></td>
+      <td class="member"><%- year %></td>
+    </tr>
+	</table>
 </body>
 </html>

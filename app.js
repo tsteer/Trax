@@ -103,6 +103,7 @@ require('./routes/nouser')(router, db, apiToken, querystring);
 require('./routes/noseats')(router, db, apiToken, querystring);
 require('./routes/eventnolocation')(router, db, apiToken, querystring);
 require('./routes/useredited')(router, db, apiToken, querystring);
+require('./routes/logout')(router, db, apiToken, querystring);
 
 db.run("CREATE TABLE IF NOT EXISTS person (id INTEGER PRIMARY KEY, first_name TEXT NOT NULL, last_name TEXT NOT NULL, dob DATE, address TEXT, email EMAIL NOT NULL UNIQUE, telephone TEL, year NUMBER, password TEXT NOT NULL)");
 db.run("CREATE TABLE IF NOT EXISTS club (club_id INTEGER PRIMARY KEY, club_name TEXT NOT NULL, sport TEXT NOT NULL, club_email EMAIL NOT NULL UNIQUE)");

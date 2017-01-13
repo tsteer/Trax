@@ -20,6 +20,7 @@ module.exports = function(router, db, apiToken, querystring) {
           res.send("error");
           return;
         }else{
+          console.log(date_now);
           res.render('postadded', {id: req.params.id, club_id: req.params.club_id});
         };
       }); 

@@ -1,7 +1,7 @@
 module.exports = function(router, db, apiToken, querystring, security) {
   
   router.get('/login', function(req, res, next) {
-    res.render('login', { title: 'Express' });
+    res.render('login');
   });
 
   router.post('/login', function(req, res, next) {
@@ -20,8 +20,7 @@ module.exports = function(router, db, apiToken, querystring, security) {
         var password = response.password;
         security.verify(pwhash, password, function(err, ok) {
           if (err) {
-            console.log("error:" + err);
-            res.send("error 2");
+            res.send("error");
             return;
           } else {
             if (ok) {

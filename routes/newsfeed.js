@@ -34,8 +34,34 @@ module.exports = function(router, db, apiToken, querystring) {
   });		
 
   router.get("/newsfeed/:id/:club_id", function(req, res, next) {
-    if(req.session.userid == req.params.id){ 
-      db.all("select * from newspost left join newsfeed on newsfeed.newsfeed_id = newspost.newsfeed left join person on person.id = newspost.holder_id WHERE newsfeed.club_holder_id = ?", [req.params.club_id], function(err, rows) {
+    if (req.query.json) {
+      var token = req.get('X-Auth-Token');
+      var valid = apiToken.isTokenValid(token);
+      if (valid) {
+        db.all("select * from newspost left join newsfeed on newsfeed.newsfeed_id = newspost.newsfeed left join person on person.id = newspost.holder_id WHERE newsfeed.club_holder_id = ? ORDER BY newspost.date DESC", [req.params.club_id], function(err, rows) {
+          if (err) {
+            console.log("error:" + err);
+            res.send("error");
+            return;
+          }  
+          if (rows.length > 0) {
+            var posts = [];
+            var post = {};
+            rows.forEach(function(row){
+              post = {post_id: row.post_id, post_text: row.post_text, holder_id: row.holder_id, date: row.date, first_name: row.first_name, last_name: row.last_name};
+              posts.push(post);
+            });
+            res.send(JSON.stringify({success: true, club_id: req.params.club_id, id: req.params.id, posts:posts}));
+          }else{
+            res.send(JSON.stringify({success: false, error: "no rows"}));
+          };
+        });
+      }else{
+        res.send(JSON.stringify({success: false, error: "login"}));
+      };
+    }    
+    else if(req.session.userid == req.params.id){ 
+      db.all("select * from newspost left join newsfeed on newsfeed.newsfeed_id = newspost.newsfeed left join person on person.id = newspost.holder_id WHERE newsfeed.club_holder_id = ? ORDER BY newspost.date DESC", [req.params.club_id], function(err, rows) {
         if (err) {
           console.log("error:" + err);
           res.send("error");
@@ -48,7 +74,7 @@ module.exports = function(router, db, apiToken, querystring) {
             post = {post_id: row.post_id, post_text: row.post_text, holder_id: row.holder_id, date: row.date, first_name: row.first_name, last_name: row.last_name};
             posts.push(post);
           });
-          res.render("newsfeedposts", {club_id: req.params.club_id, id: req.params.id, posts:posts});
+          res.render("newsfeedposts", {club_id: req.params.club_id, id: req.params.id, posts: posts});
         }else{
           res.render('noposts', {club_id: req.params.club_id, id: req.params.id});
         };

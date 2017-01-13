@@ -12,8 +12,8 @@ module.exports = function(router, db, apiToken, querystring) {
             return;
           }
           if (rows.length > 0) { 
-            var testobject = {thing1: "yay1", thing2: "yay2"};
-            res.send(JSON.stringify({success: true,  testobject: testobject, first_name: rows[0].first_name, last_name: rows[0].last_name, dob: rows[0].dob, address: rows[0].address, email: rows[0].email, telephone: rows[0].telephone, year: rows[0].year}));
+            
+            res.send(JSON.stringify({success: true, first_name: rows[0].first_name, last_name: rows[0].last_name, dob: rows[0].dob, address: rows[0].address, email: rows[0].email, telephone: rows[0].telephone, year: rows[0].year}));
           } else {
             res.send(JSON.stringify({success: false, error: "no rows"}));
           };

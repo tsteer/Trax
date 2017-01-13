@@ -1,7 +1,33 @@
 module.exports = function(router, db, apiToken, querystring) {
 
   router.get("/clubs/:id", function(req, res) {
-    if(req.session.userid == req.params.id){ 
+    if (req.query.json) {
+      var token = req.get('X-Auth-Token');
+      var valid = apiToken.isTokenValid(token);
+      if (valid) {
+         db.all("select * from club left join join_club on join_club.club_holder_id = club.club_id where join_club.holder_id = ?", [req.params.id], function(err, rows) {
+        if (err) {
+          console.log("error:" + err);
+          res.send("error");
+          return;
+        }
+        if (rows.length > 0) {
+          var clubs = [];
+          var club = {};
+          rows.forEach(function(row){
+            club = {club_id: row.club_id, club_name: row.club_name};
+            clubs.push(club);
+          });
+            res.send(JSON.stringify({clubs: clubs}));      
+        } else {
+            res.send(JSON.stringify({success: false, error: "no rows"}));  
+        }; 
+      });
+      }else{
+        res.send(JSON.stringify({success: false, error: "login"}));
+      };    
+    }     
+    else if(req.session.userid == req.params.id){ 
       db.all("select * from club left join join_club on join_club.club_holder_id = club.club_id where join_club.holder_id = ?", [req.params.id], function(err, rows) {
         if (err) {
           console.log("error:" + err);
@@ -15,23 +41,19 @@ module.exports = function(router, db, apiToken, querystring) {
             club = {club_id: row.club_id, club_name: row.club_name};
             clubs.push(club);
           });
-          if (req.query.json) {
-            res.send(JSON.stringify({success: true, club: club, clubs: clubs}));
-          } else{
-            res.render("clubs", {clubs: clubs, id: req.params.id}); 
-          }       
+            res.render("clubs", {clubs: clubs, id: req.params.id});     
         } else {
-          if (req.query.json) {
-            res.send(JSON.stringify({success: false, error: "no rows"}));
-          } else{
-            res.render('noclubs', {id:req.params.id});
-          }    
+            res.render('noclubs', {id:req.params.id});   
         }; 
       });
     }else{
       res.render('login');
     };    
   });
+
+
+
+
 
   router.get("/clubs/:id/:club_id", function(req, res, next) {
     if(req.session.userid == req.params.id){
