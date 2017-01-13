@@ -11,7 +11,7 @@ module.exports = function(router, db, apiToken, querystring) {
             res.send("error");
             return;
           }    
-          if (rows.length > 0) {
+          if (rows.length > 0) { /* return object to mobile application */
             res.send(JSON.stringify({success: true, first_name: rows[0].first_name, last_name: rows[0].last_name, id: rows[0].id, dob: rows[0].dob, address: rows[0].address, email: rows[0].email, telephone: rows[0].telephone, year: rows[0].year})); 
           } else{
             res.send(JSON.stringify({success: false, error: "no rows"}));
@@ -35,8 +35,8 @@ module.exports = function(router, db, apiToken, querystring) {
         };  
       });
     } else{
-      res.send("Please log in!");
-    };
+      res.render('login');
+    };  
   });
 
   router.post("/edituser/:id", function(req, res, next) {
@@ -74,8 +74,8 @@ module.exports = function(router, db, apiToken, querystring) {
           res.render("useredited", {id: req.params.id}); 
         };
       });
-    }else{
-      res.send("Please log in!");
-    }; 
+    } else{
+      res.render('login');
+    };  
   });
 };

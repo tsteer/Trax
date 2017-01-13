@@ -11,7 +11,7 @@ module.exports = function(router, db, apiToken, querystring) {
             res.send("error"); 
             return;
           }
-          if (rows.length > 0) { 
+          if (rows.length > 0) { /* return object to mobile application */
             res.send(JSON.stringify({success: true, first_name: rows[0].first_name, last_name: rows[0].last_name, dob: rows[0].dob, address: rows[0].address, email: rows[0].email, telephone: rows[0].telephone, year: rows[0].year}));
           } else {
             res.send(JSON.stringify({success: false, error: "no rows"}));

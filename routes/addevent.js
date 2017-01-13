@@ -1,7 +1,7 @@
 module.exports = function(router, db, apiToken, querystring) {
 
   router.get('/committee/:id/:club_id/statistics/:team_id', function(req, res, next) {
-     if(req.session.userid == req.params.id){
+    if(req.session.userid == req.params.id){
       res.render("teamevent", {id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id}); 
     }else{
       res.render('login');
@@ -36,15 +36,19 @@ module.exports = function(router, db, apiToken, querystring) {
     response = {
       event_location:req.body.event_location
     };
-    var stmt = db.run("INSERT INTO event (team_id, location_id) VALUES (?, ?)", [req.params.team_id, response.event_location], function(err, rows) {   
-      if (err) { /* create new event for given team, entering only selected location id and team id */
-        console.log("error:" + err);
-        res.send("error");
-        return;
-      }else{
-        var event_id = this.lastID;
-        res.render('eventdetails', { id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id, event_id: event_id});
-      }
-    });
+    if(req.session.userid == req.params.id){ 
+      var stmt = db.run("INSERT INTO event (team_id, location_id) VALUES (?, ?)", [req.params.team_id, response.event_location], function(err, rows) {   
+        if (err) { /* create new event for given team, entering only selected location id and team id */
+          console.log("error:" + err);
+          res.send("error");
+          return;
+        }else{
+          var event_id = this.lastID;
+          res.render('eventdetails', { id: req.params.id, club_id: req.params.club_id, team_id: req.params.team_id, event_id: event_id});
+        }
+      });
+    }else{
+      res.render('login');
+    };   
   });
 };

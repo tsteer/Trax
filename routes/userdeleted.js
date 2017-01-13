@@ -4,7 +4,7 @@ module.exports = function(router, db, apiToken, querystring) {
 		if (req.query.json) {
       var token = req.get('X-Auth-Token');
       var valid = apiToken.isTokenValid(token);
-      if (valid) {
+      if (valid) { /* check valid mobile request token */
       	db.run("DELETE from person WHERE id = ?", [req.params.id], function(err, rows){
 					if (err) { /* delete user */
 						return next(err); 
@@ -12,7 +12,7 @@ module.exports = function(router, db, apiToken, querystring) {
 						db.run("DELETE from join_club WHERE holder_id = ?", [req.params.id], function(err, rows){
 							if (err) { /* delete all user's club memberships */
 								return next(err); 
-							}else{
+							}else{ /* return object to mobile application */
 								res.send(JSON.stringify({success: true, id: req.params.id}));
 							};
 						});

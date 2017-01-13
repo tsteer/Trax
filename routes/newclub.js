@@ -38,7 +38,7 @@ module.exports = function(router, db, apiToken, querystring) {
                   res.send("error");
                   return;
                 }else{
-                  res.send(JSON.stringify({success: true}));
+                  res.send(JSON.stringify({success: true})); /* return object to mobile application */
                 };
               });
             };    

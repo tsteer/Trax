@@ -10,8 +10,8 @@ module.exports = function(router, db, apiToken, querystring) {
         }
       }); 
     } else{
-      res.send(JSON.stringify({success: false}));
-    }
+      res.render('login');
+    }; 
   });   
 };  
 

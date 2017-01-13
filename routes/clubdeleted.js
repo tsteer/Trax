@@ -12,7 +12,7 @@ module.exports = function(router, db, apiToken, querystring) {
 								if (err) { /* delete all club members */
 									return next(err); 
 								}
-								if (req.query.json) {
+								if (req.query.json) { /* must be updated for further mobile development - mobile token must be validated in order to complete this request */
 									res.send(JSON.stringify({success: true, id: req.params.id}));
 								}	else{
 									res.render("clubdeleted", {id: req.params.id, club_id: req.params.club_id});
@@ -24,8 +24,8 @@ module.exports = function(router, db, apiToken, querystring) {
           res.send("You must be a committee member in order to access this page");
         }  
       });  
-     }else{
-      res.send("Please log in!");
-    }   			
+    } else{
+			res.render('login');
+    };    			
 	});
 };

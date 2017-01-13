@@ -15,13 +15,13 @@ module.exports = function(router, db, apiToken, querystring) {
             club = {club_id: row.club_id, club_name: row.club_name};
             clubs.push(club);
           });
-          if (req.query.json) {
+          if (req.query.json) { /* must be updated for further mobile development - mobile token must be validated in order to complete this request */
             res.send(JSON.stringify({success: true, club: club, clubs: clubs}));
           } else{
             res.render('newsfeed', {clubs: clubs, id: req.params.id}); 
           };       
         } else {
-          if (req.query.json) {
+          if (req.query.json) { /* must be updated for further mobile development - mobile token must be validated in order to complete this request */
             res.send(JSON.stringify({success: false, error: "no rows"}));
           } else{
             res.render('noclubs', {id: req.params.id});
@@ -37,7 +37,7 @@ module.exports = function(router, db, apiToken, querystring) {
     if (req.query.json) {
       var token = req.get('X-Auth-Token');
       var valid = apiToken.isTokenValid(token);
-      if (valid) {
+      if (valid) { /* check valid mobile request token */
         db.all("select * from newspost left join newsfeed on newsfeed.newsfeed_id = newspost.newsfeed left join person on person.id = newspost.holder_id WHERE newsfeed.club_holder_id = ? ORDER BY newspost.date DESC", [req.params.club_id], function(err, rows) {
           if (err) { /* select all posts on club newsfeed, with most recent first */
             console.log("error:" + err);
@@ -50,8 +50,8 @@ module.exports = function(router, db, apiToken, querystring) {
             rows.forEach(function(row){ /* store post info as object, add object to array of all posts */
               post = {post_id: row.post_id, post_text: row.post_text, holder_id: row.holder_id, date: row.date, first_name: row.first_name, last_name: row.last_name};
               posts.push(post);
-            });
-            res.send(JSON.stringify({success: true, club_id: req.params.club_id, id: req.params.id, posts:posts}));
+            }); 
+            res.send(JSON.stringify({success: true, club_id: req.params.club_id, id: req.params.id, posts:posts})); /* return object to mobile application */
           }else{
             res.send(JSON.stringify({success: false, error: "no rows"}));
           };

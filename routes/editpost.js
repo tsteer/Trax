@@ -15,7 +15,7 @@ module.exports = function(router, db, apiToken, querystring) {
               res.send("error");
               return;
             }
-            if (req.query.json) {      
+            if (req.query.json) { /* must be updated for further mobile development - mobile token must be validated in order to complete this request */  
               if (rows.length > 0) {
                 res.send(JSON.stringify({success: true, id: req.params.id, club_id: req.params.club_id, post_id: req.params.post_id, post_text: rows[0].post_text})); 
               } else{

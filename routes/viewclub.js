@@ -6,7 +6,7 @@ module.exports = function(router, db, apiToken, querystring) {
     if (req.query.json) {
       var token = req.get('X-Auth-Token');
       var valid = apiToken.isTokenValid(token);
-      if (valid) {
+      if (valid) { /* check valid mobile request token */
         db.all("SELECT * FROM join_club WHERE holder_id = ? AND club_holder_id = ?", [req.params.id, req.params.club_id], function(err, rows){
           if (err) {
             res.send("error");
@@ -24,8 +24,8 @@ module.exports = function(router, db, apiToken, querystring) {
                   members = {id: row.id, first_name: row.first_name, last_name: row.last_name, dob: row.dob, address: row.address, 
                     email: row.email, telephone: row.telephone, year: row.year, committee_role: row.committee_role};
                   members_list.push(members);
-                });
-                res.send(JSON.stringify({success: true, members: members, members_list: members_list, id: req.params.id, club_id: req.params.club_id}));
+                }); 
+                res.send(JSON.stringify({success: true, members: members, members_list: members_list, id: req.params.id, club_id: req.params.club_id})); /* return object to mobile application */
               } else{
                 res.send(JSON.stringify({success: false, error: "no rows"})); 
               };  

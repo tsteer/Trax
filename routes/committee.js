@@ -15,13 +15,13 @@ module.exports = function(router, db, apiToken, querystring) {
             club = {club_id: row.club_id, club_name: row.club_name};
             clubs.push(club); /* add objects to array */
           });
-          if (req.query.json) {
+          if (req.query.json) { /* must be updated for further mobile development - mobile token must be validated in order to complete this request */
             res.send(JSON.stringify({success: true, club: club, clubs: clubs}));
           } else{
             res.render('committee', {clubs: clubs, id: req.params.id}); 
           }       
         }else {
-          if (req.query.json) {
+          if (req.query.json) { /* must be updated for further mobile development - mobile token must be validated in order to complete this request */
             res.send(JSON.stringify({success: false, error: "no rows"}));
           }else{
             res.render('nocommittee', { id: req.params.id});

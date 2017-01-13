@@ -21,7 +21,7 @@ module.exports = function(router, db){
                 rows.forEach(function(row){
                 clubs.push(row.club_name);
               });
-              if (req.query.json) {
+              if (req.query.json) { /* must be updated for further mobile development - mobile token must be validated in order to complete this request */
                 res.send(JSON.stringify({success: true, first_name: first_name, id: id, clubs: clubs}));
               } else{
                 res.render("joinclub", {first_name: first_name, id: id, clubs: clubs}); 
@@ -29,16 +29,16 @@ module.exports = function(router, db){
             };           
           }); 
         } else {
-          if (req.query.json) {
+          if (req.query.json) { /* must be updated for further mobile development - mobile token must be validated in order to complete this request */
             res.send(JSON.stringify({success: false, error: "no rows"}));
           } else{
             res.render('login');
           };    
         };
       });
-    }else{
-      res.send("Please log in!");
-    };  
+    } else{
+      res.render('login');
+    };    
   });
 
   router.post("/joinclub/:id", function(req, res, next){

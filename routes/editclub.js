@@ -10,7 +10,7 @@ module.exports = function(router, db, apiToken, querystring) {
               res.send("error");
               return;
             }
-            if (req.query.json) {
+            if (req.query.json) { /* must be updated for further mobile development - mobile token must be validated in order to complete this request */
               if (rows.length > 0) {
                 res.send(JSON.stringify({success: true, club_name: rows[0].club_name, sport: rows[0].sport, club_email: rows[0].club_email, club_id: req.params.club_id, id: req.params.id}));
               } else{
@@ -28,9 +28,9 @@ module.exports = function(router, db, apiToken, querystring) {
           res.send("You must be a committee member in order to access this page");
         };  
       });  
-     }else{
-      res.send("Please log in!");
-    };     
+    } else{
+      res.render('login');
+    };      
   });
 
   router.post("/committee/:id/:club_id/editclub", function(req, res, next) {
@@ -55,8 +55,8 @@ module.exports = function(router, db, apiToken, querystring) {
           res.send("You must be a committee member in order to access this page");
         }  
       });  
-    }else{
-      res.send("Please log in!");
-    }      
+    } else{
+      res.render('login');
+    };       
   });
 };

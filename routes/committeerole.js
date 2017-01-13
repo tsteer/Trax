@@ -3,8 +3,8 @@
   router.get('/committee/:id/:club_id/addcommittee/:membership_id/committeerole', function(req, res, next) {
     if(req.session.userid == req.params.id){
       res.render("committeerole", {membership_id: req.params.membership_id, id: req.params.id, club_id: req.params.club_id});
-    }else{
-      res.send("Please log in");
+    } else{
+      res.render('login');
     };   
   });  
 
@@ -22,8 +22,8 @@
           res.render("committeeadded", {membership_id: req.params.membership_id, id: req.params.id, club_id: req.params.club_id});
         };
       });
-    }else{
-      res.send("Please log in");
+    } else{
+      res.render('login');
     };    
   }); 
 }; 

@@ -1,6 +1,6 @@
 module.exports = function(router, db, apiToken, querystring) {
 
-  router.get('/newsu', function(req, res, next) {
+  router.get('/newsu', function(req, res, next) { /* page not currently used for TRAX */
     res.render('newsu', { title: 'Express' });
   });
 

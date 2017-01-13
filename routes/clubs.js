@@ -18,7 +18,7 @@ module.exports = function(router, db, apiToken, querystring) {
             club = {club_id: row.club_id, club_name: row.club_name};
             clubs.push(club);
           });
-            res.send(JSON.stringify({clubs: clubs}));      
+            res.send(JSON.stringify({success: true, clubs: clubs})); /* return object to mobile application */ 
         } else {
             res.send(JSON.stringify({success: false, error: "no rows"}));  
         }; 

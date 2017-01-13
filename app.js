@@ -44,7 +44,6 @@ require('./routes/newsu')(router, db, apiToken, querystring);
 require('./routes/addcommittee')(router, db, apiToken, querystring);
 require('./routes/viewclub')(router, db, apiToken, querystring);
 require('./routes/login')(router, db, apiToken, querystring, security);
-require('./routes/news')(router, db, apiToken, querystring);
 require('./routes/account')(router, db, apiToken, querystring);
 require('./routes/userdeleted')(router, db, apiToken, querystring);
 require('./routes/liftsharing')(router, db, apiToken, querystring);

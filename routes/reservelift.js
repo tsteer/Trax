@@ -23,7 +23,7 @@ module.exports = function(router, db, apiToken, querystring) {
     if (req.query.json) {
       var token = req.get('X-Auth-Token');
       var valid = apiToken.isTokenValid(token);
-      if (valid) {
+      if (valid) { /* check valid mobile request token */
         if(seats > 0){ /* check seats available */
           db.run("BEGIN TRANSACTION");
           var stmt = db.run("INSERT into seats values (NULL, ?, ?)", [req.params.id, req.params.route_id], function(err, result) {
@@ -36,7 +36,7 @@ module.exports = function(router, db, apiToken, querystring) {
                   db.run("ROLLBACK"); 
                   return next(err); 
                 }else{
-                  db.run("COMMIT TRANSACTION");
+                  db.run("COMMIT TRANSACTION"); /* return object to mobile application */
                   res.send(JSON.stringify({success: true, id: req.params.id, club_id: req.params.club_id, route_id: req.params.route_id}));
                 }; 
               }); 

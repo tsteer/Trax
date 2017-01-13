@@ -17,9 +17,9 @@ module.exports = function(router, db, apiToken, querystring) {
 	      } else { 
 	      	if (rows.length > 0) {  
 	          var club = [];
-	          	for (var i = 0; i < rows.length; i++){ /*save club data as object, added to array */
-	          		club[i] = {club_name: rows[i].club_name, club_id: rows[i].club_id} 
-			        };
+	          for (var i = 0; i < rows.length; i++){ /*save club data as object, added to array */
+	         		club[i] = {club_name: rows[i].club_name, club_id: rows[i].club_id} 
+			      };
 	          res.render('liftsharing', {id: req.params.id, club: club});
 	        } else{ 
 	         	res.render('noclubs', {id: req.params.id, club: club});
